@@ -1,7 +1,5 @@
 package training.endava.playground.generics.bounds;
 
-import javafx.beans.binding.IntegerBinding;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +17,7 @@ public class Polymorphism<T> {
     public static <T extends Comparable<T>> T max(T x, T y) {
         return x.compareTo(y) > 0? x : y;
 //        return x > y ? x : y;
+        //anc
     }
 
 
