@@ -1,10 +1,15 @@
 package training.endava.playground.generics.types;
 
-public class Bottle extends Product {
-
+public class Bottle<T> extends Product implements Shippable<T> {
     private String producer;
 
-    public Bottle() {}
+    public void ship(T item) {
+        System.out.println("Bottle was delivered");
+
+    }
+
+    public Bottle() {
+    }
 
     public Bottle(String producer) {
         this.producer = producer;
