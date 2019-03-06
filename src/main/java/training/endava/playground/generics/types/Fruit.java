@@ -1,6 +1,6 @@
 package training.endava.playground.generics.types;
 
-public class Fruit {
+public class Fruit implements Shippable {
 
     private Integer calories;
 
@@ -14,5 +14,9 @@ public class Fruit {
 
     public void setCalories(Integer calories) {
         this.calories = calories;
+    }
+    public void ship(Object obj)
+    {
+        System.out.println( "Works with object parameter! ");
     }
 }
