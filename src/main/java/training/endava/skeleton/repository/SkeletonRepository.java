@@ -8,10 +8,10 @@ import training.endava.skeleton.model.SkeletonObject;
 import training.endava.skeleton.db.MockDB;
 
 public interface SkeletonRepository<T extends SkeletonObject<T, ID>, ID> {
-	
-	MockDB MOCK_DB = MockDB.getInstance();
-	
-    T save(T id) throws PersonNotFoundException;
+
+    MockDB MOCK_DB = MockDB.getInstance();
+
+    T save(T id);
 
     Optional<T> findById(ID id);
 
@@ -21,7 +21,7 @@ public interface SkeletonRepository<T extends SkeletonObject<T, ID>, ID> {
 
     long count();
 
-    void deleteById(ID id) throws PersonNotFoundException;
+    void deleteById(ID id);
 
     void deleteAll();
 }

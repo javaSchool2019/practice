@@ -1,15 +1,15 @@
 package training.endava.skeleton.exception;
 
-public class PersonNotFoundException extends Exception {
+public class PersonNotFoundException extends RuntimeException {
 
-    private final Integer errorCode;
+    private final ErrorCode errorCode;
 
-    public PersonNotFoundException(String message, Integer errorCode) {
+    public PersonNotFoundException(String message, ErrorCode errorCode) {
         super(message);
         this.errorCode = errorCode;
     }
 
     public Integer getErrorCode() {
-        return errorCode;
+        return errorCode.getValue();
     }
 }

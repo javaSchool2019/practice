@@ -1,5 +1,6 @@
 package training.endava.skeleton.repository;
 
+import training.endava.skeleton.exception.ErrorCode;
 import training.endava.skeleton.exception.PersonNotFoundException;
 import training.endava.skeleton.model.Person;
 
@@ -7,15 +8,15 @@ import java.util.List;
 import java.util.Optional;
 
 public class PersonRepository implements SkeletonRepository<Person, Long> {
-    private List<Person> personList = MOCK_DB.getTable(Person.class);
+    private static List<Person> personList = MOCK_DB.getTable(Person.class);
 
     @Override
-    public Person save(Person person) throws PersonNotFoundException {
+    public Person save(Person person) {
         if (!personList.contains(person) && person != null) {
             personList.add(person);
             return person;
         }
-        throw new PersonNotFoundException("Person already exists or is null!", 4);
+        throw new PersonNotFoundException("Person already exists or is null!", ErrorCode.PERSON_ALREADY_EXISTS_OR_NULL);
     }
 
     @Override
@@ -39,10 +40,10 @@ public class PersonRepository implements SkeletonRepository<Person, Long> {
     }
 
     @Override
-    public void deleteById(Long id) throws PersonNotFoundException {
+    public void deleteById(Long id) {
         Optional<Person> person = findById(id);
         person.ifPresent(p -> personList.remove(p));
-        person.orElseThrow(() -> new PersonNotFoundException("Id is not found", 3));
+        person.orElseThrow(() -> new PersonNotFoundException("Id is not found", ErrorCode.ID_NOT_FOUND));
     }
 
     @Override
