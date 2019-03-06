@@ -17,6 +17,9 @@ public class Main {
 
         SkeletonRepository<Person, Long> personRepository = new PersonRepository();
 
+        PersonRepository p2 = new PersonRepository();
+        int count = (int) p2.count();
+
         Person person = personRepository.findById(6L).get();
         System.out.println("Find by id: " + person);
         System.out.println("Size of the table Person: " + personRepository.count());
@@ -40,6 +43,7 @@ public class Main {
         personList.forEach(System.out::println);
         personRepository.deleteAll();
         personList.forEach(System.out::println);
+        System.out.println(p2.count());
     }
 
     private static List<Person> createDummyData() {
