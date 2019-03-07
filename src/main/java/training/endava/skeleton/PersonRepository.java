@@ -1,22 +1,15 @@
-package training.endava.skeleton.db;
+package training.endava.skeleton;
 
 
-import training.endava.skeleton.SkeletonRepository;
-
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
 public class PersonRepository implements SkeletonRepository<Person , Integer> {
 
-    //ArrayList<Person> persons = (ArrayList) MOCK_DB.getTable(Person.class);
-    List<Person> persons ;
+    private ArrayList<Person> persons = (ArrayList) MOCK_DB.getTable(Person.class);
 
-
-    PersonRepository(List<Person> listP)
-    {
-        this.persons = listP;
-    }
 
     @Override
     public Person save(Person id)

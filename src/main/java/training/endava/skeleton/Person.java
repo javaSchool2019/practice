@@ -1,20 +1,18 @@
-package training.endava.skeleton.db;
-
-import training.endava.skeleton.SkeletonObject;
+package training.endava.skeleton;
 
 public class Person implements SkeletonObject<Person, Integer> {
 
     private String name;
-    private Integer ID;
+    private Integer id;
     private String phoneNumber;
-    private String Address;
+    private String address;
 
 
-    public Person(String name, Integer ID, String phoneNumber, String address) {
+    public Person(String name, Integer id, String phoneNumber, String address) {
         this.name = name;
-        this.ID = ID;
+        this.id = id;
         this.phoneNumber = phoneNumber;
-        Address = address;
+        this.address = address;
     }
 
     public String getName() {
@@ -34,21 +32,21 @@ public class Person implements SkeletonObject<Person, Integer> {
     }
 
     public String getAddress() {
-        return Address;
+        return address;
     }
 
     public void setAddress(String address) {
-        Address = address;
+        address = address;
     }
 
     @Override
     public Integer getId() {
-        return ID;
+        return id;
     }
 
     @Override
     public void setId(Integer id) {
-        this.ID = id;
+        this.id = id;
     }
 
 
@@ -56,9 +54,9 @@ public class Person implements SkeletonObject<Person, Integer> {
     public String toString() {
         return "Person{" +
                 "name='" + name + '\'' +
-                ", ID=" + ID +
+                ", ID=" + id +
                 ", phoneNumber='" + phoneNumber + '\'' +
-                ", Address='" + Address + '\'' +
+                ", Address='" + address + '\'' +
                 '}';
     }
 }

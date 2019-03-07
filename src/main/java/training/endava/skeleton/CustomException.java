@@ -1,4 +1,4 @@
-package training.endava.skeleton.db;
+package training.endava.skeleton;
 
 public class CustomException extends RuntimeException {
 
