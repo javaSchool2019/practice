@@ -1,6 +1,6 @@
 package training.endava.playground.generics.types;
 
-public class Box<T> {
+public class Box<T>{
 
     private T contents;
 
@@ -14,5 +14,12 @@ public class Box<T> {
 
     public void createContents() {
 //        contents = new T();
+    }
+
+    @Override
+    public String toString() {
+        return "Box{" +
+                "contents=" + contents +
+                '}';
     }
 }
