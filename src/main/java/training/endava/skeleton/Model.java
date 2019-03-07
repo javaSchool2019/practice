@@ -10,7 +10,6 @@ import java.util.Optional;
 public class Model implements SkeletonRepository<Person, Integer> {
 
     ArrayList<Person> list;
-
     public Model() {
         this.list = new ArrayList<Person>();
     }
@@ -21,7 +20,7 @@ public class Model implements SkeletonRepository<Person, Integer> {
             if (id == null) {
                 throw new ClassNotInstantiated(Person.class.toString() + " not instantiated", 1);
             }
-            if (this.existsById(id.getId())) {
+            if (!this.existsById(id.getId())) {
                 throw new PersonAlreadyExists("Person already exists", 3);
             }
             this.list.add(id);

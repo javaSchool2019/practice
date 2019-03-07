@@ -1,6 +1,6 @@
 package training.endava.playground.generics.types;
 
-public class Fruit {
+public class Fruit extends Product implements Shippable<Fruit> {
 
     private Integer calories;
 
@@ -14,5 +14,10 @@ public class Fruit {
 
     public void setCalories(Integer calories) {
         this.calories = calories;
+    }
+
+    @Override
+    public void ship(Fruit item) {
+        System.out.println(item.toString());
     }
 }

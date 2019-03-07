@@ -1,6 +1,6 @@
 package training.endava.playground.generics.types;
 
-public class Bottle extends Product {
+public class Bottle extends Product implements Shippable<Bottle> {
 
     private String producer;
 
@@ -28,5 +28,10 @@ public class Bottle extends Product {
         return "Bottle{" +
                 "producer='" + producer + '\'' +
                 '}';
+    }
+
+    @Override
+    public void ship(Bottle item) {
+        System.out.println(item.toString());
     }
 }
