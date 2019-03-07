@@ -58,5 +58,7 @@ public class ArticlePlayground {
         groupedTags.entrySet().forEach(group -> System.out.println(group.getKey() + ": " + group.getValue()));
 
         articles.sort((art1, art2) -> art1.getTags().size() - art2.getTags().size());
+        Collections.reverse(articles);
+        System.out.println(articles);
     }
 }

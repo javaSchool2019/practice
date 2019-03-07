@@ -1,6 +1,6 @@
 package training.endava.playground.generics.types;
 
-public class Box<T> {
+public class Box<T> implements Shippable<T>{
 
     private T contents;
 
@@ -14,5 +14,15 @@ public class Box<T> {
 
     public void createContents() {
 //        contents = new T();
+    }
+
+    @Override
+    public String toString() {
+        return "Contents: " + contents.toString();
+    }
+
+    @Override
+    public void ship(T item) {
+        System.out.println("Boxed :" + item);
     }
 }
