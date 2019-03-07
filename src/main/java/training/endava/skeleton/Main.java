@@ -1,4 +1,6 @@
-package training.endava.skeleton.db;
+package training.endava.skeleton;
+
+import training.endava.skeleton.db.MockDB;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,35 +16,28 @@ public class Main {
         Person p5 = new Person("Ana05", 5, "0705", "Iasi05");
         Person p6 = new Person("Ana06", 6, "0706", "Iasi06");
 
-        List<Person> personList = new ArrayList<Person>();
-        List<Person> emptyList = new ArrayList<>();
+        List<Person> personList = new ArrayList<>();
 
         personList.add(p1);
         personList.add(p2);
         personList.add(p3);
         personList.add(p4);
 
-      //  System.out.println("LIST 1:");
-      //  System.out.println(personList);
-
-//        for(Person pers : personList )
-//        {
-//            System.out.println(pers.getName() + " " + pers.getId() + " " + pers.getPhoneNumber() + " " + pers.getAddress());
-//        }
+        System.out.println("LIST 1:");
+        System.out.println(personList);
 
         MockDB mockDB = MockDB.getInstance();
         mockDB.setTable(Person.class, personList);
 
-       // System.out.println("LIST 2:");
-       // System.out.println(mockDB.getTable(Person.class));
+        System.out.println("LIST 2:");
+        System.out.println(mockDB.getTable(Person.class));
 
-        PersonRepository personRepository = new PersonRepository(personList);
+        PersonRepository personRepository = new PersonRepository();
 
         personRepository.save(new Person("Ana09", 10, "0706", "Iasi06") );
         personRepository.findById(10);
 
         System.out.println(personRepository.existsById(10));
-
 
     }
 }
