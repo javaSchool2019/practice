@@ -10,14 +10,9 @@ import java.util.Optional;
 
 public class PersonRepository implements SkeletonRepository<Person, Integer> {
 
-//    ArrayList<Person> persons= (ArrayList) MOCK_DB.getTable(Person.class);
+    private List<Person> persons = MOCK_DB.getTable(Person.class);
 
-    List<Person> persons;
-
-    public PersonRepository(List<Person> persons) {
-        this.persons = persons;
-    }
-
+    @Override
     public Person save (Person id){
         if (persons.contains(id)){
             throw new PersonIdAlreadyExistException(id.getId());
@@ -26,6 +21,7 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
         return id;
     }
 
+    @Override
     public Optional<Person> findById(Integer id){
         for (Person p :persons){
             if (p.getId().equals(id)){
@@ -35,6 +31,7 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
         return Optional.empty();
     }
 
+    @Override
     public boolean existsById(Integer id){
         for (Person p  : persons){
             if (p.getId().equals(id)){
@@ -44,15 +41,18 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
         return false;
     }
 
+    @Override
     public List<Person> findAll(){
         return persons;
     }
 
+    @Override
     public long count() {
         return persons.size();
     }
 
 
+    @Override
     public void deleteById(Integer id) {
         if (!existsById(id)) throw new PersonIdNotFoundException(id);
         Iterator<Person> personIterator=persons.iterator();
@@ -67,6 +67,7 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
     }
 
 
+    @Override
     public void deleteAll() {
         persons.clear();
     }

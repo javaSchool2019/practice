@@ -1,7 +1,6 @@
 package training.endava.skeleton;
 
 import training.endava.skeleton.db.MockDB;
-import training.endava.skeleton.model.Address;
 import training.endava.skeleton.model.Person;
 import training.endava.skeleton.model.PersonRepository;
 
@@ -20,22 +19,22 @@ public class MainApplication {
         Person p5=new Person(5,"Gigel5","07XXXXXXX5","Galati");
         Person p6=new Person(6,"Gigel6","07XXXXXXX6","Brasov");
         Person p7=new Person(7,"Gigel7","07XXXXXXX7","Bacau");
-        Person p8=new Person(8,"Gigel7","07XXXXXXX7","Bacau");
+        Person p8=new Person(8,"Gigel8","07XXXXXXX8","Bucuresti");
 
-        persons.addAll(Arrays.asList(p1,p2,p3,p4,p5,p6));
+        persons.addAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7));
 
         System.out.println(persons);
 
 
         MockDB mockDB=MockDB.getInstance();
         mockDB.setTable(Person.class,persons);
-//        System.out.println(mockDB.getTable(Person.class));
+        System.out.println(mockDB.getTable(Person.class));
 
 
 
         //###################### PersonRepository ######################.
 
-        PersonRepository pr=new PersonRepository(persons);
+        PersonRepository pr=new PersonRepository();
 
         System.out.println("-----------------------------------------------------------------------------------------");
         pr.save(p8);
@@ -60,8 +59,6 @@ public class MainApplication {
         System.out.println("-----------------------------------------------------------------------------------------");
         pr.deleteAll();
         System.out.println(persons);
-
     }
-
 
 }
