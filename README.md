@@ -6,10 +6,10 @@ by the trainers.
 ## Working with this repository
 
 You will have to fork this repository and then make a clone of your own fork.
-The repository contains a branch for each student. e.g. student name = Andrei Popescu, then
-the branch name will be `pandrei`.
+The repository contains a branch for each student. e.g. student title = Andrei Popescu, then
+the branch title will be `pandrei`.
 
-Your main branch will be the branch having your name with which you can play around.   
+Your main branch will be the branch having your title with which you can play around.
 
 To get your code up to this repo you will have to push the branch on your repo and create a `Pull
 request ` to your branch from this repo . 
