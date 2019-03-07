@@ -46,7 +46,7 @@ public class Person implements SkeletonObject<Person, Integer> {
 
     @Override
     public Integer getId() {
-        return this.getId();
+        return this.id;
     }
 
     @Override

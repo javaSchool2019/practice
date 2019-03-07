@@ -8,23 +8,20 @@ import java.util.Optional;
 
 public class PersonRepository implements SkeletonRepository<Person, Integer> {
 
-    List<Person> personList;
-
-    public PersonRepository() {
-        this.personList = MOCK_DB.getTable(Person.class);
-    }
 
     @Override
     public Person save(Person id) {
         if(existsById(id.getId()))
             throw new IncorectRuntimeException("Person with id " + id.getId() + " already exists.");
-        this.personList.add(id);
+
+        MOCK_DB.getTable(Person.class).add(id);
         return id;
     }
 
     @Override
     public Optional<Person> findById(Integer integer) {
-        for(Person person: this.personList){
+
+        for(Person person: MOCK_DB.getTable(Person.class)){
             if(person.getId().equals(integer)){
                 return Optional.of(person);
             }
@@ -34,7 +31,8 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
 
     @Override
     public boolean existsById(Integer integer) {
-        for(Person person: this.personList){
+
+        for(Person person: MOCK_DB.getTable(Person.class)){
             if(person.getId().equals(integer)){
                 return true;
             }
@@ -44,21 +42,22 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
 
     @Override
     public List<Person> findAll() {
-        return this.personList;
+        return MOCK_DB.getTable(Person.class);
     }
 
     @Override
     public long count() {
-        return Long.valueOf(this.personList.size());
+        return MOCK_DB.getTable(Person.class).size();
     }
 
     @Override
     public void deleteById(Integer integer){
-        Iterator<Person> personIterator = this.personList.iterator();
+
+        Iterator<Person> personIterator = MOCK_DB.getTable(Person.class).iterator();
         while (personIterator.hasNext()) {
             Person person = personIterator.next();
             if(person.getId().equals(integer)){
-                this.personList.remove(person);
+                MOCK_DB.getTable(Person.class).remove(person);
                 return;
             }
         }
@@ -67,6 +66,6 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
 
     @Override
     public void deleteAll() {
-        this.personList.clear();
+        MOCK_DB.getTable(Person.class).clear();
     }
 }
