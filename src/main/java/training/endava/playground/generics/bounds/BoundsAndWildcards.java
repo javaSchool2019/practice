@@ -1,5 +1,8 @@
 package training.endava.playground.generics.bounds;
 
+import training.endava.playground.generics.types.Article;
+import training.endava.playground.generics.types.Product;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,4 +33,5 @@ public class BoundsAndWildcards {
             list.add(i);
         }
     }
+
 }
