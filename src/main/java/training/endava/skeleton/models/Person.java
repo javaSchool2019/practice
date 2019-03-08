@@ -3,6 +3,8 @@ package training.endava.skeleton.models;
 
 import training.endava.skeleton.SkeletonObject;
 
+import java.util.Objects;
+
 public class Person implements SkeletonObject<Person, Integer> {
     private Integer id;
     private String name;
@@ -53,9 +55,25 @@ public class Person implements SkeletonObject<Person, Integer> {
     public Person() {
     }
 
+    public Person(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Person [id: " + id + ",  name: " + name + ",  phone: " + phoneNumber + ",  address: " + address + "]";
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Person)) return false;
+        Person person = (Person) o;
+        return getPhoneNumber().equals(person.getPhoneNumber());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getPhoneNumber());
+    }
 }
