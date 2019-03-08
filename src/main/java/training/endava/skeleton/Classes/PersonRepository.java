@@ -13,6 +13,7 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
     public Person save(Person id) {
         if(existsById(id.getId()))
             throw new IncorectRuntimeException("Person with id " + id.getId() + " already exists.");
+
         MOCK_DB.getTable(Person.class).add(id);
         return id;
     }

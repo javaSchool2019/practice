@@ -7,14 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+
 public class Person implements SkeletonObject<Person, Integer> {
 
     private Integer id;
     private String name;
     private String phoneNumber;
     private String adress;
-    private Company company;
 
+    private Company company;
 
     public Person() {
     }
@@ -25,6 +26,7 @@ public class Person implements SkeletonObject<Person, Integer> {
         this.phoneNumber = phoneNumber;
         this.adress = adress;
     }
+
 
     public Person(String name) {
         this.name = name;

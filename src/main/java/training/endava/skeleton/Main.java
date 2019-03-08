@@ -14,6 +14,13 @@ import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
+import training.endava.skeleton.Classes.Person;
+import training.endava.skeleton.Classes.PersonRepository;
+import training.endava.skeleton.Exceptions.IncorectSomethingException;
+import training.endava.skeleton.db.MockDB;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
 
@@ -25,12 +32,12 @@ public class Main {
         Person p4 = new Person(4, "Trinca Ioana", "0749287483", "Iasi");
         Person p5 = new Person(5, "Olariu Madalina", "07516738483", "Vaslui");
         Person p6 = new Person(6, "Cineva Marcel", "07576738483", "Bacau");
+
         personList.add(p1);
         personList.add(p2);
         personList.add(p3);
         personList.add(p4);
         personList.add(p5);
-
 
         Company company1 = new Company("Endava", 1999, CompanyArea.IT);
         Company company2 = new Company("Bitdefender", 1899, CompanyArea.IT);
@@ -58,7 +65,6 @@ public class Main {
         System.out.println(personRepository.findById(6));
 
         personRepository.findAll().forEach(System.out::println);
-
         */
 
         // 1
