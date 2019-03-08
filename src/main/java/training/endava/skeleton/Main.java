@@ -3,7 +3,6 @@ package training.endava.skeleton;
 import training.endava.skeleton.db.MockDB;
 import training.endava.playground.generics.types.Article;
 
-import java.sql.SQLOutput;
 import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
@@ -24,6 +23,7 @@ public class Main {
 
     public static void main(String args[]) {
         /*
+
     ArrayList<Person> PhoneBook=new ArrayList();
 
   Person pers1=new Person(1,"Hirtan Daniel","555-000-111", "Strada Arhitect Ioan nr. 16");
@@ -88,28 +88,28 @@ public class Main {
 
         List<Article> lista=new ArrayList<Article>();
 
-        List<String> l1=new ArrayList<>();
-        List<String> l2=new ArrayList<>();
-        List<String> l3=new ArrayList<>();
-        List<String> l4=new ArrayList<>();
-        l1.add("tag1");
-        l1.add("tag2");
-        l1.add("tag3");
-        l1.add("tag4");
-        l2.add("tag8");
-        l2.add("tag9");
-        l2.add("tag9");
-        l3.add("tag6");
-        l3.add("tag9");
-        l3.add("tag0");
-        l4.add("tag150");
+        List<String> listaTag1 =new ArrayList<>();
+        List<String> listaTag2 =new ArrayList<>();
+        List<String> listaTag3 =new ArrayList<>();
+        List<String> listaTag4=new ArrayList<>();
+        listaTag1.add("tag1");
+        listaTag1.add("tag2");
+        listaTag1.add("tag3");
+        listaTag1.add("tag4");
+        listaTag2.add("tag8");
+        listaTag2.add("tag9");
+        listaTag2.add("tag9");
+        listaTag3.add("tag6");
+        listaTag3.add("tag9");
+        listaTag3.add("tag0");
+        listaTag4.add("tag150");
 
 
 
-        Article articol1=new Article("Articol12",l1);
-        Article articol2=new Article("Articol26",l2);
-        Article articol3=new Article("Articol3",l3);
-        Article articol4=new Article("Articol4",l4);
+        Article articol1=new Article("Articol12", listaTag1);
+        Article articol2=new Article("Articol26", listaTag2);
+        Article articol3=new Article("Articol3", listaTag3);
+        Article articol4=new Article("Articol4",listaTag4);
 
         lista.add(articol1);
         lista.add(articol2);
@@ -123,9 +123,9 @@ public class Main {
         };
         lista.sort(com);
 
-        for(int i=0;i<lista.size();i++){
-            System.out.println(lista.get(i).getTitle());
-        }
+            for(Article a : lista){
+            System.out.println(a.getTitle());
+            }
 
 
         Set<String> tag=new HashSet<>();
@@ -156,8 +156,8 @@ public class Main {
             System.out.println(m.get(key));
 
         }
-
 */
+
 
         List<Company> compList = new ArrayList<>();
         List<Person> persList = new ArrayList<>();
@@ -205,7 +205,7 @@ public class Main {
         Integer count = compList.stream().
                 map(Company::getList).
                 map(List::size).
-                reduce(0, (e1, e2) -> e1 + e2).intValue();
+                reduce(0, (e1, e2) -> e1 + e2);
 
         System.out.println(count);
 
@@ -220,7 +220,7 @@ public class Main {
 
         // display all persons working
         compList.stream().
-                map(x -> x.getList()).flatMap(List<Person>::stream).forEach(System.out::println);
+                map(x -> x.getList()).flatMap(List::stream).forEach(System.out::println);
 
         //display all unique persons
         System.out.println("Distinct");
@@ -230,7 +230,7 @@ public class Main {
 
         // Custom collector
         Collector<Person, StringJoiner, String> nameCollector = Collector.of(
-                () -> new StringJoiner(", ", "Prefix", "Sufix"),
+                () -> new StringJoiner(", ", "- ", " -"),
                 (supp, person) -> supp.add(person.getName().toUpperCase()),
                 StringJoiner::merge,
                 StringJoiner::toString
@@ -242,7 +242,7 @@ public class Main {
 
         long startT,stopT,duration;
         startT=System.nanoTime();
-        Integer sumStream= Stream.iterate(0, x->x+2).limit(1200).reduce(0,(a1,a2)->a1+a2).intValue();
+        Integer sumStream= Stream.iterate(0, x->x+2).limit(1200).reduce(0,(a1,a2)->a1+a2);
 
         stopT=System.nanoTime();
         duration=stopT-startT;
@@ -254,7 +254,7 @@ public class Main {
 
         long startTParallel,stopTParallel,durationParallel;
         startTParallel=System.nanoTime();
-        Integer sumStreamParallel= Stream.iterate(0, x->x+2).limit(1200).parallel().reduce(0,(a1,a2)->a1+a2).intValue();
+        Integer sumStreamParallel= Stream.iterate(0, x->x+2).limit(1200).parallel().reduce(0,(a1,a2)->a1+a2);
 
         stopTParallel=System.nanoTime();
         durationParallel=stopTParallel-startTParallel;
