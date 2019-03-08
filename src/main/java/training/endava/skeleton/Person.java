@@ -53,4 +53,10 @@ public class Person implements SkeletonObject<Person, UUID> {
     public String toString(){
         return "ID: " + id + ", name: " + name + ", phoneNumber: " + phoneNumber + ", address: " + address;
     }
+
+    @Override
+    public boolean equals(Object person){
+        Person person1 = (Person) person;
+        return phoneNumber.equals(person1.getPhoneNumber());
+    }
 }
