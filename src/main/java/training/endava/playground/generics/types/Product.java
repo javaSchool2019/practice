@@ -1,20 +1,27 @@
 package training.endava.playground.generics.types;
 
-public class Product {
+public class Product<T> {
 
-    private Integer price;
+    private T price;
 
     public Product() {}
 
-    public Product(Integer price) {
+    public Product(T price) {
         this.price = price;
     }
 
-    public Integer getPrice() {
+    public T getPrice() {
         return price;
     }
 
-    public void setPrice(Integer price) {
+    public void setPrice(T price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "price=" + price +
+                '}';
     }
 }
