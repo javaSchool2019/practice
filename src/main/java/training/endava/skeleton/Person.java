@@ -1,14 +1,17 @@
 package training.endava.skeleton;
 
+import java.util.Objects;
+
 public class Person implements SkeletonObject<Person, Integer> {
+    private Company comp;
     private Integer id;
     private String name;
     private String phoneNumber;
     private String address;
 
 
-    public Person(Integer id,String name, String phoneNumber,String address){
-
+    public Person(Integer id,String name, String phoneNumber,String address,Company comp){
+        this.comp=comp;
         this.id=id;
         this.name=name;
         this.phoneNumber=phoneNumber;
@@ -57,5 +60,18 @@ public class Person implements SkeletonObject<Person, Integer> {
                 ", PhoneNumber='" + phoneNumber + '\'' +
                 ", Address='" + address + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(phoneNumber, person.phoneNumber);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(phoneNumber);
     }
 }
