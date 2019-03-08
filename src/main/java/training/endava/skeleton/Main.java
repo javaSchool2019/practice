@@ -1,8 +1,10 @@
 package training.endava.skeleton;
 
-import training.endava.playground.generics.types.Article;
+import training.endava.skeleton.db.MockDB;
 
 import java.util.*;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 
 
@@ -10,109 +12,136 @@ public class Main {
 
     public static void main(String args[]){
 
-//        Person p1 = new Person("Ana01", 1, "0701", "Iasi01");
-//        Person p2 = new Person("Ana02", 2, "0702", "Iasi02");
-//        Person p3 = new Person("Ana03", 3, "0703", "Iasi03");
-//        Person p4 = new Person("Ana04", 4, "0704", "Iasi04");
-//        Person p5 = new Person("Ana05", 5, "0705", "Iasi05");
-//        Person p6 = new Person("Ana06", 6, "0706", "Iasi06");
-//
-//        List<Person> personList = new ArrayList<>();
-//
-//        personList.add(p1);
-//        personList.add(p2);
-//        personList.add(p3);
-//        personList.add(p4);
-//
-//        System.out.println("LIST 1:");
-//        System.out.println(personList);
-//
-//        MockDB mockDB = MockDB.getInstance();
-//        mockDB.setTable(Person.class, personList);
-//
-//        System.out.println("LIST 2:");
-//        System.out.println(mockDB.getTable(Person.class));
-//
-//        PersonRepository personRepository = new PersonRepository();
-//
-//        personRepository.save(new Person("Ana09", 10, "0706", "Iasi06") );
-//        personRepository.findById(10);
-//
-//        System.out.println(personRepository.existsById(10));
+        Person p1 = new Person("Ana01", 1, "0701", "Iasi01");
+        Person p2 = new Person("Ana02", 2, "0702", "Iasi02");
+        Person p3 = new Person("Ana03", 3, "0703", "Iasi03");
+        Person p4 = new Person("Ana04", 4, "0704", "Iasi04");
+        Person p5 = new Person("Ana05", 5, "0705", "Iasi05");
+        Person p6 = new Person("Ana06", 6, "0706", "Iasi06");
 
-        ArrayList<String> a1 = new ArrayList<>();
-        a1.add("tag1");
-        a1.add("tag2");
+        List<Person> personList = new ArrayList<>();
+        List<Person> personList2 = new ArrayList<>();
+        List<Person> personList3 = new ArrayList<>();
 
-        ArrayList<String> a2 = new ArrayList<>();
-        a2.add("tag3");
+        personList.add(p1);
+        personList.add(p2);
 
-        ArrayList<String> a3 = new ArrayList<>();
-        a3.add("tag17");
-        a3.add("tag4");
-        a3.add("tag5");
+        personList2.add(p3);
+        personList2.add(p4);
+
+        personList3.add(p5);
+        personList3.add(p6);
 
 
-        Article article1 = new Article("Art01", "A1", a1 );
-        Article article5 = new Article("Art05", "A5", a1 );
-        Article article2  = new Article("Art02", "A2", a2 );
-        Article article3 = new Article("Art03", "A3", a3 );
+        //System.out.println("LIST 1:");
+        //System.out.println(personList);
 
-        ArrayList<Article> articleList = new ArrayList<>();
-        articleList.add(article1);
-        articleList.add(article5);
-        articleList.add(article2);
-        articleList.add(article3);
+        MockDB mockDB = MockDB.getInstance();
+        mockDB.setTable(Person.class, personList);
 
-        articleList.sort(new Comparator<Article>() {
-            @Override
-            public int compare(Article a1, Article a2) {
-                return a1.getTitle().compareTo(a2.getTitle());
-            }
-        });
+        //System.out.println("LIST 2:");
+        //System.out.println(mockDB.getTable(Person.class));
 
-        //System.out.println(articleList);
+        PersonRepository personRepository = new PersonRepository();
 
-        Set<String> uniqueTags = new HashSet<>();
-        for ( Article a : articleList) {
-            uniqueTags.addAll(a.getTags());
+        personRepository.save(new Person("Ana09", 10, "0706", "Iasi06") );
+        personRepository.findById(10);
+
+        //System.out.println(personRepository.existsById(10));
+
+        Company fisrtCompany = new Company("C01", 1987,personList, 100,CompanyArea.IT);
+        Company secondCompany = new Company("C02", 2014,personList2,200,CompanyArea.QA);
+        Company thirdCompany = new Company("C03", 1875,personList3,300,CompanyArea.FINANCE);
+
+        List<Company> companyList = new ArrayList<>();
+        companyList.add(fisrtCompany);
+        companyList.add(secondCompany);
+        companyList.add(thirdCompany);
+
+        List<String> names = companyList.stream()
+                .map(Company::getName)
+                .collect(Collectors.toList());
+        //System.out.println(names);
+
+        int maxCapacity = companyList.stream()
+                .mapToInt(Company::getCompanyCapacity)
+                .max()
+                .getAsInt();
+
+        //System.out.println(maxCapacity);
+
+        Company oldestCompany = companyList.stream()
+                .max((c1, c2) -> Integer.compare(c1.getFoundationYear(),(c2.getFoundationYear())))
+                .get();
+
+        //System.out.println(oldestCompany);
+
+        int count = companyList.stream()
+                .map(Company::getPersons)
+                .map(List::size)
+                .reduce(0,(pers1 , pers2) -> pers1 + pers2);
+
+        //System.out.println(count);
+
+        //System.out.println(nameConcatenation);
+
+        Person nameConcatenation = companyList.stream()
+                .map(Company::getPersons)
+                .flatMap(List::stream)
+                .reduce(new Person(" "), (per1, per2) -> {per1.setName(per1.getName() + per2.getName()); return per1;});
+
+        companyList.stream()
+                .map(Company::getPersons)
+                .flatMap(List::stream)
+                .forEach(System.out::print);
+
+        //Display the unique persons using distinct(). Two persons are considered to be identical if they have the same
+        // phone number.
+        companyList.stream()
+                .map(Company::getPersons)
+                .flatMap(List<Person>::stream)
+                .distinct()
+                .collect(Collectors.toList());
+
+        //Implement a custom collector and print the results of applying it on a stream.
+        Collector<Company, StringJoiner, String> namesCollector =
+            Collector.of(
+                    ()-> new StringJoiner(",", "Start ", " End"),
+                    (supp, company) -> supp.add(company.getName().toUpperCase()),
+                    StringJoiner::merge,
+                    StringJoiner::toString
+            );
+
+        String namesofCompanies = companyList.stream().collect(namesCollector);
+        //System.out.println(namesofCompanies);
+
+        List<Person> bigList = new ArrayList<>();
+        for(int i=0; i< 1003 ; i++)
+        {
+            Person p = new Person("Ana" + i, i + 100);
+            bigList.add(p);
         }
 
-       // System.out.println(uniqueTags);
+        long startStream = System.nanoTime();
 
-        // Group the articles by number of tags. Sort the articles descending by the number of tags.
-        // Print for each number of tags it’s articles
+        bigList.stream()
+                .sorted(Comparator.comparing(Person::getName).reversed())
+                .filter(i-> i.getId()% 2 ==0)
+                .forEach(System.out::println);
 
-        Map<Integer, List<Article>> nrOfTags = new TreeMap<>();
-
-        for ( Article a : articleList) {
-            int size = a.getTags().size();
-            if(!nrOfTags.containsKey(size))
-            {
-                nrOfTags.put(size, new ArrayList<>());
-            }
-
-             nrOfTags.get(size).add(a);
-        }
-
-        for (Integer key : nrOfTags.keySet()) {
-            System.out.println("Key = " + key);
-            System.out.println("List =" + nrOfTags.get(key));
-        }
-
-        LinkedHashMap<Integer, List<Article>> reverseSortedMap = new LinkedHashMap<>();
+        long endStream = System.nanoTime();
 
 
-        nrOfTags.entrySet()
-                .stream()
-                .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
-                .forEachOrdered(x -> reverseSortedMap.put(x.getKey(), x.getValue()));
+        long startParallelStream = System.nanoTime();
 
-        //System.out.println("Reverse Sorted Map   : " + reverseSortedMap);
-        for (Integer key : reverseSortedMap.keySet()) {
-            System.out.println("Key = " + key);
-            System.out.println("List =" + nrOfTags.get(key));
-        }
+        bigList.parallelStream()
+                .sorted(Comparator.comparing(Person::getName).reversed())
+                .filter(i-> i.getId()% 2 ==0)
+                .forEach(System.out::println);
 
+        long endParallelStream = System.nanoTime();
+
+        System.out.println("\nTime Stream: " + (endStream - startStream));
+        System.out.println("Time Parallel Stream:" + (endParallelStream - startParallelStream));
     }
 }

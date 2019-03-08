@@ -17,7 +17,7 @@ public class GenericTypes {
         box2.packBox(new Fruit(300));
 
         LimitedContainer<Fruit, Integer> limitedContainer = new LimitedContainer<>(1);
-        limitedContainer.addContainer(new Fruit(3));
+        //limitedContainer.addContainer(new Fruit(3));
        // limitedContainer.addContainer(new Fruit(5));
       //  limitedContainer.addContainer(new Fruit(4));
 
