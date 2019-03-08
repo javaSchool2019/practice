@@ -6,13 +6,11 @@ import java.util.Objects;
 public class Article {
     private String title;
     private String description;
-    private String color;
     private List<String> listTag;
 
-    public Article(String title, String description, String color, List<String> listTag) {
+    public Article(String title, String description,  List<String> listTag) {
         this.title = title;
         this.description = description;
-        this.color = color;
         this.listTag = listTag;
     }
 
@@ -31,15 +29,6 @@ public class Article {
     public void setDescription(String description) {
         this.description = description;
     }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
 
     public List<String> getListTag() {
         return listTag;
@@ -69,7 +58,6 @@ public class Article {
         return "Article{" +
                 "title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", color='" + color + '\'' +
                 ", listTag=" + listTag + "\n" +
                 '}';
     }

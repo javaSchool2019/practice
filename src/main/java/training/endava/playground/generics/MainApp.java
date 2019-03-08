@@ -28,9 +28,9 @@ public class MainApp {
         tagC.add("tag3");
         tagC.add("tag5");
 
-        Article article1=new Article("titleC","DescriptionC","ColorC",tagC);
-        Article article2=new Article("titleA","DescriptionA","ColorA",tagA);
-        Article article3=new Article("titleB","DescriptionB","ColorB",tagB);
+        Article article1=new Article("titleC","DescriptionC",tagC);
+        Article article2=new Article("titleA","DescriptionA",tagA);
+        Article article3=new Article("titleB","DescriptionB",tagB);
 
         articles.addAll(Arrays.asList(article1,article2,article3));
 
@@ -48,6 +48,7 @@ public class MainApp {
 
         System.out.println("------------------------------------EX3--------------------------------------------------");
         System.out.println(groupByNumberOfTags(articles));
+        System.out.println(sortedDMap(articles));
 
 
     }
@@ -66,6 +67,7 @@ public class MainApp {
 
     private static Set<String> uniqueArticles (List<Article> articles) {
         Set<String> articleSet=new HashSet<>();
+
         for(Article a:articles){
             articleSet.addAll(a.getListTag());
         }
@@ -78,7 +80,6 @@ public class MainApp {
 
         for (Article a:articles) {
             int sizeListTags=a.getListTag().size();
-
             if(!groupByNumberOfTags.containsKey(sizeListTags)){
                 groupByNumberOfTags.put(sizeListTags,new ArrayList<>());
             }
@@ -88,6 +89,14 @@ public class MainApp {
         return groupByNumberOfTags;
     }
 
+    private static LinkedHashMap<Integer,List<Article>> sortedDMap(List<Article> articles) {
+        LinkedHashMap<Integer,List<Article>> sortedDescMap=new LinkedHashMap<>();
 
+        groupByNumberOfTags(articles).entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByKey(Comparator.reverseOrder()))
+                .forEach(x ->sortedDescMap.put(x.getKey(),x.getValue()));
+        return  sortedDescMap;
+    }
 
 }

@@ -26,8 +26,6 @@ public class GenericTypes {
 
     }
 
-
-    //do use a lower bound within your project or using existing classes.
     public static void printList(List<? super Fruit> listFruit) {
         listFruit.add(new Fruit(100));
         System.out.println(listFruit);

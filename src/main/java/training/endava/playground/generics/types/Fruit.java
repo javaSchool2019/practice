@@ -2,10 +2,6 @@ package training.endava.playground.generics.types;
 
 public class Fruit extends Product implements Shippable<Fruit>{
 
-
-
-
-
     private Integer calories;
 
     public Fruit(Integer calories) {

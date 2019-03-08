@@ -13,12 +13,13 @@ private List<T> contents;
         this.maxim = maxim;
     }
 
+
     public void addContainer(T item){
         if (this.contents.size()<maxim.intValue()){
             this.contents.add(item);
         }
         else {
-            System.out.println("You can not add more itmes to container!");
+            throw new RuntimeException("You can not add more itmes to container. This container is full!");
         }
     }
 
