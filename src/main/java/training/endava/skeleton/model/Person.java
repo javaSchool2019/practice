@@ -2,6 +2,8 @@ package training.endava.skeleton.model;
 
 import training.endava.skeleton.SkeletonObject;
 
+import java.util.Objects;
+
 public class Person implements SkeletonObject<Person, Integer> {
 
     private int id;
@@ -9,6 +11,8 @@ public class Person implements SkeletonObject<Person, Integer> {
     private String phone;
     private String address;
 
+    public Person() {
+    }
 
     public Person(int id, String name, String phone, String address) {
         this.id = id;
@@ -16,7 +20,6 @@ public class Person implements SkeletonObject<Person, Integer> {
         this.phone = phone;
         this.address = address;
     }
-
 
     @Override
     public Integer getId() {
@@ -27,8 +30,6 @@ public class Person implements SkeletonObject<Person, Integer> {
     public void setId(Integer id) {
         this.id = id;
     }
-
-
 
     public String getName() {
         return name;
@@ -56,12 +57,25 @@ public class Person implements SkeletonObject<Person, Integer> {
 
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(phone, person.phone);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(phone);
+    }
+
+    @Override
     public String toString() {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
-                ", address=" + address + "\n" +
+                ", address=" + address +
                 '}' ;
     }
 }
