@@ -20,7 +20,6 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
 
     @Override
     public Optional<Person> findById(Integer integer) {
-
         for(Person person: MOCK_DB.getTable(Person.class)){
             if(person.getId().equals(integer)){
                 return Optional.of(person);
@@ -31,7 +30,6 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
 
     @Override
     public boolean existsById(Integer integer) {
-
         for(Person person: MOCK_DB.getTable(Person.class)){
             if(person.getId().equals(integer)){
                 return true;
@@ -52,7 +50,6 @@ public class PersonRepository implements SkeletonRepository<Person, Integer> {
 
     @Override
     public void deleteById(Integer integer){
-
         Iterator<Person> personIterator = MOCK_DB.getTable(Person.class).iterator();
         while (personIterator.hasNext()) {
             Person person = personIterator.next();
