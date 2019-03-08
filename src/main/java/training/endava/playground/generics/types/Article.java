@@ -6,12 +6,12 @@ public class Article {
 
     private String title;
     private String author;
-    private ArrayList<String> tag;
+    private ArrayList<String> tags;
 
-    public Article(String title, String author, ArrayList<String> tag) {
+    public Article(String title, String author, ArrayList<String> tags) {
         this.title = title;
         this.author = author;
-        this.tag = tag;
+        this.tags = tags;
     }
 
     public String getTitle() {
@@ -31,11 +31,11 @@ public class Article {
     }
 
     public ArrayList<String> getTags() {
-        return tag;
+        return tags;
     }
 
-    public void setTags(ArrayList<String> tag) {
-        this.tag = tag;
+    public void setTags(ArrayList<String> tags) {
+        this.tags = tags;
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Article {
         return "Article{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
-                ", tag=" + tag +
+                ", tag=" + tags +
                 '}';
     }
 }
