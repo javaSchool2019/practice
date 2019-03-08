@@ -25,9 +25,7 @@ public final class MockDB {
 	@SuppressWarnings("unchecked")
 	public <T> List<T> getTable(Class<T> type) {
 		List<?> content = schema.get(type);
-		if(content == null) {
-			throw new IllegalArgumentException("Table " + type + " not found!");
-		}
+		if(content == null) throw new IllegalArgumentException("Table " + type + " not found!");
 		return (List<T>) schema.get(type);
     }
 

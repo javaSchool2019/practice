@@ -2,8 +2,6 @@ package training.endava.skeleton.db;
 
 
 import training.endava.skeleton.SkeletonRepository;
-
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -12,13 +10,17 @@ public class Repo implements SkeletonRepository<Person,Integer> {
 
     MockDB db =  MockDB.getInstance();
     ArrayList<Person> R =  (ArrayList)db.getTable(Person.class); //cast
-    public Person save(Person id)
+
+    public Person save (Person id)
     {
-        if(existsById(id.getId()))
-            throw new ExceptiaA("Deja exista!");
+        if(existsById(id.getId))
+            throw new ExceptiaA("This id already exist!!!");
         R.add(id);
         return id;
     }
+
+
+
 
     public void deleteById(Integer id)
     {
@@ -44,9 +46,11 @@ public class Repo implements SkeletonRepository<Person,Integer> {
         {
          if(person.getId().equals(id))
          {
+             System.out.println("This id EXIST!");
              return true;
          }
         }
+        System.out.println("This id doesn't exist!");
         return false;
     }
 
