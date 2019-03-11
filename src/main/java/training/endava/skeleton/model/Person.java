@@ -14,6 +14,10 @@ public class Person implements SkeletonObject<Person, Integer> {
     public Person() {
     }
 
+    public Person(String name) {
+        this.name = name;
+    }
+
     public Person(int id, String name, String phone, String address) {
         this.id = id;
         this.name = name;

@@ -9,7 +9,6 @@ import training.endava.skeleton.model.PersonRepository;
 import java.util.*;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class MainApplication {
     public static void main(String[] args) {
@@ -90,40 +89,39 @@ public class MainApplication {
 
 
 
-        System.out.println("****************************************************************************");
+        System.out.println("******************************* 1 *********************************************");
         //1. List the names of all companies.
 
         List<String> namesOfAllCompanies = companiesList.stream()
-                .map(p -> p.getName())
+                .map(Company :: getName)
                 .distinct()
                 .collect(Collectors.toList());
 
-        System.out.println(namesOfAllCompanies);
+//        System.out.println(namesOfAllCompanies);
 
 
-        System.out.println("****************************************************************************");
 
-
+        System.out.println("******************************* 2 *********************************************");
         // 2. Transform one of the object's property into a primitive stream and do some processing on it.
 
         companiesList.stream()
                 .mapToDouble(Company::getProfit)
-//                .average()
                 .max()
                 .ifPresent(System.out::println);
 
 
-        System.out.println("****************************************************************************");
+
+        System.out.println("************************* 3 ***************************************************");
         // 3. Find the oldest company based on the foundation year.
 
         Company oldestCompanyBasedOnFoundationYear = companiesList.stream()
                 .min(Comparator.comparing(Company::getYear)).get();
 
-        System.out.println(oldestCompanyBasedOnFoundationYear);
+//        System.out.println(oldestCompanyBasedOnFoundationYear);
 
 
 
-        System.out.println("****************************************************************************");
+        System.out.println("*************************** 4 *************************************************");
         //     4. Count the persons in the stream using map() and reduce().
 
         int nrOfPersons = companiesList.stream()
@@ -131,39 +129,39 @@ public class MainApplication {
                 .map(List::size)
                 .reduce(0, (t1, t2) -> t1 + t2);
 
-        System.out.println(nrOfPersons);
+//        System.out.println(nrOfPersons);
 
 
 
-        System.out.println("****************************************************************************");
+        System.out.println("******************************* 5 *********************************************");
         //5. Use reduce() to create a Person instance that has the name created as a concatenation of all the other persons' names.
 
-        companiesList.stream()
+        Person personConcat=companiesList.stream()
                 .map(Company::getPersonList)
-                .flatMap(List<Person>::stream)
-                .reduce(new Person(),(per1,per2)->{per1.setName(per1.getName()+per2.getName()); return per1;});
+                .flatMap(List::stream)
+                .reduce(new Person( " "),(per1,per2)->{per1.setName(per1.getName()+per2.getName()); return per1;});
+
+        System.out.println(personConcat);
 
 
-
-
-        System.out.println("****************************************************************************");
+        System.out.println("********************************** 6 ******************************************");
 //        6. Transform a stream of companies in one of persons, in this way printing all the persons that are employed.
 
         List<Person> listOfPersons=companiesList.stream()
                 .map(p -> p.getPersonList())
-                .flatMap(List<Person>::stream)
+                .flatMap(List::stream)
                 .collect(Collectors.toList());
 
-        System.out.println(listOfPersons);
+//        System.out.println(listOfPersons);
 
 
 
-        System.out.println("****************************************************************************");
+        System.out.println("********************************* 7 *******************************************");
 //        7. Display the unique persons using distinct(). Two persons are considered to be identical if they have the same phone number.
 
         List<Person> uniqueListOfPersons=companiesList.stream()
                 .map(p->p.getPersonList())
-                .flatMap(List<Person>::stream)
+                .flatMap(List::stream)
                 .distinct()
                 .collect(Collectors.toList());
 
@@ -171,7 +169,7 @@ public class MainApplication {
 
 
 
-        System.out.println("****************************************************************************");
+        System.out.println("****************************** 8 **********************************************");
 //        8. Implement a custom collector and print the results of applying it on a stream.
 
         Collector<Person, StringJoiner, String> customCollectorDefined=
@@ -186,37 +184,33 @@ public class MainApplication {
 
 
 
-        System.out.println("****************************************************************************");
+        System.out.println("****************************** 9 **********************************************");
 //        9. Create a big stream (at least 1000 elements). Use stream and parallelStream and some processing operations. Measure the results (e.g. "Stream took x seconds / ParallelStream took y seconds").
 
         List<Person> bigStream=new ArrayList<>();
-
         for (int i=0;i<=1010;i++){
             Person person=new Person(i, "Vasile", "075XXXXXX", "Address X");
             bigStream.add(person);
         }
 
-        long startStream=System.nanoTime();
 
+        long startStream=System.nanoTime();
         bigStream.stream()
                 .sorted(Comparator.comparing(Person::getId).reversed())
                 .filter(i->i.getId()%2==0);
-
-
         long endStream=System.nanoTime();
+
         System.out.println("Stream: "  + (endStream-startStream));
 
 
         startStream=System.nanoTime();
-
         bigStream.parallelStream()
                 .sorted(Comparator.comparing(Person::getId).reversed())
+                .peek(System.out::println)
                 .filter(i->i.getId()%2==0);
-
         endStream=System.nanoTime();
 
-        System.out.println("Paralle Stream: "  + (endStream-startStream));
-
+        System.out.println("Parallel Stream: "  + (endStream-startStream));
 
     }
 

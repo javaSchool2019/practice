@@ -21,7 +21,7 @@ public class MainApp {
         tagB.add("tag3");
         tagB.add("tag8");
 
-        ArrayList<String> tagC=new ArrayList<String>();
+        List tagC=new ArrayList<String>();
 //        tagC.add("tag1");
         tagC.add("tag4");
         tagC.add("tag3");
@@ -55,7 +55,7 @@ public class MainApp {
 
 
 
-    private static void sortByTitle(List<Article> articles) {
+    public static void sortByTitle(List<Article> articles) {
         articles.sort(new Comparator<Article>() {
             @Override
             public int compare(Article o1, Article o2) {
@@ -65,7 +65,7 @@ public class MainApp {
     }
 
 
-    private static Set<String> uniqueArticles (List<Article> articles) {
+    public static Set<String> uniqueArticles (List<Article> articles) {
         Set<String> articleSet=new HashSet<>();
 
         for(Article a:articles){
@@ -75,7 +75,7 @@ public class MainApp {
     }
 
 
-    private static Map<Integer,List<Article>> groupByNumberOfTags (List<Article> articles){
+    public static Map<Integer,List<Article>> groupByNumberOfTags (List<Article> articles){
         Map<Integer,List<Article>> groupByNumberOfTags=new TreeMap<>();
 
         for (Article a:articles) {
@@ -89,7 +89,7 @@ public class MainApp {
         return groupByNumberOfTags;
     }
 
-    private static LinkedHashMap<Integer,List<Article>> sortedDMap(List<Article> articles) {
+    public static LinkedHashMap<Integer,List<Article>> sortedDMap(List<Article> articles) {
         LinkedHashMap<Integer,List<Article>> sortedDescMap=new LinkedHashMap<>();
 
         groupByNumberOfTags(articles).entrySet()
