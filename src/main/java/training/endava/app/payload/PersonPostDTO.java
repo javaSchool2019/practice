@@ -1,24 +1,25 @@
-package training.endava.app.domain;
+package training.endava.app.payload;
+
+import training.endava.app.domain.Person;
 
 import javax.validation.constraints.NotBlank;
-import java.util.Objects;
+import javax.validation.constraints.NotNull;
 
-public class Person {
+public class PersonPostDTO {
+    @NotNull
     private Long id;
+    @NotBlank
     private String name;
+    @NotNull
     private Integer age;
 
-    public Person(@NotBlank Long id, @NotBlank String name, @NotBlank Integer age) {
+    public PersonPostDTO(Long id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
     }
 
-    public Person(Long id){
-        this.id = id;
-    }
-
-    public Person() {}
+    public PersonPostDTO() {}
 
     public Long getId() {
         return id;
@@ -45,26 +46,15 @@ public class Person {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Person)) return false;
-        Person person = (Person) o;
-        return getId().equals(person.getId()) &&
-                getName().equals(person.getName()) &&
-                getAge().equals(person.getAge());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getId(), getName(), getAge());
-    }
-
-    @Override
     public String toString() {
-        return "Person{" +
+        return "PersonPostDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public Person toPerson (){
+        return new Person(getId(), getName(), getAge());
     }
 }
