@@ -1,12 +1,11 @@
 package training.endava.skeleton;
 
 import training.endava.skeleton.exception.PersonNotFoundException;
-import training.endava.skeleton.model.Area;
-import training.endava.skeleton.model.Company;
 import training.endava.skeleton.model.Person;
 import training.endava.skeleton.repository.PersonRepository;
 import training.endava.skeleton.repository.SkeletonRepository;
 import training.endava.skeleton.db.MockDB;
+
 
 import java.time.Duration;
 import java.time.Instant;
@@ -19,11 +18,14 @@ import java.util.stream.Stream;
 public class Main {
     public static void main(String[] args) {
         MockDB dataBase = MockDB.getInstance();
-        dataBase.setTable(Person.class, createDummyDataPerson());
+
+        dataBase.setTable(Person.class, createDummyData());
         List<Person> personList = dataBase.getTable(Person.class);
 
         SkeletonRepository<Person, Long> personRepository = new PersonRepository();
 
+        PersonRepository p2 = new PersonRepository();
+        int count = (int) p2.count();
         Person person = personRepository.findById(6L).get();
         System.out.println("Find by id: " + person);
         System.out.println("Size of the table Person: " + personRepository.count());
@@ -32,6 +34,7 @@ public class Main {
 
         try {
             personRepository.save(new Person(7L, "Nike", "0865345", "Address7", new Company("CompanyFinance", Year.of(2000), Area.FINANCE)));
+
 
         } catch (PersonNotFoundException personNotFoundExeption) {
             personNotFoundExeption.printStackTrace();
@@ -131,6 +134,19 @@ public class Main {
         personList.add(new Person(4L, "Timmy", "087543", "Address4", companyFinance));
         personList.add(new Person(5L, "Claus", "086656", "Address5", companyFinance));
         personList.add(new Person(6L, "Mark", "0865345", "Address6", companyFinance));
+
+        System.out.println(p2.count());
+    }
+
+    private static List<Person> createDummyData() {
+        List<Person> personList = new ArrayList<>();
+        personList.add(new Person(1L, "Lucian", "086536", "Address1"));
+        personList.add(new Person(2L, "Mircea", "045433", "Address2"));
+        personList.add(new Person(3L, "Iulian", "087436", "Address3"));
+        personList.add(new Person(4L, "Timmy", "087543", "Address4"));
+        personList.add(new Person(5L, "Claus", "086656", "Address5"));
+        personList.add(new Person(6L, "Mark", "0865345", "Address6"));
+
 
         return personList;
     }

@@ -1,7 +1,7 @@
 package training.endava.skeleton.model;
-
 import java.time.Year;
 import java.util.Objects;
+
 
 public class Person implements SkeletonObject<Person, Long> {
 
@@ -9,6 +9,7 @@ public class Person implements SkeletonObject<Person, Long> {
     private String name;
     private String phoneNumber;
     private String address;
+
     private Company company;
 
     public Person(Long id, String name, String phoneNumber, String address, Company company) {
@@ -83,6 +84,7 @@ public class Person implements SkeletonObject<Person, Long> {
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", address='" + address + '\''+
                 ", company=" + company.getName()
+
                 ;
     }
 
