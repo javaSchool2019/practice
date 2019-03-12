@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import training.endava.app.domain.Person;
 import training.endava.app.exception.PersonNotFoundException;
-import training.endava.app.payload.PersonDTO;
 import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
 
@@ -41,7 +40,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public void update(long id, PersonDTO personDTO) {
-        personRepository.update(id, personDTO.toPerson());
+    public void update(long id, Person person) {
+        personRepository.update(id, person);
     }
 }
