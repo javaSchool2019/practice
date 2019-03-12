@@ -14,6 +14,11 @@ public class Person {
         this.age = age;
     }
 
+    public Person(String name, Integer age){
+        this.name = name;
+        this.age = age;
+    }
+
     public Person(Long id){
         this.id = id;
     }

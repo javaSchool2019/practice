@@ -7,8 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import training.endava.app.domain.Person;
 import training.endava.app.payload.ApiResponse;
-import training.endava.app.payload.PersonPostDTO;
-import training.endava.app.payload.PersonPutDTO;
+import training.endava.app.payload.PersonDTO;
 import training.endava.app.service.PersonService;
 
 import javax.validation.Valid;
@@ -27,19 +26,17 @@ public class PersonController {
 
     @GetMapping
     public ResponseEntity<ApiResponse<List<Person>>> findAllPersons() {
-        List<Person> persons = personService.findAll();
-        return new ResponseEntity<>(new ApiResponse<>(persons), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(personService.findAll()), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<Person>> findPersonById(@PathVariable Long id) {
-        Person person = personService.findById(id);
-        return new ResponseEntity<>(new ApiResponse<>(person), HttpStatus.OK);
+        return new ResponseEntity<>(new ApiResponse<>(personService.findById(id)), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<ApiResponse<String>> addPerson(@Valid @RequestBody PersonPostDTO personPostDTO) {
-        personService.add(personPostDTO.toPerson());
+    public ResponseEntity<ApiResponse<String>> addPerson(@Valid @RequestBody PersonDTO personDTO) {
+        personService.add(personDTO.toPerson());
         return new ResponseEntity<>(new ApiResponse<>("Person added successfully!"), HttpStatus.CREATED);
     }
 
@@ -50,8 +47,8 @@ public class PersonController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<String>> updatePerson(@Valid @RequestBody PersonPutDTO personPutDTO, @PathVariable Long id) {
-        personService.update(id, personPutDTO);
+    public ResponseEntity<ApiResponse<String>> updatePerson(@Valid @RequestBody PersonDTO personDTO, @PathVariable Long id) {
+        personService.update(id, personDTO);
         return new ResponseEntity<>(new ApiResponse<>("Person updated successfully!"), HttpStatus.OK);
     }
 

@@ -2,32 +2,25 @@ package training.endava.app.payload;
 
 import training.endava.app.domain.Person;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-public class PersonPostDTO {
-    @NotNull
-    private Long id;
+public class PersonDTO {
     @NotBlank
     private String name;
     @NotNull
+    @Min(value = 0, message = "Age should not be less than 0")
+    @Max(value = 150, message = "Age should not be greater than 150")
     private Integer age;
 
-    public PersonPostDTO(Long id, String name, Integer age) {
-        this.id = id;
+    public PersonDTO(Long id, String name, Integer age) {
         this.name = name;
         this.age = age;
     }
 
-    public PersonPostDTO() {}
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public PersonDTO() {}
 
     public String getName() {
         return name;
@@ -47,14 +40,17 @@ public class PersonPostDTO {
 
     @Override
     public String toString() {
-        return "PersonPostDTO{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+        return "PersonDTO{" +
+                "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
     }
 
     public Person toPerson (){
-        return new Person(getId(), getName(), getAge());
+        return new Person(getName(), getAge());
+    }
+
+    public Person toPerson(long id){
+        return new Person(id, getName(), getAge());
     }
 }

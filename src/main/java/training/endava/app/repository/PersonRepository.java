@@ -3,7 +3,7 @@ package training.endava.app.repository;
 
 import org.springframework.stereotype.Repository;
 import training.endava.app.domain.Person;
-import training.endava.app.exception.BadRequestException;
+import training.endava.app.exception.PersonDeleteException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +19,8 @@ public class PersonRepository {
             new Person(3L, "Person3", 27),
             new Person(4L, "Person4", 35)));
 
+    private static long lastIndex = 4;
+
     public Optional<Person> findById(long id) {
         return MOCK_DB.stream().filter(p -> p.getId() == id).findFirst();
     }
@@ -32,21 +34,23 @@ public class PersonRepository {
     }
 
     public void save(Person person) {
-        boolean found = false;
-        for (Person p : MOCK_DB) {
-            if (p.getId().equals(person.getId())) {
-                p.setName(person.getName());
-                p.setAge(person.getAge());
-                found = true;
-            }
+        person.setId(++lastIndex);
+        MOCK_DB.add(person);
+    }
+
+    public void update(long id, Person person){
+        if (!existsById(id)){
+            save(person);
         }
-        if (!found) {
-            MOCK_DB.add(person);
+        else{
+            Person p = findById(id).orElse(new Person());
+            p.setName(person.getName());
+            p.setAge(person.getAge());
         }
     }
 
     public void delete(long id) {
-        Person person = findById(id).orElseThrow(() -> new BadRequestException("Person with id " + id + " does not exist"));
+        Person person = findById(id).orElseThrow(() -> new PersonDeleteException("Person with id " + id + " does not exist"));
         MOCK_DB.remove(person);
     }
 }
