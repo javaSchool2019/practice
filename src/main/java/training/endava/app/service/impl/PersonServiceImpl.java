@@ -6,6 +6,7 @@ import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
 import training.endava.app.util.DateUtil;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -25,15 +26,20 @@ public class PersonServiceImpl implements PersonService {
      * that are over a specified age
      */
     public List<String> getPeopleSurnamesByAge(int age) {
-        return personRepository
-                .findAll()
-                .stream()
-                .filter(person -> getAgeInYears(person) >= age)
-                .limit(PAGE_SIZE)
-                .map(Person::getSurname)
-                .map(String::toUpperCase)
-                .distinct()
-                .collect(Collectors.toList());
+        if (age <= 0) {
+
+            return personRepository
+                    .findAll()
+                    .stream()
+                    .filter(person -> getAgeInYears(person) >= age)
+                    .map(Person::getSurname)
+                    .map(String::toUpperCase)
+                    .distinct()
+                    .limit(PAGE_SIZE)
+                    .collect(Collectors.toList());
+        }
+
+        throw new IllegalArgumentException("Age must be positive");
     }
 
     private int getAgeInYears(Person person) {
@@ -50,6 +56,29 @@ public class PersonServiceImpl implements PersonService {
      * ({@link PersonServiceImpl#PAGE_SIZE} people per page) that are over a specified age
      */
     public List<String> getPaginatedPeopleByAge(int age, int page) {
-        throw new NotImplementedException();
+        if (age <= 0) {
+            int maxRange = PAGE_SIZE*page;
+            int minRange = (page - 1) * PAGE_SIZE;
+
+            if(maxRange > personRepository.findAll().size()){
+                maxRange = personRepository.findAll().size();
+            }
+
+            if (personRepository.findAll().size() > page * PAGE_SIZE && page >= 0) {
+                return personRepository
+                        .findAll()
+                        .subList(minRange, maxRange)
+                        .stream()
+                        .filter(person -> getAgeInYears(person) >= age)
+                        .map(Person::getSurname)
+                        .map(String::toUpperCase)
+                        .distinct()
+                        .collect(Collectors.toList());
+            }
+
+            throw new IllegalArgumentException("Page not in range");
+        }
+
+        throw new IllegalArgumentException("Age must be positive");
     }
 }
