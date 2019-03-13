@@ -1,7 +1,7 @@
 package training.endava.app.service.impl;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import training.endava.app.domain.Person;
+import training.endava.app.exceptions.IllegalAgeException;
 import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
 import training.endava.app.util.DateUtil;
@@ -29,18 +29,20 @@ public class PersonServiceImpl implements PersonService {
                 .findAll()
                 .stream()
                 .filter(person -> getAgeInYears(person) >= age)
-                .limit(PAGE_SIZE)
                 .map(Person::getSurname)
-                .map(String::toUpperCase)
                 .distinct()
+                .limit(PAGE_SIZE)
+                .map(String::toUpperCase)
                 .collect(Collectors.toList());
     }
 
     private int getAgeInYears(Person person) {
+
         return DateUtil.getDiffYears(person.getBirthday(), getCurrentDate());
     }
 
     protected Date getCurrentDate() {
+
         return new Date();
     }
 
@@ -49,7 +51,28 @@ public class PersonServiceImpl implements PersonService {
      * Get the unique surnames in uppercase for the n-th page
      * ({@link PersonServiceImpl#PAGE_SIZE} people per page) that are over a specified age
      */
+
     public List<String> getPaginatedPeopleByAge(int age, int page) {
-        throw new NotImplementedException();
+        if (age < 1) {
+            throw new IllegalAgeException("Age is negative.");
+        } else if (age > 100) {
+            throw new IllegalAgeException("Age is to big.");
+        }
+        int min = (page - 1) * PAGE_SIZE;
+        int max = page * PAGE_SIZE;
+
+        if (max > personRepository.findAll().size()) {
+            max = personRepository.findAll().size();
+        }
+        return personRepository
+                .findAll()
+                .subList(min, max)
+                .stream()
+                .filter(person -> getAgeInYears(person) >= age)
+                .map(Person::getSurname)
+                .distinct()
+                .limit(PAGE_SIZE)
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
     }
 }
