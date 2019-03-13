@@ -25,14 +25,17 @@ public class PersonServiceImpl implements PersonService {
      * that are over a specified age
      */
     public List<String> getPeopleSurnamesByAge(int age) {
+        if(age < 0 || age > 100)
+            throw new IllegalArgumentException("The age is invalid.");
+
         return personRepository
                 .findAll()
                 .stream()
                 .filter(person -> getAgeInYears(person) >= age)
-                .limit(PAGE_SIZE)
                 .map(Person::getSurname)
-                .map(String::toUpperCase)
                 .distinct()
+                .limit(PAGE_SIZE)
+                .map(String::toUpperCase)
                 .collect(Collectors.toList());
     }
 
@@ -50,6 +53,20 @@ public class PersonServiceImpl implements PersonService {
      * ({@link PersonServiceImpl#PAGE_SIZE} people per page) that are over a specified age
      */
     public List<String> getPaginatedPeopleByAge(int age, int page) {
-        throw new NotImplementedException();
+        List<Person> persons = personRepository.findAll();
+        if(age < 0 || age > 100)
+            throw new IllegalArgumentException("The age is invalid.");
+        if(page <= 0 || page * PAGE_SIZE >= persons.size())
+            throw new IllegalArgumentException("The page number is invalid.");
+
+        return persons
+                .subList((page - 1) * PAGE_SIZE, page * PAGE_SIZE)
+                .stream()
+                .filter(person -> getAgeInYears(person) >= age)
+                .map(Person::getSurname)
+                .distinct()
+                .limit(PAGE_SIZE)
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
     }
 }
