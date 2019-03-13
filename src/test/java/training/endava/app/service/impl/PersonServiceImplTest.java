@@ -52,4 +52,41 @@ public class PersonServiceImplTest {
         PersonRepository personRepository = new StubPersonRepository(personList);
         return new PersonServiceImpl(personRepository);
     }
+
+
+
+    @Test
+    public void getPaginatedPeopleByAgeTest() throws Exception {
+
+        PersonService personService = getPersonServicePaginated("paginatedPeopleByAge.json");
+        List<String> expectedPersonList = Arrays.asList("FORNAME1", "FORNAME2", "FORNAME3");
+        List<String> actualPersonList = personService.getPaginatedPeopleByAge(50,2);
+        assertThat("Expected to contain same people",
+                actualPersonList, containsInAnyOrder(expectedPersonList.toArray()));
+    }
+    @Test (expected = IllegalArgumentException.class)
+    public void getPaginatedPeopleByAgeTest2() throws Exception {
+
+        PersonService personService = getPersonServicePaginated("paginatedPeopleByAge.json");
+        List<String> expectedPersonList = Arrays.asList("FORNAME1", "FORNAME2", "FORNAME3");
+        personService.getPaginatedPeopleByAge(50,1000);
+
+    }
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void getPaginatedPeopleByAgeTest3() throws Exception {
+
+        PersonService personService = getPersonServicePaginated("paginatedPeopleByAge.json");
+        List<String> expectedPersonList = Arrays.asList("FORNAME1", "FORNAME2", "FORNAME3");
+        List<String> actualPersonList = personService.getPaginatedPeopleByAge(50,-5);
+        assertThat("Expected to contain same people",
+                actualPersonList, containsInAnyOrder(expectedPersonList.toArray()));
+    }
+    private PersonService getPersonServicePaginated(String filename) throws Exception{
+
+        List<Person> personList=PersonTestHelper.getPersonList(filename);
+        PersonRepository personRepository=new StubPersonRepository(personList);
+        return new PersonServiceImpl(personRepository);
+    }
+
+
 }
