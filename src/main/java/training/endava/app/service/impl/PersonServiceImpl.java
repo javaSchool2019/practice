@@ -1,6 +1,5 @@
 package training.endava.app.service.impl;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import training.endava.app.domain.Person;
 import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
@@ -24,24 +23,23 @@ public class PersonServiceImpl implements PersonService {
      * Get the unique surnames in uppercase for the first {@link PersonServiceImpl#PAGE_SIZE} people
      * that are over a specified age
      */
-    public List<String> getPeopleSurnamesByAge(int age) {
+    public List<String> getPeopleSurnamesByAge(int age, Date date) {
+        if (age < 0 || age > 150) {
+            throw new IllegalArgumentException("Age should be between 0 and 150 years");
+        }
         return personRepository
                 .findAll()
                 .stream()
-                .filter(person -> getAgeInYears(person) >= age)
-                .limit(PAGE_SIZE)
+                .filter(person -> getAgeInYears(person, date) >= age)
                 .map(Person::getSurname)
-                .map(String::toUpperCase)
                 .distinct()
+                .limit(PAGE_SIZE)
+                .map(String::toUpperCase)
                 .collect(Collectors.toList());
     }
 
-    private int getAgeInYears(Person person) {
-        return DateUtil.getDiffYears(person.getBirthday(), getCurrentDate());
-    }
-
-    protected Date getCurrentDate() {
-        return new Date();
+    private int getAgeInYears(Person person, Date date) {
+        return DateUtil.getDiffYears(person.getBirthday(), date);
     }
 
     /**
@@ -49,7 +47,26 @@ public class PersonServiceImpl implements PersonService {
      * Get the unique surnames in uppercase for the n-th page
      * ({@link PersonServiceImpl#PAGE_SIZE} people per page) that are over a specified age
      */
-    public List<String> getPaginatedPeopleByAge(int age, int page) {
-        throw new NotImplementedException();
+    public List<String> getPaginatedPeopleByAge(int age, Date date, int page) {
+        if (age < 0 || age > 150) {
+            throw new IllegalArgumentException("Age should be between 0 and 150 years.");
+        }
+        List<Person> people = personRepository.findAll();
+        if ((page - 1) * PAGE_SIZE > people.size() || page < 1) {
+            throw new UnsupportedOperationException("Page " + page + " does not exist.");
+//            return Collections.emptyList();
+        }
+        int maxIndex = (people.size() < page * PAGE_SIZE) ? people.size() : page * PAGE_SIZE;
+        int minIndex = (page - 1) * PAGE_SIZE;
+        return personRepository
+                .findAll()
+                .subList(minIndex, maxIndex)
+                .stream()
+                .filter(person -> getAgeInYears(person, date) >= age)
+                .map(Person::getSurname)
+                .map(String::toUpperCase)
+                .distinct()
+                .limit(PAGE_SIZE)
+                .collect(Collectors.toList());
     }
 }
