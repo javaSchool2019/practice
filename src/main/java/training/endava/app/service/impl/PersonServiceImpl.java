@@ -29,14 +29,14 @@ public class PersonServiceImpl implements PersonService {
                 .findAll()
                 .stream()
                 .filter(person -> getAgeInYears(person) >= age)
-                .limit(PAGE_SIZE)
                 .map(Person::getSurname)
                 .map(String::toUpperCase)
                 .distinct()
+                .limit(PAGE_SIZE)
                 .collect(Collectors.toList());
     }
 
-    private int getAgeInYears(Person person) {
+    public int getAgeInYears(Person person) {
         return DateUtil.getDiffYears(person.getBirthday(), getCurrentDate());
     }
 
@@ -50,6 +50,19 @@ public class PersonServiceImpl implements PersonService {
      * ({@link PersonServiceImpl#PAGE_SIZE} people per page) that are over a specified age
      */
     public List<String> getPaginatedPeopleByAge(int age, int page) {
-        throw new NotImplementedException();
+        List<Person> personList = personRepository.findAll();
+        int noOfElementsFromPage = page * PAGE_SIZE > personList.size() ? personList.size() : page * PAGE_SIZE;
+        int startIndexOfSubList = (page - 1) * PAGE_SIZE > personList.size() ? personList.size() - PAGE_SIZE : (page - 1) * PAGE_SIZE;
+
+        return personRepository
+                .findAll()
+                .subList(startIndexOfSubList, noOfElementsFromPage)
+                .stream()
+                .filter(person -> getAgeInYears(person) >= age)
+                .map(Person::getSurname)
+                .map(String::toUpperCase)
+                .distinct()
+                .limit(PAGE_SIZE)
+                .collect(Collectors.toList());
     }
 }
