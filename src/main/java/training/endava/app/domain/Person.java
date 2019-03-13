@@ -17,6 +17,8 @@ public class Person {
         this.address = address;
     }
 
+    public Person () {}
+
 
     public Integer getId() {
         return id;

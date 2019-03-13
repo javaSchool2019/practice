@@ -1,10 +1,13 @@
 package training.endava.app.repository;
 
 import org.springframework.stereotype.Repository;
+import sun.dc.path.PathError;
 import training.endava.app.domain.Person;
 import training.endava.app.exceptions.PersonIdAlreadyExistException;
+import training.endava.app.exceptions.PersonIdNotExistException;
 
 import java.util.*;
+
 
 @Repository
 public class PersonRepository {
@@ -25,12 +28,17 @@ public class PersonRepository {
     }
 
 
-    public Person findById(Integer id){
-        return persons.get(id);
+    public Person getPersonById(Integer id){
+        Optional<Person> personById = persons.stream()
+                .filter(p -> p.getId().equals(id))
+                .findFirst();
+        if(!personById.isPresent()){
+            throw new PersonIdNotExistException(id); }
+        return personById.get();
     }
 
 
-    public void deleteById(Integer id) {
+    public void removePerson(Integer id) {
         Iterator<Person> personIterator=persons.iterator();
 
         while(personIterator.hasNext()){
@@ -43,17 +51,7 @@ public class PersonRepository {
     }
 
 
-    public boolean existsById(Integer id){
-        for (Person p  : persons){
-            if (p.getId().equals(id)){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    public Person insertPerson (Person id){
+    public Person addPerson (Person id){
         if (persons.contains(id)){
             throw new PersonIdAlreadyExistException(id.getId());
         }
@@ -62,10 +60,22 @@ public class PersonRepository {
     }
 
 
-    public List<Person> findAll(){
+    public List<Person> findAllPersons(){
         return persons;
     }
 
+    public Person updatePerson(Person person){
+        for (Person p:persons){
+            if(p.getId().equals(person.getId())){
+                p.setName(person.getName());
+                p.setEmail(person.getEmail());
+                p.setPhone(person.getPhone());
+                p.setAddress(person.getAddress());
+                return p;
+            }
+        }
+        return null;
+    }
 
 
 }

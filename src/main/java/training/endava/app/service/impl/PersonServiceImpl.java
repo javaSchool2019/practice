@@ -16,23 +16,30 @@ public class PersonServiceImpl implements PersonService {
 
 
     @Override
-    public Person findById (Integer id) {
-        return this.personRepository.findById(id);
+    public Person getPersonById (Integer id) {
+        return this.personRepository.getPersonById(id);
     }
 
     @Override
-    public void deleteById(Integer id) {
-        this.personRepository.deleteById(id);
+    public void removePerson(Integer id) {
+        this.personRepository.removePerson(id);
     }
 
     @Override
-    public Person insertPerson(Person id){
-        return  this.personRepository.insertPerson(id);
+    public Person addPerson(Person id){
+        return  this.personRepository.addPerson(id);
     }
 
     @Override
-    public List<Person> findAll(){
-        return this.personRepository.findAll();
+    public List<Person> listAllPersons(){
+        return this.personRepository.findAllPersons();
+    }
+
+    @Override
+    public Person updatePerson(Person person){
+        return  this.personRepository.updatePerson(person);
+
     }
 
 }
+
