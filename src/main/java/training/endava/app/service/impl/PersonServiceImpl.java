@@ -2,6 +2,7 @@ package training.endava.app.service.impl;
 
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import training.endava.app.domain.Person;
+import training.endava.app.exception.PersonAgeIncorrectException;
 import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
 import training.endava.app.util.DateUtil;
@@ -25,14 +26,15 @@ public class PersonServiceImpl implements PersonService {
      * that are over a specified age
      */
     public List<String> getPeopleSurnamesByAge(int age) {
+
         return personRepository
                 .findAll()
                 .stream()
                 .filter(person -> getAgeInYears(person) >= age)
-                .limit(PAGE_SIZE)
                 .map(Person::getSurname)
-                .map(String::toUpperCase)
                 .distinct()
+                .limit(PAGE_SIZE)
+                .map(String::toUpperCase)
                 .collect(Collectors.toList());
     }
 
@@ -50,6 +52,26 @@ public class PersonServiceImpl implements PersonService {
      * ({@link PersonServiceImpl#PAGE_SIZE} people per page) that are over a specified age
      */
     public List<String> getPaginatedPeopleByAge(int age, int page) {
-        throw new NotImplementedException();
+        int min=(page-1)*PAGE_SIZE;
+        int max=PAGE_SIZE*page;
+
+        if (age<1 || age >120){
+            throw new PersonAgeIncorrectException("Incorrect Age!");
+        }
+
+        if (max>personRepository.findAll().size()){
+            max=personRepository.findAll().size();
+        }
+
+         return personRepository
+                 .findAll()
+                 .subList(min,max)
+                 .stream()
+                 .filter(person -> getAgeInYears(person) >= age)
+                 .map(Person::getSurname)
+                 .distinct()
+                 .limit(PAGE_SIZE)
+                 .map(String::toUpperCase)
+                 .collect(Collectors.toList());
     }
 }
