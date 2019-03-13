@@ -52,4 +52,45 @@ public class PersonServiceImplTest {
         PersonRepository personRepository = new StubPersonRepository(personList);
         return new PersonServiceImpl(personRepository);
     }
+
+    @Test
+    public void getPeopleSurnamesByAge() throws Exception {
+        PersonService personService = getPersonServicePaginated("contactsPaginatedPeopleByAge.json");
+        List<String> expectedPersonListPaginated = Arrays.asList("IONESCU","PISTOL","POPESCOL");
+        List<String> actualPersonListPaginated = personService.getPaginatedPeopleByAge(50,2);
+        assertThat("Expected to contain same people",
+                actualPersonListPaginated, containsInAnyOrder(expectedPersonListPaginated.toArray()));
+    }
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void getPeopleSurnamesByAgeOverNrOfPage() throws Exception {
+        PersonService personService = getPersonServicePaginated("contactsPaginatedPeopleByAge.json");
+        List<String> expectedPersonListPaginated = Arrays.asList("IONESCU","PISTOL","POPESCOL");
+        List<String> actualPersonListPaginated = personService.getPaginatedPeopleByAge(50,1000);
+        assertThat("Expected to contain same people",
+                actualPersonListPaginated, containsInAnyOrder(expectedPersonListPaginated.toArray()));
+    }
+    @Test (expected = IndexOutOfBoundsException.class)
+    public void getPeopleSurnamesByAgeNegativeNrOfPage() throws Exception {
+        PersonService personService = getPersonServicePaginated("contactsPaginatedPeopleByAge.json");
+        List<String> expectedPersonListPaginated = Arrays.asList("IONESCU","PISTOL","POPESCOL");
+        List<String> actualPersonListPaginated = personService.getPaginatedPeopleByAge(50,-20);
+        assertThat("Expected to contain same people",
+                actualPersonListPaginated, containsInAnyOrder(expectedPersonListPaginated.toArray()));
+    }
+    private PersonService getPersonServicePaginated(String filename) throws Exception {
+        List<Person> personList = PersonTestHelper.getPersonList(filename);
+        PersonRepository personRepository = new StubPersonRepository(personList);
+        return new PersonServiceImpl(personRepository);
+    }
+
+
+
+
+    @Test
+    public void getCurrentDate() {
+    }
+
+    @Test
+    public void getPaginatedPeopleByAge() {
+    }
 }
