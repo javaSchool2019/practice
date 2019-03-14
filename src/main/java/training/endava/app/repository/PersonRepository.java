@@ -7,16 +7,23 @@ import training.endava.app.exceptions.BadRequestException;
 import training.endava.app.exceptions.BaseException;
 import training.endava.app.exceptions.PersonAlreadyExists;
 import training.endava.app.exceptions.PersonNotFoundException;
+import training.endava.app.logging.LOGGER;
+import training.endava.app.service.impl.PersonServiceImpl;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
+import java.io.File;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.*;
+import java.util.logging.FileHandler;
+import java.util.logging.Handler;
+import java.util.logging.Logger;
 
 @Repository
 public class PersonRepository {
 
     private List<Person> personList = null;
+    private Logger logger = LOGGER.getInstanceWithFileHandler(this.getClass().getName());
 
     public PersonRepository(){
         this.personList = new ArrayList<>();
@@ -34,6 +41,7 @@ public class PersonRepository {
         if(p.isPresent()){
             return p.get();
         }
+        logger.warning("Person with id " + id + " does not exist.");
         return null;
     }
 
@@ -46,6 +54,7 @@ public class PersonRepository {
             this.personList.add(person);
             return HttpStatus.CREATED;
         }else {
+            logger.severe("PersonAlreadyExists exception thrown.");
             throw new PersonAlreadyExists("Person already exists.");
         }
     }
@@ -53,6 +62,7 @@ public class PersonRepository {
     public HttpStatus replacePerson(Person person){
         Person p = this.getPersonById(person.getId());
         if(p == null){
+            logger.severe("PersonNotFoundException exception thrown.");
             throw new PersonNotFoundException("Person you try to replace does not exists.");
         }else {
             this.personList.remove(p);
@@ -63,10 +73,12 @@ public class PersonRepository {
 
     public HttpStatus updatePerson(Person person){
         if(person.getId()==null){
+            logger.severe("BadRequestException exception thrown.");
             throw new BadRequestException("Bad request. Please provide a person with Id.");
         }
         Person p = this.getPersonById(person.getId());
         if(p == null){
+            logger.severe("PersonNotFoundException exception thrown.");
             throw new PersonNotFoundException("Person you try to update does not exists.");
         }else {
             if(person.getName()!=null){
@@ -85,6 +97,7 @@ public class PersonRepository {
     public HttpStatus deletePersonById(Integer id){
         Person p = this.getPersonById(id);
         if(p == null){
+            logger.severe("BaseException exception thrown.");
             throw new BaseException("Person you try to delete does not exists.");
         }else {
             this.personList.remove(p);

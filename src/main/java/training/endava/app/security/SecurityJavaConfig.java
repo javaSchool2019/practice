@@ -11,8 +11,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import training.endava.app.filters.PortLoggingFilter;
 
-@Configuration
-@EnableWebSecurity
 public class SecurityJavaConfig extends WebSecurityConfigurerAdapter {
 
     private MySavedRequestAwareAuthenticationSuccessHandler successHandler = new MySavedRequestAwareAuthenticationSuccessHandler();

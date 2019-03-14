@@ -9,22 +9,27 @@ import org.springframework.web.bind.annotation.*;
 import training.endava.app.domain.Person;
 import training.endava.app.exceptions.PersonNotFoundException;
 import training.endava.app.filters.PersonDTO;
+import training.endava.app.logging.LOGGER;
 import training.endava.app.mappers.PersonMapper;
 import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.impl.PersonServiceImpl;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping("/person")
 public class PersonController {
 
+    private Logger logger = LOGGER.getInstanceWithFileHandler(this.getClass().getName());
+
     @Autowired
     private PersonServiceImpl personService;
 
-    @GetMapping(value = "/id={ID}", produces = {MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/id={ID}")
     public ResponseEntity<?> getPersonById(@PathVariable(value="ID") Integer id){
+        logger.info("[HTTP VERBS] : GET method call.");
         Person person = this.personService.getPersonById(id);
         if(person == null)
             throw new PersonNotFoundException("Person you search for does not exists.");
@@ -34,26 +39,31 @@ public class PersonController {
 
     @GetMapping()
     public List<?> getAllPersons(){
+        logger.info("[HTTP VERBS] : GET method call.");
         return this.personService.getAllPersons();
     }
 
-    @PostMapping(produces = {MediaType.APPLICATION_XML_VALUE})
+    @PostMapping()
     public ResponseEntity<?> addPerson(@RequestBody @Valid Person person){
+        logger.info("[HTTP VERBS] : POST method call.");
         return new ResponseEntity(PersonMapper.INSTANCE.personToPersonDTO(person),this.personService.addPerson(person));
     }
 
-    @PutMapping(produces = {MediaType.APPLICATION_XML_VALUE})
+    @PutMapping()
     public ResponseEntity<?> replacePerson(@RequestBody @Valid Person person){
+        logger.info("[HTTP VERBS] : PUT method call.");
         return new ResponseEntity(PersonMapper.INSTANCE.personToPersonDTO(person), this.personService.replacePerson(person));
     }
 
     @DeleteMapping(value = "/id={ID}")
     public ResponseEntity deletePersonById(@PathVariable(value="ID") Integer id){
+        logger.info("[HTTP VERBS] : DELETE method call.");
         return new ResponseEntity(this.personService.deletePersonById(id));
     }
 
-    @PatchMapping(produces = {MediaType.APPLICATION_XML_VALUE})
+    @PatchMapping()
     public ResponseEntity updatePerson(@RequestBody Person person){
+        logger.info("[HTTP VERBS] : PATCH method call.");
         return new ResponseEntity(this.personService.updatePerson(person));
     }
 

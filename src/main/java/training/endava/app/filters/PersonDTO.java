@@ -3,7 +3,6 @@ package training.endava.app.filters;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 public class PersonDTO {
 
     @NotNull
