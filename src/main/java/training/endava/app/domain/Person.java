@@ -1,6 +1,9 @@
 package training.endava.app.domain;
 
+import java.util.logging.Logger;
+
 public class Person {
+
     private Integer id;
     private String name;
     private String prenume;

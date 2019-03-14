@@ -12,12 +12,17 @@ import training.endava.app.domain.Person;
 
 import javax.swing.text.html.Option;
 
+import static java.util.logging.Level.ALL;
+
 @Repository
 public class PersonRepository {
 
+    //handler
+   // private static final Logger LOGGER = Logger.getLogger(log.class.getName());
+
+
     private List<Person> listOfPerson ;
     public PersonRepository() {
-
         listOfPerson = new ArrayList<>(Arrays.asList(new Person(1, "Person", "Unu"),
                 new Person(2, "Person", "Doi"), new Person(3, "Person", "Trei")));
     }

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import training.endava.app.domain.Person;
+import training.endava.app.myException;
 import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
 
@@ -16,8 +17,14 @@ public class PersonServiceImpl implements PersonService {
     @Autowired
     private PersonRepository repo;
 
-    public Optional<Person> getPersonById (Integer id){
-        return repo.getPersons().stream().filter(p->p.getId().equals(id)).findFirst();
+    public Optional<Person> getPersonById (Integer id) throws myException {
+        if(id<0) {
+            throw new myException("Wrong ID!!");
+        }
+        else
+        {
+            return repo.getPersons().stream().filter(p -> p.getId().equals(id)).findFirst();
+        }
     }
 
     public void addPerson(Person person){
