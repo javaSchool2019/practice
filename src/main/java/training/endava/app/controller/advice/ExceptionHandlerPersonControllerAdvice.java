@@ -8,20 +8,24 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import training.endava.app.exception.PersonAlreadyExistsException;
 import training.endava.app.exception.PersonAlreadyExistsExceptionChild;
 
+import static training.endava.app.logger.YellowPagesLogger.LOGGER;
+
 @ControllerAdvice
 public class ExceptionHandlerPersonControllerAdvice {
 
     @ExceptionHandler(PersonAlreadyExistsException.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
-    public ErrorResponse handlePersonConflict(){
+    public ErrorResponse handlePersonConflict(PersonAlreadyExistsException exception){
+        LOGGER.severe("Error adding person, already in the database " + exception);
         return new ErrorResponse(HttpStatus.CONFLICT.value(), "person already exists");
     }
 
     @ExceptionHandler(PersonAlreadyExistsExceptionChild.class)
     @ResponseStatus(HttpStatus.CONFLICT)
     @ResponseBody
-    public ErrorResponse handlePersonConflictUpdate(){
+    public ErrorResponse handlePersonConflictUpdate(PersonAlreadyExistsExceptionChild exception){
+        LOGGER.severe("Error updating person, already in the database " + exception);
         return new ErrorResponse(HttpStatus.CONFLICT.value(), "person already exists for update");
     }
 
@@ -29,6 +33,7 @@ public class ExceptionHandlerPersonControllerAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorResponse handleException(Exception e){
+        LOGGER.severe("Unexpected error: " + e);
         return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
     }
 
