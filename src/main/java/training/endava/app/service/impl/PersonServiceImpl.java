@@ -12,19 +12,34 @@ import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
 
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.logging.*;
 
 @Service
 public class PersonServiceImpl implements PersonService {
+
+    private static final LogManager logManager = LogManager.getLogManager();
+    private static final Logger LOGGER = Logger.getLogger("serviceLogger");
+
+    static {
+        Handler console = new ConsoleHandler();
+        console.setLevel(Level.SEVERE);
+        LOGGER.addHandler(console);
+    }
 
     @Autowired
     private PersonRepository personRepository;
 
     @Override
     public Person getById(Integer id) {
-        return personRepository.getById(id).orElseThrow(() -> new PersonNotFound("Person with " + id + " not found", HttpStatus.NOT_FOUND.value()));
+        return personRepository.getById(id).orElseThrow(() -> {
+            LOGGER.severe("Person with " + id + " not found");
+            return new PersonNotFound("Person with " + id + " not found", HttpStatus.NOT_FOUND.value());
+        });
     }
 
     @Override
@@ -40,8 +55,9 @@ public class PersonServiceImpl implements PersonService {
     @Override
     public void update(Person person) {
 
-        if(personRepository.getList().indexOf(person)==-1){
-            throw new PersonUpdateException("Person not found",HttpStatus.NOT_FOUND.value());
+        if (personRepository.getList().indexOf(person) == -1) {
+            LOGGER.severe("Person with not found");
+            throw new PersonUpdateException("Person not found", HttpStatus.NOT_FOUND.value());
         }
         personRepository.update(person, personRepository.getList().indexOf(person));
     }
