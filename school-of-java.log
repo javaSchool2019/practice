@@ -1,0 +1,48 @@
+Mar 14, 2019 2:31:25 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-8081"]
+Mar 14, 2019 2:31:37 PM org.apache.catalina.core.ApplicationContext log
+INFO: Initializing Spring DispatcherServlet 'dispatcherServlet'
+Mar 14, 2019 2:31:37 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> GET /persons/
+Mar 14, 2019 2:31:43 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> POST /persons
+Mar 14, 2019 2:31:57 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> POST /persons
+Mar 14, 2019 2:32:20 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> POST /persons
+Mar 14, 2019 2:33:02 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> PUT /persons/8
+Mar 14, 2019 2:33:50 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> GET /persons/33
+Mar 14, 2019 2:33:50 PM training.endava.app.exception.advice.GlobalExceptionHandler handleResourceNotFoundException
+WARNING: 404 NOT_FOUND: Person with id 33 not found.
+Mar 14, 2019 2:34:11 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> GET /persons/10
+Mar 14, 2019 2:34:11 PM training.endava.app.exception.advice.GlobalExceptionHandler handleResourceNotFoundException
+WARNING: 404 NOT_FOUND: Person with id 10 not found.
+Mar 14, 2019 2:34:24 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> DELETE /persons/7
+Mar 14, 2019 2:34:25 PM training.endava.app.exception.advice.GlobalExceptionHandler handleResourceNotFoundException
+WARNING: 404 NOT_FOUND: Person with id 7 does not exist
+Mar 14, 2019 2:41:10 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service [Tomcat]
+Mar 14, 2019 2:42:13 PM org.apache.catalina.core.StandardService stopInternal
+INFO: Stopping service [Tomcat]
+Mar 14, 2019 3:02:14 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-8081"]
+Mar 14, 2019 3:02:21 PM org.apache.catalina.core.ApplicationContext log
+INFO: Initializing Spring DispatcherServlet 'dispatcherServlet'
+Mar 14, 2019 3:02:21 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> DELETE /persons/7
+Mar 14, 2019 3:02:21 PM training.endava.app.exception.advice.GlobalExceptionHandler handleResourceNotFoundException
+WARNING: 404 NOT_FOUND: Person with id 7 does not exist
+Mar 14, 2019 3:02:25 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> GET /persons/10
+Mar 14, 2019 3:02:25 PM training.endava.app.exception.advice.GlobalExceptionHandler handleResourceNotFoundException
+WARNING: 404 NOT_FOUND: Person with id 10 not found.
+Mar 14, 2019 3:02:30 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> GET /persons/
+Mar 14, 2019 3:04:15 PM training.endava.app.filter.CustomFilter doFilter
+INFO: Request made by client with ip 0:0:0:0:0:0:0:1 -> DELETE /persons/7
+Mar 14, 2019 3:04:16 PM training.endava.app.exception.advice.GlobalExceptionHandler handleResourceNotFoundException
+WARNING: 404 NOT_FOUND: Person with id 7 does not exist
