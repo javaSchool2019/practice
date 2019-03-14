@@ -2,14 +2,21 @@ package training.endava.app.domain;
 
 public class Person {
 
-    private long id;
+    private Integer id;
     private String name;
+    private String prenume;
 
-    public long getId() {
+    public Person(Integer id, String name, String prenume) {
+        this.id = id;
+        this.name = name;
+        this.prenume = prenume;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -21,9 +28,20 @@ public class Person {
         this.name = name;
     }
 
+    public String getPrenume() {
+        return prenume;
+    }
+
+    public void setPrenume(String prenume) {
+        this.prenume = prenume;
+    }
+
     @Override
-    public boolean equals(Object obj) {
-        Person person = (Person) obj;
-        return id == person.getId() && name.equals(person.getName());
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", prenume='" + prenume + '\'' +
+                '}';
     }
 }

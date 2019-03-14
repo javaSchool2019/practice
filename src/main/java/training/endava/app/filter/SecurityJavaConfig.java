@@ -1,4 +1,4 @@
-package training.endava.app.security;
+package training.endava.app.filter;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

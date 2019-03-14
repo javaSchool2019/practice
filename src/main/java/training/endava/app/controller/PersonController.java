@@ -2,48 +2,97 @@ package training.endava.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import training.endava.app.domain.Person;
+import training.endava.app.exception.ParentException;
+import training.endava.app.exception.PersonAlreadyExistsException;
+import training.endava.app.exception.PersonDoesntExistException;
+import training.endava.app.logging.LoggerExample;
 import training.endava.app.mapStruct.PersonDTO;
-import training.endava.app.mapStruct.PersonMapper;
 import training.endava.app.service.PersonService;
 import training.endava.app.service.impl.PersonServiceImpl;
 
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import training.endava.app.logging.LoggerExample;
 
 @RestController
-@RequestMapping(value = "/person", consumes = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/person")
 public class PersonController {
+    private Logger LOGGER = LoggerExample.returnLogger();
 
-    private PersonService personService;
 
     @Autowired
-    public PersonController(PersonServiceImpl personService){
-        this.personService = personService;
+    private PersonServiceImpl pServ;
+
+    @GetMapping(value = "/all")
+    public List<PersonDTO> allUsers() {
+        LOGGER.log(Level.INFO, "Warning :");
+        try {
+            return this.pServ.getAllPersons();
+        }catch(ParentException e){
+            LOGGER.severe("No Persons,can t getAll()");
+            LOGGER.warning("No persons,can t getAll()");
+            return new ArrayList<PersonDTO>();
+
+        }
+
     }
 
-    @GetMapping
-    public ResponseEntity<List<PersonDTO>> getAll(){
-        return ResponseEntity.ok(personService.getAllPersons());
+    @GetMapping(value = "/id={ID}")
+    public Optional<Person> getUser(@PathVariable(value = "ID") Integer intId) {
+
+        try {
+            return this.pServ.getPersonById(intId);
+        } catch (PersonDoesntExistException e) {
+            LOGGER.severe(e.getMessage());
+            LOGGER.warning("person doesn t exist, can t Get it");
+         return Optional.empty();
+        }
+
     }
 
-    @PostMapping(produces = {MediaType.APPLICATION_XML_VALUE})
-    public ResponseEntity<PersonDTO> add(@RequestBody Person person){
-        personService.addPerson(person);
-        return new ResponseEntity<>(PersonMapper.INSTANCE.personToPersonDTO(person), HttpStatus.CREATED);
+
+
+    @PostMapping()
+    public ResponseEntity addPerson(@RequestBody Person person) {
+        try {
+            System.out.println(person);
+            this.pServ.addPerson(person);
+            return ResponseEntity.ok(HttpStatus.OK);
+        }catch(PersonAlreadyExistsException e){
+            LOGGER.severe(e.getMessage());
+            LOGGER.warning("person doesn t exist,Can t add it again");
+            return ResponseEntity.ok(HttpStatus.CONFLICT);
+        }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity update(@PathVariable long id, @RequestBody Person person){
-        personService.updatePerson(id, person);
-        return ResponseEntity.ok(person);
+    @PutMapping()
+    public ResponseEntity updatePerson(@RequestBody Person person) {
+        try {
+            return this.pServ.updatePerson(person);
+        }catch(PersonDoesntExistException e){
+            LOGGER.severe(e.getMessage());
+            LOGGER.warning("person doesn t exist,Can t update");
+            return ResponseEntity.ok(HttpStatus.CONFLICT);
+        }
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity delete(@PathVariable long id){
-        personService.deletePerson(id);
-        return ResponseEntity.ok(null);
+    @DeleteMapping(value = "/id={ID}")
+    public ResponseEntity deletePerson(@PathVariable(value = "ID") Integer a) {
+        try {
+            return this.pServ.delete(a);
+        }catch(PersonDoesntExistException e){
+            LOGGER.severe(e.getMessage());
+            LOGGER.warning("person doesn t exist,Can t delete");
+            return ResponseEntity.ok(HttpStatus.CONFLICT);
+        }
+
     }
 }
