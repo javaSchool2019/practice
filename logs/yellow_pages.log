@@ -1,0 +1,14 @@
+Mar 14, 2019 3:27:45 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-8900"]
+Mar 14, 2019 3:27:47 PM org.apache.catalina.core.ApplicationContext log
+INFO: Initializing Spring DispatcherServlet 'dispatcherServlet'
+Mar 14, 2019 3:28:02 PM training.endava.app.filters.MyFilter doFilter
+INFO: 8900
+Mar 14, 2019 3:28:10 PM training.endava.app.filters.MyFilter doFilter
+INFO: 8900
+Mar 14, 2019 3:28:10 PM training.endava.app.repository.PersonRepository addPerson
+INFO: Person added in the database
+Mar 14, 2019 3:28:21 PM training.endava.app.filters.MyFilter doFilter
+INFO: 8900
+Mar 14, 2019 3:28:21 PM training.endava.app.controller.advice.ExceptionHandlerPersonControllerAdvice handlePersonConflict
+SEVERE: Error adding person, already in the database training.endava.app.exception.PersonAlreadyExistsException
