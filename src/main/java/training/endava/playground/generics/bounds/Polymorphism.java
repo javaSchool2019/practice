@@ -1,7 +1,5 @@
 package training.endava.playground.generics.bounds;
 
-import javafx.beans.binding.IntegerBinding;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

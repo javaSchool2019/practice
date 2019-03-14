@@ -1,6 +1,5 @@
 package training.endava.app.service.impl;
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 import training.endava.app.domain.Person;
 import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
@@ -29,10 +28,10 @@ public class PersonServiceImpl implements PersonService {
                 .findAll()
                 .stream()
                 .filter(person -> getAgeInYears(person) >= age)
-                .limit(PAGE_SIZE)
                 .map(Person::getSurname)
                 .map(String::toUpperCase)
                 .distinct()
+                .limit(PAGE_SIZE)
                 .collect(Collectors.toList());
     }
 
@@ -48,8 +47,26 @@ public class PersonServiceImpl implements PersonService {
      * Trainig-Task
      * Get the unique surnames in uppercase for the n-th page
      * ({@link PersonServiceImpl#PAGE_SIZE} people per page) that are over a specified age
-     */
+     //     */
+
     public List<String> getPaginatedPeopleByAge(int age, int page) {
-        throw new NotImplementedException();
+        int max = page*PAGE_SIZE;
+        int min = (page-1)*PAGE_SIZE;
+
+        if(max > personRepository.findAll().size())
+        {
+            max = personRepository.findAll().size();
+        }
+
+        return personRepository
+                .findAll()
+                .subList(min, max)
+                .stream()
+                .filter(person -> getAgeInYears(person) >= age)
+                .limit(PAGE_SIZE)
+                .map(Person::getSurname)
+                .distinct()
+                .map(String::toUpperCase)
+                .collect(Collectors.toList());
     }
 }

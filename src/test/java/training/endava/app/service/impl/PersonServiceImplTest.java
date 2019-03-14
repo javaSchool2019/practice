@@ -47,6 +47,35 @@ public class PersonServiceImplTest {
                 actualPersonList, containsInAnyOrder(expectedPersonList.toArray()));
     }
 
+    //Get the unique surnames in uppercase for the n-th page
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldReturnUniquePeopleSurnameForAPageForUniquePersons() throws Exception {
+        PersonService personService = getPersonService("unique-contacts-input.json");
+        List<String> expectedPersonList = Arrays.asList("MARINESCU", "POPESCU", "IONESCU");
+
+        personService.getPaginatedPeopleByAge(45,3);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldReturnUniquePeopleSurnameForAPageForDuplicatePersons() throws Exception {
+        PersonService personService = getPersonService("duplicated-surnames-contacts-input.json");
+        List<String> expectedPersonList = Arrays.asList("POPESCU", "MARINESCU", "IONESCU");
+
+        personService.getPaginatedPeopleByAge(50,100);
+    }
+
+    @Test
+    public void shouldReturnSamePeopleForUniquePersonsAtAGivenPage() throws Exception {
+        PersonService personService = getPersonService("unique-contacts-input.json");
+        List<String> expectedPersonList = Arrays.asList("MARINESCU", "POPESCU", "IONESCU");
+
+        List<String> actualPersonList = personService.getPaginatedPeopleByAge(45,1);
+        assertThat("Expected to contain same people",
+                actualPersonList, containsInAnyOrder(expectedPersonList.toArray()));
+    }
+
+
     private PersonService getPersonService(String fileName) throws Exception {
         List<Person> personList = PersonTestHelper.getPersonList(fileName);
         PersonRepository personRepository = new StubPersonRepository(personList);
