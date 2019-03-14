@@ -30,6 +30,7 @@ public class PersonController {
 
     }
 
+    @GetMapping
     public ResponseEntity<?> getAll() {
         return new ResponseEntity<>(personService.getAllPerson().stream().map(PersonMapper.INSTANCE::personToPersonDTO), HttpStatus.NOT_FOUND);
 
@@ -42,7 +43,7 @@ public class PersonController {
     }
 
 
-    @PostMapping()
+    @PostMapping
     public ResponseEntity<Person> addPerson(@Valid @RequestBody Person person) {
         personService.addPerson(person);
         return new ResponseEntity<>(person, HttpStatus.CREATED);

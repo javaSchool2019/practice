@@ -1,0 +1,4 @@
+Mar 14, 2019 4:04:11 PM training.endava.app.controller.advice.ExceptionHandlerControllerAdvice handleException
+INFO: training.endava.app.controller.advice.ExceptionHandlerControllerAdvice Persoana exista deja in DB
+Mar 14, 2019 4:04:24 PM training.endava.app.controller.advice.ExceptionHandlerControllerAdvice handleException
+INFO: training.endava.app.controller.advice.ExceptionHandlerControllerAdvice Persoana exista deja in DB
