@@ -1,6 +1,16 @@
 package training.endava.app.service;
 
-public interface PersonService {
+import org.springframework.stereotype.Component;
+import training.endava.app.domain.Person;
 
+import java.util.List;
+
+@Component
+public interface PersonService {
+    boolean addPerson(Person person);
+    boolean removePerson(Long id);
+    boolean update (Long id, Person person);
+    List<Person> getAllPerson();
+    Person getPerson(Long id);
 
 }

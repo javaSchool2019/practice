@@ -24,25 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                .withUser("admin").password(encoder().encode("admin")).roles("ADMIN");
+                .withUser("admin").password(encoder().encode("adminPass")).roles("ADMIN");
 
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-                .csrf().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint(restAuthenticationEntryPoint)
-                .and()
-                .authorizeRequests()
-                .antMatchers("/person/**").hasRole("admin")
-                .anyRequest().permitAll()
-                .and()
-                .formLogin()
-                .successHandler(mySuccessHandler)
-                .and()
-                .logout();
+
     }
 
     @Bean
