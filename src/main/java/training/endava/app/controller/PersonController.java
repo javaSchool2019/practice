@@ -1,21 +1,22 @@
 package training.endava.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import training.endava.app.domain.Person;
 import training.endava.app.filter.PersonDTO;
-import training.endava.app.mapper.PersonMapper;
-import training.endava.app.repository.PersonRepository;
+import training.endava.app.logger.MyLogger;
+import training.endava.app.mapper.PersonMapper;;
 import training.endava.app.service.impl.PersonServiceImpl;
 
 import java.util.List;
+import java.util.logging.Level;
 
 @RestController
 //@RequestMapping(value = "/person")
 public class PersonController {
+
+    private static MyLogger logger = MyLogger.getInstance();
 
     @Autowired
     private PersonServiceImpl personService;
@@ -33,6 +34,8 @@ public class PersonController {
 
     @RequestMapping(value = "/person/get", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public Person ResponseEntityJson(@PathVariable(value = "id") int id) {
+
+        logger.log(Level.INFO,"Get the person with the id:"  + id);
         return this.personService.getById(id);
     }
 
@@ -56,7 +59,5 @@ public class PersonController {
     public void addMember(@RequestBody Person person) {
         this.personService.createNewPerson(person);
     }
-
-
 
 }

@@ -1,0 +1,12 @@
+Mar 15, 2019 9:05:05 AM training.endava.app.logger.MyLogger <init>
+CONFIG: Configuration done.
+Mar 15, 2019 9:05:05 AM training.endava.app.logger.MyLogger <init>
+FINE: Finer logged
+Mar 15, 2019 9:05:05 AM training.endava.app.logger.MyLogger <init>
+FINER: Finest example on LOGGER handler completed.
+Mar 15, 2019 9:11:58 AM training.endava.app.logger.MyLogger <init>
+CONFIG: Configuration done.
+Mar 15, 2019 9:11:58 AM training.endava.app.logger.MyLogger <init>
+FINE: Finer logged
+Mar 15, 2019 9:11:58 AM training.endava.app.logger.MyLogger <init>
+FINER: Finest example on LOGGER handler completed.

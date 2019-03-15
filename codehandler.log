@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-03-14T11:52:45.221601700Z</date>
+  <millis>1552564365221</millis>
+  <nanos>601700</nanos>
+  <sequence>0</sequence>
+  <logger>training.endava.app.logger.MyLogger</logger>
+  <level>CONFIG</level>
+  <class>training.endava.app.logger.MyLogger</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Configuration done.</message>
+</record>
+<record>
+  <date>2019-03-14T11:52:45.343534800Z</date>
+  <millis>1552564365343</millis>
+  <nanos>534800</nanos>
+  <sequence>1</sequence>
+  <logger>training.endava.app.logger.MyLogger</logger>
+  <level>FINE</level>
+  <class>training.endava.app.logger.MyLogger</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Finer logged</message>
+</record>
+<record>
+  <date>2019-03-14T11:52:45.346533100Z</date>
+  <millis>1552564365346</millis>
+  <nanos>533100</nanos>
+  <sequence>2</sequence>
+  <logger>training.endava.app.logger.MyLogger</logger>
+  <level>FINER</level>
+  <class>training.endava.app.logger.MyLogger</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>Finest example on LOGGER handler completed.</message>
+</record>
+</log>
