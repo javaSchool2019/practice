@@ -1,9 +1,13 @@
 package training.endava.app.repository;
 
 import org.springframework.stereotype.Repository;
+import training.endava.app.database.Postgres;
 import training.endava.app.domain.Person;
 import training.endava.app.exception.PersonAlreadyExistsException;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
