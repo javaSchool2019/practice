@@ -24,8 +24,8 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<PersonDTO> getAllPersons() {
-       return personRepository.getAll().stream().map(PersonMapper.INSTANCE::personToPersonDTO).collect(Collectors.toList());
+    public List<Person> getAllPersons() {
+       return personRepository.getAll();
     }
 
     @Override
