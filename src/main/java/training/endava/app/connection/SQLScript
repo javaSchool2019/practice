@@ -1,0 +1,92 @@
+drop table Person CASCADE;
+drop table Address CASCADE;
+drop table PhoneNumber CASCADE;
+
+
+CREATE TABLE Person
+(
+	id integer NOT NULL,
+	address_id integer NOT NULL,
+    name character varying (100),
+    birthday date,
+    birthplace character varying(30),
+	email character varying(100),
+    CONSTRAINT "Person_pkey" PRIMARY KEY (ID)
+);
+
+
+CREATE TABLE Address
+(
+	id integer NOT NULL,
+    country character varying(100),
+    city character varying(30),
+    street character varying(50),
+	CONSTRAINT "Address_pkey" PRIMARY KEY (ID)
+);
+
+
+CREATE TABLE PhoneNumber
+(
+	id integer NOT NULL,
+	personId integer NOT NULL,
+	number character varying(10) NOT NULL,
+	service_provider character varying(30),
+	CONSTRAINT "phone_pkey" PRIMARY KEY (id,personId)
+);
+
+
+
+ALTER TABLE Person
+ADD CONSTRAINT fk_person_address FOREIGN KEY (address_id) REFERENCES Address(id)
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+ALTER TABLE PhoneNumber
+ADD CONSTRAINT fk_person_phoneNumber FOREIGN KEY (personId) REFERENCES Person (id)
+ON UPDATE CASCADE ON DELETE CASCADE;
+
+
+/***************************************** DATA*******************************************/
+
+
+INSERT INTO Address (ID,country, city, street) VALUES (1, 'country 1', 'city 1', 'street 1');
+INSERT INTO Address (ID,country, city, street) VALUES (2, 'country 2', 'city 2', 'street 2');
+INSERT INTO Address (ID,country, city, street) VALUES (3, 'country 3', 'city 3', 'street 3');
+INSERT INTO Address (ID,country, city, street) VALUES (4, 'country 4', 'city 4', 'street 4');
+INSERT INTO Address (ID,country, city, street) VALUES (5, 'country 5', 'city 5', 'street 5');
+INSERT INTO Address (ID,country, city, street) VALUES (6, 'country 6', 'city 6', 'street 6');
+INSERT INTO Address (ID,country, city, street) VALUES (7, 'country 7', 'city 7', 'street 7');
+INSERT INTO Address (ID,country, city, street) VALUES (8, 'country 8', 'city 8', 'street 8');
+INSERT INTO Address (ID,country, city, street) VALUES (9, 'country 9', 'city 9', 'street 9');
+INSERT INTO Address (ID,country, city, street) VALUES (10, 'country 10', 'city 10', 'street 10');
+INSERT INTO Address (ID,country, city, street) VALUES (11, 'country 11', 'city 11', 'street 11');
+INSERT INTO Address (ID,country, city, street) VALUES (12, 'country 12', 'city 12', 'street 12');
+
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (1, 1, 'Name 1','2006-06-23','Tulcea', 'name1@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (2, 2, 'Name 2','2005-06-23','Brasov', 'name2@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (3, 3, 'Name 3','2004-06-23','Iasi', 'name3@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (4, 4, 'Name 4','2003-06-23','Bucuresti', 'name4@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (5, 5, 'Name 5','2002-06-23','Botosani', 'name5@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (6, 6, 'Name 6','1993-06-23','Iasi', 'name6@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (7, 7, 'Name 7','1960-06-23','Timisoara', 'name7@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (8, 8, 'Name 8','1970-06-23','Suceava', 'name8@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (9, 9, 'Name 9','1939-06-23','Timisoara', 'name9@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (10, 10, 'Name 10','1966-06-23','Tulcea', 'name10@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (11, 11, 'Name 11','1945-06-23','Suceava', 'name11@something.com');
+INSERT INTO Person (id, address_id, name, birthday, birthplace, email) VALUES (12, 12, 'Name 11','1999-06-23','Iasi', 'name12@something.com');
+
+INSERT INTO PhoneNumber (id, personId, number, service_provider) VALUES (1, 1, '074XXXXXX1','provider 1');
+INSERT INTO PhoneNumber (id, personId, number, service_provider) VALUES (2, 1, '074XXX2XX1','provider 2');
+INSERT INTO PhoneNumber (id, personId, number, service_provider) VALUES (3, 2, '074XXX1XX1','provider 1');
+INSERT INTO PhoneNumber (id, personId, number, service_provider) VALUES (4, 3, '074XX1XXX1','provider 1');
+INSERT INTO PhoneNumber (id, personId, number, service_provider) VALUES (5, 4, '074XXXX2X1','provider 1');
+INSERT INTO PhoneNumber (id, personId, number, service_provider) VALUES (6, 5, '074XXXX3X1','provider 1');
+INSERT INTO PhoneNumber (id, personId, number, service_provider) VALUES (7, 5, '074XXXX3X2','provider 2');
+INSERT INTO PhoneNumber (id, personId, number, service_provider) VALUES (8, 5, '074XXXX3X3','provider 3');
+
+
+
+select * from Address;
+select * from Person;
+select * from phonenumber;
+
