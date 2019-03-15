@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-03-14T16:12:45</date>
-  <millis>1552572765788</millis>
+  <date>2019-03-15T16:38:30</date>
+  <millis>1552660710708</millis>
   <sequence>4</sequence>
   <logger>training.endava.app.logging.LoggerExample</logger>
   <level>CONFIG</level>
@@ -13,8 +13,8 @@
   <message>Configuration done.</message>
 </record>
 <record>
-  <date>2019-03-14T16:12:45</date>
-  <millis>1552572765788</millis>
+  <date>2019-03-15T16:38:30</date>
+  <millis>1552660710710</millis>
   <sequence>5</sequence>
   <logger>training.endava.app.logging.LoggerExample</logger>
   <level>FINE</level>
@@ -22,26 +22,4 @@
   <method>returnLogger</method>
   <thread>1</thread>
   <message>Finer logged</message>
-</record>
-<record>
-  <date>2019-03-14T16:12:50</date>
-  <millis>1552572770234</millis>
-  <sequence>7</sequence>
-  <logger>training.endava.app.logging.LoggerExample</logger>
-  <level>SEVERE</level>
-  <class>training.endava.app.controller.PersonController</class>
-  <method>deletePerson</method>
-  <thread>18</thread>
-  <message>Parent exception</message>
-</record>
-<record>
-  <date>2019-03-14T16:12:50</date>
-  <millis>1552572770234</millis>
-  <sequence>8</sequence>
-  <logger>training.endava.app.logging.LoggerExample</logger>
-  <level>WARNING</level>
-  <class>training.endava.app.controller.PersonController</class>
-  <method>deletePerson</method>
-  <thread>18</thread>
-  <message>person doesn t exist,Can t delete</message>
 </record>

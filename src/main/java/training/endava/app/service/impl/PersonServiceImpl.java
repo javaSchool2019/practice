@@ -34,6 +34,11 @@ public class PersonServiceImpl implements PersonService {
         repo.addPerson(person);
     }
 
+
+
+
+
+
     @Override
     public void updatePerson(long id, Person person) {
 
@@ -63,4 +68,17 @@ public class PersonServiceImpl implements PersonService {
         return this.repo.delete(a);
 
     }
+
+    public List<Person>getAllPersonFromDB(){
+        return repo.getAllPersonsFromDbByAge();
+    }
+
+
+
+    public void addPersonToDataBase(Person person){
+        System.out.println("persServ"+person);
+        repo.addPersonToDatabase(person);
+    }
+
+
 }

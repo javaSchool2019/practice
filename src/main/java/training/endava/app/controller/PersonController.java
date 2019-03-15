@@ -27,11 +27,45 @@ import training.endava.app.logging.LoggerExample;
 public class PersonController {
     private Logger LOGGER = LoggerExample.returnLogger();
 
-
+//CRUD for DB
     @Autowired
     private PersonServiceImpl pServ;
 
     @GetMapping(value = "/all")
+    public List<Person> allUsers() {
+        LOGGER.log(Level.INFO, "Warning :");
+        try {
+            return this.pServ.getAllPersonFromDB();
+        }catch(ParentException e){
+            LOGGER.severe("No Persons,can t getAll()");
+            LOGGER.warning("No persons,can t getAll()");
+            return new ArrayList<Person>();
+
+        }
+
+    }
+    @PostMapping()
+    public ResponseEntity addPersonToDataBase(@RequestBody Person person) {
+        try {
+            System.out.println("persContr"+person);
+            pServ.addPersonToDataBase(person);
+            return ResponseEntity.ok(HttpStatus.OK);
+        }catch(PersonAlreadyExistsException e){
+            LOGGER.severe(e.getMessage());
+            LOGGER.warning("person doesn t exist,Can t add it again");
+            return ResponseEntity.ok(HttpStatus.CONFLICT);
+        }
+    }
+
+
+
+
+
+
+
+
+    //Crud
+   /* @GetMapping(value = "/all")
     public List<PersonDTO> allUsers() {
         LOGGER.log(Level.INFO, "Warning :");
         try {
@@ -44,8 +78,8 @@ public class PersonController {
         }
 
     }
-
-    @GetMapping(value = "/id={ID}")
+*/
+  /*  @GetMapping(value = "/id={ID}")
     public Optional<Person> getUser(@PathVariable(value = "ID") Integer intId) {
 
         try {
@@ -57,8 +91,9 @@ public class PersonController {
         }
 
     }
+    */
 
-
+/*
 
     @PostMapping()
     public ResponseEntity addPerson(@RequestBody Person person) {
@@ -72,7 +107,8 @@ public class PersonController {
             return ResponseEntity.ok(HttpStatus.CONFLICT);
         }
     }
-
+    */
+/*
     @PutMapping()
     public ResponseEntity updatePerson(@RequestBody Person person) {
         try {
@@ -83,6 +119,7 @@ public class PersonController {
             return ResponseEntity.ok(HttpStatus.CONFLICT);
         }
     }
+
 
     @DeleteMapping(value = "/id={ID}")
     public ResponseEntity deletePerson(@PathVariable(value = "ID") Integer a) {
@@ -95,4 +132,5 @@ public class PersonController {
         }
 
     }
+     */
 }
