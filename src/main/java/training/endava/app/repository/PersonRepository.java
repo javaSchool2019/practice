@@ -1,12 +1,17 @@
 package training.endava.app.repository;
 
-
 import org.springframework.stereotype.Repository;
+import training.endava.DBConnection.DatabaseConnection;
 import training.endava.app.controller.exceptionHandling.DeleteException;
 import training.endava.app.controller.exceptionHandling.PersonException;
 import training.endava.app.domain.Person;
+import training.endava.app.domain.PersonForDB;
 import training.endava.app.logger.MyLogger;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +22,25 @@ public class PersonRepository {
 
     private static MyLogger logger = MyLogger.getInstance();
     private List<Person> personList = new ArrayList<>();
+    private Connection dbConnection = null;
+
+    public static void main(String args[]) {
+        ResultSet resultSet = null;
+        Statement statement;
+
+        Connection databaseConnection = DatabaseConnection.getInstance();
+
+        try {
+            statement = databaseConnection.createStatement();
+
+            resultSet = statement.executeQuery("select * from \"persons\"");
+
+            System.out.println(resultSet);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public PersonRepository()
     {
@@ -32,15 +56,15 @@ public class PersonRepository {
 
     }
 
-    public List<Person> returnAll()
-    {
+    public List<Person> returnAll() {
+
         logger.log(Level.INFO, "Searching for a list");
         return personList;
     }
 
     // read
-    public Person getById(Integer id)
-    {
+    public Person getById(Integer id) {
+
         logger.log(Level.INFO, "Starting to do iterate the list...");
 
             for(Person p : personList)
@@ -55,12 +79,11 @@ public class PersonRepository {
         logger.log(Level.WARNING,"element not found ");
 
             return null;
-
     }
 
     //create
-    public void createNewPerson(Person person)
-    {
+    public void createNewPerson(Person person) {
+
         Person p = this.getById(person.getId());
         if(p == null){
             personList.add(person);
@@ -68,8 +91,8 @@ public class PersonRepository {
     }
 
     //update
-    public void updatePerson(Person person)
-    {
+    public void updatePerson(Person person) {
+
         for(Person p : personList)
         {
             if(p.getId().equals(person.getId()))
@@ -89,8 +112,7 @@ public class PersonRepository {
     }
 
     //delete
-    public void deletePerson(Integer id)
-    {
+    public void deletePerson(Integer id) {
         for (Iterator<Person> iter = personList.listIterator(); iter.hasNext(); ) {
             Person p = iter.next();
             if (p.getId().equals(id)) {
@@ -99,6 +121,33 @@ public class PersonRepository {
             }
         }
         throw  new DeleteException("person does not exist");
+    }
+
+    public List<PersonForDB> getPersonsBornBefore90(){
+
+        List<PersonForDB> personList = new ArrayList<>();
+
+        try {
+
+            Statement statement = dbConnection.createStatement();
+
+            ResultSet resultSet = statement.executeQuery("select * from persons where birthday < '1990-01-01'");
+
+            while (resultSet.next()) {
+
+                Integer id = resultSet.getInt("id");
+                Integer adressId = resultSet.getInt("adressId");
+                String name = resultSet.getString("name");
+                String birthday = resultSet.getString("birthday");
+
+                personList.add(new PersonForDB(id, name, adressId, birthday));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return personList;
+
     }
 
 }

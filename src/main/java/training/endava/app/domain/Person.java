@@ -7,6 +7,8 @@ public class Person {
     private Integer id;
     private String name;
     private String address;
+    private String birthplace;
+    private String birtday;
 
     public Person() {
     }
@@ -47,6 +49,8 @@ public class Person {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", address='" + address + '\'' +
+                ", birthplace='" + birthplace + '\'' +
+                ", birtday='" + birtday + '\'' +
                 '}';
     }
 
