@@ -59,8 +59,8 @@ public class PersonController {
 
     @PostMapping(value = "/post")
     ResponseEntity postPerson(@RequestBody Person person) {
-        LOGGER.info("GET REQUEST /persons/post");
-        if (person.getId() == null || person.getName() == null) {
+        LOGGER.info("POST REQUEST /persons/post");
+        if (person.getPerson_id() == null || person.getName() == null) {
             LOGGER.severe("IllegalArgumentException");
             throw new IllegalArgumentException("At least one parameter is invalid or not supplied");
         }
@@ -71,14 +71,14 @@ public class PersonController {
 
     @PutMapping(value = "/put")
     ResponseEntity putPerson(@RequestBody Person person) {
-        LOGGER.info("GET REQUEST /persons/put");
+        LOGGER.info("PUT REQUEST /persons/put");
         serv.update(person);
-        return ResponseEntity.ok(PersonMapper.INSTANCE.persontoPersonDTO(serv.getById(person.getId())));
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete={ID}")
     ResponseEntity deletePerson(@PathVariable(value = "ID") Integer id) {
-        LOGGER.info("GET REQUEST /persons/delete");
+        LOGGER.info("DELETE REQUEST /persons/delete");
         serv.delete(id);
         return new ResponseEntity(HttpStatus.OK);
     }

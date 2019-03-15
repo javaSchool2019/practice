@@ -30,3 +30,113 @@ Mar 14, 2019 4:24:12 PM training.endava.app.repository.PersonRepository update
 INFO: Update from DB
 Mar 14, 2019 4:24:12 PM training.endava.app.repository.PersonRepository getById
 INFO: GetById from DB
+Mar 15, 2019 1:44:34 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 1:46:21 PM training.endava.app.repository.PersonRepository getById
+INFO: GetById from DB
+Mar 15, 2019 1:46:42 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 1:47:28 PM training.endava.app.repository.PersonRepository getById
+INFO: GetById from DB
+Mar 15, 2019 1:48:28 PM training.endava.app.repository.PersonRepository getById
+INFO: GetById from DB
+Mar 15, 2019 1:49:09 PM training.endava.app.repository.PersonRepository getById
+INFO: GetById from DB
+Mar 15, 2019 1:49:15 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 1:49:54 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 1:50:06 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 1:50:35 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 1:50:41 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:04:33 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:04:39 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 2:04:43 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:06:44 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:06:52 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 2:06:55 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:07:49 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:07:53 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 2:08:53 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 2:09:36 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 2:10:06 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 2:12:36 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 2:12:41 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:13:41 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:14:25 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:14:25 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:14:25 PM training.endava.app.repository.PersonRepository update
+INFO: Update from DB
+Mar 15, 2019 2:14:25 PM training.endava.app.repository.PersonRepository getById
+INFO: GetById from DB
+Mar 15, 2019 2:14:38 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:15:54 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:15:54 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:15:54 PM training.endava.app.repository.PersonRepository update
+INFO: Update from DB
+Mar 15, 2019 2:15:55 PM training.endava.app.repository.PersonRepository getById
+INFO: GetById from DB
+Mar 15, 2019 2:18:48 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:18:48 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:18:48 PM training.endava.app.repository.PersonRepository update
+INFO: Update from DB
+Mar 15, 2019 2:21:58 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:21:58 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:21:58 PM training.endava.app.repository.PersonRepository update
+INFO: Update from DB
+Mar 15, 2019 2:22:47 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:22:47 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:22:47 PM training.endava.app.repository.PersonRepository update
+INFO: Update from DB
+Mar 15, 2019 2:27:18 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:27:18 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:27:18 PM training.endava.app.repository.PersonRepository update
+INFO: Update from DB
+Mar 15, 2019 2:27:21 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:30:13 PM training.endava.app.repository.PersonRepository delete
+INFO: Delete from DB
+Mar 15, 2019 2:30:20 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:30:31 PM training.endava.app.repository.PersonRepository delete
+INFO: Delete from DB
+Mar 15, 2019 2:30:49 PM training.endava.app.repository.PersonRepository delete
+INFO: Delete from DB
+Mar 15, 2019 2:30:55 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:45:00 PM training.endava.app.repository.PersonRepository add
+INFO: Add from DB
+Mar 15, 2019 2:45:07 PM training.endava.app.repository.PersonRepository getList
+INFO: GetAll from DB
+Mar 15, 2019 2:45:21 PM training.endava.app.repository.PersonRepository getById
+INFO: GetById from DB
