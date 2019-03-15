@@ -1,5 +1,8 @@
 package training.endava.app.filters;
 
+import training.endava.app.domain.Adress;
+import training.endava.app.domain.PhoneNumber;
+
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -9,10 +12,10 @@ public class PersonDTO {
     private String personName;
 
     @NotNull
-    private String personPhoneNumber;
+    private PhoneNumber personPhoneNumber;
 
     @NotNull
-    private String personAdress;
+    private Adress personAdress;
 
     public String getPersonName() {
         return personName;
@@ -22,19 +25,19 @@ public class PersonDTO {
         this.personName = personName;
     }
 
-    public String getPersonPhoneNumber() {
-        return personPhoneNumber.substring(0,3)+"XXXXXXX";
+    public PhoneNumber getPersonPhoneNumber() {
+        return personPhoneNumber;
     }
 
-    public void setPersonPhoneNumber(String personPhoneNumber) {
+    public void setPersonPhoneNumber(PhoneNumber personPhoneNumber) {
         this.personPhoneNumber = personPhoneNumber;
     }
 
-    public String getPersonAdress() {
+    public Adress getPersonAdress() {
         return personAdress;
     }
 
-    public void setPersonAdress(String personAdress) {
+    public void setPersonAdress(Adress personAdress) {
         this.personAdress = personAdress;
     }
 }

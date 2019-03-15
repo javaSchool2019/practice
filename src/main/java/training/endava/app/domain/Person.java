@@ -3,35 +3,31 @@ package training.endava.app.domain;
 import org.springframework.beans.factory.annotation.Required;
 
 import javax.validation.constraints.NotNull;
+import java.sql.Date;
 
 public class Person {
 
-    @NotNull
     private Integer id;
 
-    @NotNull
     private String name;
 
-    @NotNull
-    private String phoneNumber;
+    private String prenume;
 
-    @NotNull
-    private String adress;
+    private Integer adressId;
 
-    public Person() {
-    }
+    private Date birthday;
 
-    public Person(Integer id, String name, String phoneNumber, String adress) {
+    public Person(Integer id, String name, String prenume, Integer adressId, Date birthday) {
         this.id = id;
         this.name = name;
-        this.phoneNumber = phoneNumber;
-        this.adress = adress;
+        this.prenume = prenume;
+        this.adressId = adressId;
+        this.birthday = birthday;
     }
 
     public Integer getId() {
         return id;
     }
-
 
     public void setId(Integer id) {
         this.id = id;
@@ -45,20 +41,28 @@ public class Person {
         this.name = name;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPrenume() {
+        return prenume;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPrenume(String prenume) {
+        this.prenume = prenume;
     }
 
-    public String getAdress() {
-        return adress;
+    public Integer getAdressId() {
+        return adressId;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAdressId(Integer adressId) {
+        this.adressId = adressId;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
     }
 
     @Override
@@ -66,8 +70,9 @@ public class Person {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", adress='" + adress + '\'' +
+                ", prenume='" + prenume + '\'' +
+                ", adressId=" + adressId +
+                ", birthday=" + birthday +
                 '}';
     }
 }

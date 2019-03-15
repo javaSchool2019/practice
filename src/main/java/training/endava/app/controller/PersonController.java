@@ -10,8 +10,8 @@ import training.endava.app.domain.Person;
 import training.endava.app.exceptions.PersonNotFoundException;
 import training.endava.app.filters.PersonDTO;
 import training.endava.app.logging.LOGGER;
-import training.endava.app.mappers.PersonMapper;
-import training.endava.app.repository.PersonRepository;
+//import training.endava.app.mappers.PersonMapper;
+//import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.impl.PersonServiceImpl;
 
 import javax.validation.Valid;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/persons")
 public class PersonController {
 
     private Logger logger = LOGGER.getInstanceWithFileHandler(this.getClass().getName());
@@ -34,7 +34,7 @@ public class PersonController {
         if(person == null)
             throw new PersonNotFoundException("Person you search for does not exists.");
         else
-            return new ResponseEntity<PersonDTO>(PersonMapper.INSTANCE.personToPersonDTO(person),HttpStatus.OK);
+            return new ResponseEntity<Person>(person,HttpStatus.OK);
     }
 
     @GetMapping()
@@ -46,13 +46,7 @@ public class PersonController {
     @PostMapping()
     public ResponseEntity<?> addPerson(@RequestBody @Valid Person person){
         logger.info("[HTTP VERBS] : POST method call.");
-        return new ResponseEntity(PersonMapper.INSTANCE.personToPersonDTO(person),this.personService.addPerson(person));
-    }
-
-    @PutMapping()
-    public ResponseEntity<?> replacePerson(@RequestBody @Valid Person person){
-        logger.info("[HTTP VERBS] : PUT method call.");
-        return new ResponseEntity(PersonMapper.INSTANCE.personToPersonDTO(person), this.personService.replacePerson(person));
+        return new ResponseEntity(person,this.personService.addPerson(person));
     }
 
     @DeleteMapping(value = "/id={ID}")
