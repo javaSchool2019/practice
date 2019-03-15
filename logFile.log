@@ -2,35 +2,13 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-03-14T16:17:10</date>
-  <millis>1552573030955</millis>
+  <date>2019-03-15T11:56:38</date>
+  <millis>1552643798433</millis>
   <sequence>4</sequence>
-  <logger>training.endava.app.log</logger>
-  <level>CONFIG</level>
-  <class>training.endava.app.log</class>
-  <method>returnLogger</method>
-  <thread>1</thread>
-  <message>Configuration done.</message>
-</record>
-<record>
-  <date>2019-03-14T16:17:10</date>
-  <millis>1552573030955</millis>
-  <sequence>5</sequence>
   <logger>training.endava.app.log</logger>
   <level>FINE</level>
   <class>training.endava.app.log</class>
   <method>returnLogger</method>
   <thread>1</thread>
   <message>Finer logged</message>
-</record>
-<record>
-  <date>2019-03-14T16:17:29</date>
-  <millis>1552573049153</millis>
-  <sequence>7</sequence>
-  <logger>training.endava.app.log</logger>
-  <level>INFO</level>
-  <class>training.endava.app.controller.PersonController</class>
-  <method>deletePerson</method>
-  <thread>18</thread>
-  <message>Id is deleted</message>
 </record>

@@ -9,6 +9,7 @@ import training.endava.app.log;
 import training.endava.app.myException;
 import training.endava.app.service.impl.PersonServiceImpl;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
@@ -25,17 +26,19 @@ public class PersonController {
     }
 
     @GetMapping(value="/all")
-    public List<Person> allUsers(){
+        public List<Person> allUsers(){
 
-        return this.pServ.getAllPersons();
-    }
+            //return this.pServ.getAllPersons();
+            return null;
+        }
 
     @GetMapping(value="/id={ID}")
     public Optional<Person> getUser(@PathVariable (value = "ID") Integer intId){
         try {
-            return this.pServ.getPersonById(intId);
+            //return this.pServ.getPersonById(intId);
+            return Optional.empty();
         }
-        catch (RuntimeException | myException e){
+        catch (RuntimeException e){
             LOGGER.severe("Error getPersonById method ");
             LOGGER.warning("Id invalid");
             return Optional.empty();
@@ -45,20 +48,22 @@ public class PersonController {
     @PostMapping()
     public ResponseEntity addPerson(@RequestBody Person person){
         System.out.println(person);
-        this.pServ.addPerson(person);
+        //this.pServ.addPerson(person);
         return ResponseEntity.ok(HttpStatus.OK);
     }
 
     @PutMapping()
     public ResponseEntity updatePerson (@RequestBody Person person){
         LOGGER.info("Id is updated");
-        return this.pServ.updatePerson(person);
+        //return this.pServ.updatePerson(person);
+        return null;
     }
 
     @DeleteMapping(value = "/id={ID}")
     public ResponseEntity deletePerson (@PathVariable (value="ID") Integer a){
         LOGGER.info("Id is deleted");
-        return this.pServ.delete(a);
+        return null;
+        //return this.pServ.delete(a);
 
     }
 }

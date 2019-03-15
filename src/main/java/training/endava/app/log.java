@@ -14,14 +14,18 @@ public class log {
         final Logger LOGGER = Logger.getLogger(log.class.getName());
 
         try {
+            LOGGER.setLevel(Level.ALL);
 
             FileHandler fileHandler = new FileHandler("logFile" + ".log");
             Handler consoleHandler = new ConsoleHandler();
+
             LOGGER.addHandler(fileHandler);
             LOGGER.addHandler(consoleHandler);
+
             fileHandler.setLevel(Level.ALL);
-            LOGGER.setLevel(Level.ALL);
-            LOGGER.config("Configuration done.");
+
+           // LOGGER.config("Configuration done.");
+
             LOGGER.log(Level.FINE, "Finer logged");
 
         }catch(IOException exception){

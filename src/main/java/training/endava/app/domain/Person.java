@@ -1,17 +1,20 @@
 package training.endava.app.domain;
 
+import java.util.Date;
 import java.util.logging.Logger;
 
 public class Person {
 
     private Integer id;
     private String name;
-    private String prenume;
+    private Date birthday;
+    private String birthplace;
 
-    public Person(Integer id, String name, String prenume) {
+    public Person(Integer id, String name, Date birthday,String birthplace) {
         this.id = id;
         this.name = name;
-        this.prenume = prenume;
+        this.birthday = birthday;
+        this.birthplace = birthplace;
     }
 
     public Integer getId() {
@@ -29,13 +32,20 @@ public class Person {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getPrenume() {
-        return prenume;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setPrenume(String prenume) {
-        this.prenume = prenume;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getBirthplace() {
+        return birthplace;
+    }
+
+    public void setBirthplace(String birthplace) {
+        this.birthplace = birthplace;
     }
 
     @Override
@@ -43,7 +53,10 @@ public class Person {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", prenume='" + prenume + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", birthplace='" + birthplace + '\'' +
                 '}';
     }
+
+
 }
