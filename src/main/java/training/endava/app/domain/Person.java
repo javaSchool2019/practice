@@ -1,29 +1,28 @@
 package training.endava.app.domain;
 
-import javax.validation.constraints.NotBlank;
+import java.util.Date;
+import java.util.List;
 import java.util.Objects;
 
 public class Person {
     private Long id;
     private String name;
-    private Integer age;
+    private Date birthday;
+    private String birthplace;
+    private Address address;
+    private List<PhoneNumber> phoneNumbers;
 
-    public Person(@NotBlank Long id, @NotBlank String name, @NotBlank Integer age) {
+    public Person(Long id, String name, Date birthday, String birthplace, Address address, List<PhoneNumber> phoneNumbers) {
         this.id = id;
         this.name = name;
-        this.age = age;
+        this.birthday = birthday;
+        this.birthplace = birthplace;
+        this.address = address;
+        this.phoneNumbers = phoneNumbers;
     }
 
-    public Person(String name, Integer age){
-        this.name = name;
-        this.age = age;
+    public Person() {
     }
-
-    public Person(Long id){
-        this.id = id;
-    }
-
-    public Person() {}
 
     public Long getId() {
         return id;
@@ -41,12 +40,36 @@ public class Person {
         this.name = name;
     }
 
-    public Integer getAge() {
-        return age;
+    public Date getBirthday() {
+        return birthday;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getBirthplace() {
+        return birthplace;
+    }
+
+    public void setBirthplace(String birthplace) {
+        this.birthplace = birthplace;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public List<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 
     @Override
@@ -56,12 +79,15 @@ public class Person {
         Person person = (Person) o;
         return getId().equals(person.getId()) &&
                 getName().equals(person.getName()) &&
-                getAge().equals(person.getAge());
+                getBirthday().equals(person.getBirthday()) &&
+                getBirthplace().equals(person.getBirthplace()) &&
+                getAddress().equals(person.getAddress()) &&
+                getPhoneNumbers().equals(person.getPhoneNumbers());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getAge());
+        return Objects.hash(getId(), getName(), getBirthday(), getBirthplace(), getAddress(), getPhoneNumbers());
     }
 
     @Override
@@ -69,7 +95,10 @@ public class Person {
         return "Person{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", age=" + age +
+                ", birthday=" + birthday +
+                ", birthplace='" + birthplace + '\'' +
+                ", address=" + address +
+                ", phoneNumbers=" + phoneNumbers +
                 '}';
     }
 }

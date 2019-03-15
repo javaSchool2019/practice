@@ -8,6 +8,7 @@ import training.endava.app.exception.PersonNotFoundException;
 import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
 
+import java.sql.SQLException;
 import java.util.List;
 
 @Service
@@ -20,7 +21,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public List<Person> findAll() {
+    public List<Person> findAll() throws SQLException {
         return personRepository.findAll();
     }
 

@@ -11,17 +11,17 @@ import training.endava.app.payload.PersonDto;
 public interface PersonMapper {
     PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
 
-    @Mappings({
-            @Mapping(source = "name", target = "personName"),
-            @Mapping(source = "age", target = "personAge"),
-    })
+//    @Mappings({
+//            @Mapping(source = "name", target = "personName"),
+//            @Mapping(source = "age", target = "personAge"),
+//    })
     PersonDto toDto(Person person);
 
 
-    @Mappings({
-            @Mapping(ignore = true, target = "id"),
-            @Mapping(source = "personName", target = "name"),
-            @Mapping(source = "personAge", target = "age")
-    })
+//    @Mappings({
+//            @Mapping(ignore = true, target = "id"),
+//            @Mapping(source = "personName", target = "name"),
+//            @Mapping(source = "personAge", target = "age")
+//    })
     Person toPerson(PersonDto personDto);
 }

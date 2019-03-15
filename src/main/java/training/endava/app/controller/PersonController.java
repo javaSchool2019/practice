@@ -12,13 +12,13 @@ import training.endava.app.payload.PersonDto;
 import training.endava.app.service.PersonService;
 
 import javax.validation.Valid;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/persons")
 public class PersonController {
-
     private PersonService personService;
 
     @Autowired
@@ -27,7 +27,7 @@ public class PersonController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PersonDto>> findAllPersons() {
+    public ResponseEntity<List<PersonDto>> findAllPersons() throws SQLException {
         return new ResponseEntity<>(personService.findAll().stream().map(PersonMapper.INSTANCE::toDto).collect(Collectors.toList()), HttpStatus.OK);
     }
 
