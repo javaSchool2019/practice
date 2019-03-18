@@ -42,12 +42,12 @@ public class Person {
 
 
     }
-/*
-    public Person(Integer id, String name, String prenume) {
-        this.id = id;
-        this.name = name;
-        this.prenume = prenume;
-    }*/
+    /*
+        public Person(Integer id, String name, String prenume) {
+            this.id = id;
+            this.name = name;
+            this.prenume = prenume;
+        }*/
     public Person(Integer id,String name,Date birthday,String birthplace,Integer id_address){
 
         this.id=id;

@@ -55,7 +55,7 @@ public class PersonServiceImpl implements PersonService {
 
     public List<PersonDTO> getAllPersons  ()throws ParentException
     {   if(repo.getPersons().size()==0) {
-         throw new ParentException();
+        throw new ParentException();
     }
     else{
         return repo.getPersons().stream().map(PersonMapper.INSTANCE::personToPersonDTO).collect(Collectors.toList());
@@ -70,7 +70,7 @@ public class PersonServiceImpl implements PersonService {
     }
 
     public List<Person>getAllPersonFromDB(){
-        return repo.getAllPersonsFromDbByAge();
+        return repo.getAllPersonsFromDb();
     }
 
 
