@@ -1,0 +1,8 @@
+Mar 18, 2019 5:31:02 PM org.apache.coyote.AbstractProtocol start
+INFO: Starting ProtocolHandler ["http-nio-8900"]
+Mar 18, 2019 5:32:48 PM org.apache.catalina.core.ApplicationContext log
+INFO: Initializing Spring DispatcherServlet 'dispatcherServlet'
+Mar 18, 2019 5:32:49 PM training.endava.app.filters.MyFilter doFilter
+INFO: 8900
+Mar 18, 2019 5:32:50 PM training.endava.app.controller.advice.ExceptionHandlerPersonControllerAdvice handleException
+SEVERE: Unexpected error: org.springframework.dao.InvalidDataAccessApiUsageException: Provided id of the wrong type for class training.endava.app.domain.Person. Expected: class java.lang.Long, got class training.endava.app.domain.Person; nested exception is java.lang.IllegalArgumentException: Provided id of the wrong type for class training.endava.app.domain.Person. Expected: class java.lang.Long, got class training.endava.app.domain.Person

@@ -33,6 +33,7 @@ public class ExceptionHandlerPersonControllerAdvice {
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     @ResponseBody
     public ErrorResponse handleException(Exception e){
+        e.printStackTrace();
         LOGGER.severe("Unexpected error: " + e);
         return new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage());
     }

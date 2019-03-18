@@ -1,16 +1,22 @@
 package training.endava.app.domain;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement
 public class PersonDTO {
-    private String personName;
+    private String firstName;
+    private String lastName;
 
-    public String getPersonName() {
-        return personName;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setPersonName(String personName) {
-        this.personName = personName;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
