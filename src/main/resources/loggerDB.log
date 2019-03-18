@@ -140,3 +140,11 @@ Mar 15, 2019 2:45:07 PM training.endava.app.repository.PersonRepository getList
 INFO: GetAll from DB
 Mar 15, 2019 2:45:21 PM training.endava.app.repository.PersonRepository getById
 INFO: GetById from DB
+Mar 18, 2019 4:14:29 PM training.endava.app.repository.HibernateDB add
+INFO: 
+.......Transaction Is Being Rolled Back.......
+
+Mar 18, 2019 4:24:19 PM training.endava.app.repository.HibernateDB add
+INFO: 
+.......Transaction Is Being Rolled Back.......
+

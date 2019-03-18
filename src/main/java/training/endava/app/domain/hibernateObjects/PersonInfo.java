@@ -1,37 +1,35 @@
-package training.endava.app.domain;
+package training.endava.app.domain.hibernateObjects;
+
 
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Date;
-import java.util.Objects;
 
 
-//@Entity
-//@Table(name = "persons")
+
+@Entity
 //@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-//@DiscriminatorColumn(name = "entry_type", discriminatorType = DiscriminatorType.STRING)
-//@DiscriminatorValue(value = "person")
+@DiscriminatorColumn(name = "entry_type", discriminatorType = DiscriminatorType.STRING)
+@DiscriminatorValue(value = "person")
 
-public class Person extends YellowPageEntry {
-    @NonNull
+public class PersonInfo extends PageEntry {
     private Date birthday;
-    @NotBlank
     private String birthplace;
     @NonNull
     private Integer address_id;
 
-    public Person(Integer person_id, @NotBlank String name, Date birthday, @NotBlank String birthplace, Integer address_id) {
-        super(person_id, name);
+    public PersonInfo(@NotBlank String name, Date birthday, String birthplace, Integer address_id) {
+        super(name);
         this.birthday = birthday;
         this.birthplace = birthplace;
         this.address_id = address_id;
     }
 
-    public Person() {
-    }
+    public PersonInfo(){
 
+    }
     public Date getBirthday() {
         return birthday;
     }
@@ -55,13 +53,4 @@ public class Person extends YellowPageEntry {
     public void setAddress_id(Integer address_id) {
         this.address_id = address_id;
     }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return super.getPerson_id().equals(super.getPerson_id());
-    }
-
 }
