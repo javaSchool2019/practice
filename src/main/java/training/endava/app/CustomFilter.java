@@ -13,8 +13,6 @@ import java.util.logging.Logger;
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
 public class CustomFilter extends GenericFilter {
-    private final static Logger LOGGER = Logger.getLogger(CustomFilter.class.getName());
-
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

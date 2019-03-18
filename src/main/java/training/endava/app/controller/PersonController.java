@@ -6,16 +6,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import training.endava.app.database.Postgres;
 import training.endava.app.domain.Person;
+import training.endava.app.domain.entity.PhoneNumber;
 import training.endava.app.payload.mapper.PersonMapper;
+import training.endava.app.repository.jparepository.PhoneNumberRepositoryImp;
 import training.endava.app.service.PersonService;
 import training.endava.app.service.impl.PersonServiceImpl;
 
 import javax.validation.Valid;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.Statement;
+import java.util.List;
 
 @RestController
 @RequestMapping("/person")
@@ -24,43 +23,38 @@ public class PersonController {
     private PersonService personService;
 
     @Autowired
+    private PhoneNumberRepositoryImp phoneNumberRepository;
+
+
+    @Autowired
     public PersonController(PersonServiceImpl personService) {
         this.personService = personService;
     }
 
-    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(value = "/{id}")
     public ResponseEntity<?> getAll(@PathVariable(name = "id") Long id) {
         return new ResponseEntity<>(PersonMapper.INSTANCE.personToPersonDTO(personService.getPerson(id)), HttpStatus.OK);
 
     }
 
-    @GetMapping
-    public ResponseEntity<?> getAll() {
-        Connection conn;
-        try {
-            conn = Postgres.getConnection();
-            System.out.println("S-a conectat");
-            Statement stmt = conn.createStatement();
-            ResultSet resultSet = stmt.executeQuery("SELECT * FROM test");
-
-            while (resultSet.next()) {
-                System.out.println(resultSet.getString("name"));
-            }
-
-        } catch (Exception e) {
-            System.out.println("Nu s-a conectat");
-            e.printStackTrace();
-        }
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<PhoneNumber> getAll() {
+        PhoneNumber phoneNumber = new PhoneNumber("0746542634Test");
+        phoneNumber = phoneNumberRepository.getById(2L);
+       // phoneNumberRepository.delete(phoneNumber);
+        phoneNumber.setNumber("fdsfsdgsgseefsdfsdf");
+        phoneNumberRepository.update(phoneNumber);
 
 
-        return new ResponseEntity<>(personService.getAllPerson().stream().map(PersonMapper.INSTANCE::personToPersonDTO), HttpStatus.NOT_FOUND);
+        System.out.println(phoneNumberRepository.getAll());
+        return phoneNumberRepository.getAll();
 
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deletePerson(@PathVariable Long id) {
         personService.removePerson(id);
-        return new ResponseEntity<>("Person was removed", HttpStatus.OK);
+        return new ResponseEntity<>("Entity was removed", HttpStatus.OK);
     }
 
 
@@ -73,7 +67,7 @@ public class PersonController {
     @PutMapping("/{id}")
     public ResponseEntity<String> updatePerson(@PathVariable long id, @Valid @RequestBody Person person) {
         personService.update(id, person);
-        return new ResponseEntity<>("Person was modified", HttpStatus.OK);
+        return new ResponseEntity<>("Entity was modified", HttpStatus.OK);
 
 
     }
