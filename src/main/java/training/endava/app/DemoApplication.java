@@ -13,13 +13,13 @@ public class DemoApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);
-		PersonDbRepository personDbRepository = new PersonDbRepository();
+	//	PersonDbRepository personDbRepository = new PersonDbRepository();
 		//System.out.println(personDbRepository.getAllPersonsBornBefore1990().size());
 //		System.out.println(personDbRepository.getAllPersonsThatLiveOnTheSameCity("Iasi").size());
 //		System.out.println(personDbRepository.getAllPersonsThatLiveOnTheSameTown("Vorona").size());
 //		System.out.println(personDbRepository.getAllPersonsThatHaveTheSamePhoneProvider("Telekom").size());
 //		System.out.println(personDbRepository.insertPhoneNumber(new PhoneNumber(303,"07568469499","Orange", 3)));
-		System.out.println(personDbRepository.updateAdressByPersonId(3,"Strada Endava","Vaslui","Iasi"));
+		//System.out.println(personDbRepository.updateAdressByPersonId(3,"Strada Endava","Vaslui","Iasi"));
 	}
 
 }
