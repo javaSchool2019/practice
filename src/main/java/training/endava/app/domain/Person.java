@@ -43,7 +43,7 @@ public class Person {
 
     }
     /*
-        public Person(Integer id, String name, String prenume) {
+        public LegalPerson(Integer id, String name, String prenume) {
             this.id = id;
             this.name = name;
             this.prenume = prenume;
@@ -84,7 +84,7 @@ public class Person {
 
     @Override
     public String toString() {
-        return "Person{" +
+        return "LegalPerson{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", prenume='" + prenume + '\'' +

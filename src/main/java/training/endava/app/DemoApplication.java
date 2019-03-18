@@ -16,6 +16,7 @@ public class DemoApplication {
 	public static void main(String[] args) {
 
 		SpringApplication.run(DemoApplication.class, args);
+		/*
 		PersonRepository pRep=new PersonRepository();
 		System.out.println("All persons");
 		System.out.println(pRep.getAllPersonsFromDbByAge());
@@ -33,6 +34,8 @@ public class DemoApplication {
 
 		System.out.println("ALL persons with same provider");
 		System.out.println(pRep.getAllPersonWithSamePhoneProvider("orangeChange"));
+
+*/
 
 
 

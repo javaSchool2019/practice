@@ -80,7 +80,7 @@ public class PersonController {
     }
 */
   /*  @GetMapping(value = "/id={ID}")
-    public Optional<Person> getUser(@PathVariable(value = "ID") Integer intId) {
+    public Optional<LegalPerson> getUser(@PathVariable(value = "ID") Integer intId) {
 
         try {
             return this.pServ.getPersonById(intId);
@@ -96,7 +96,7 @@ public class PersonController {
 /*
 
     @PostMapping()
-    public ResponseEntity addPerson(@RequestBody Person person) {
+    public ResponseEntity addPerson(@RequestBody LegalPerson person) {
         try {
             System.out.println(person);
             this.pServ.addPerson(person);
@@ -110,7 +110,7 @@ public class PersonController {
     */
 /*
     @PutMapping()
-    public ResponseEntity updatePerson(@RequestBody Person person) {
+    public ResponseEntity updatePerson(@RequestBody LegalPerson person) {
         try {
             return this.pServ.updatePerson(person);
         }catch(PersonDoesntExistException e){

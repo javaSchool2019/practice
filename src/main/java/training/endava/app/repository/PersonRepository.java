@@ -146,7 +146,7 @@ public class PersonRepository {
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
-            throw new PersonAlreadyExistsException("Person already exists.");
+            throw new PersonAlreadyExistsException("LegalPerson already exists.");
         }
 
 
@@ -191,7 +191,7 @@ public class PersonRepository {
             System.out.println("Conn made it");
             Statement stmt = con.createStatement();
             ResultSet rs;
-            rs = stmt.executeQuery("select * from \"Person\" p join \"Address\" a on p.\"id\" = a.\"id\" where a.\"city\" = '" + city + "'");
+            rs = stmt.executeQuery("select * from \"LegalPerson\" p join \"Address\" a on p.\"id\" = a.\"id\" where a.\"city\" = '" + city + "'");
             while (rs.next()) {
                 String lastName = rs.getString("name");
                 System.out.println(lastName);
