@@ -5,6 +5,10 @@ public class Address {
     private String country;
     private String city;
     private String street;
+    private Integer personId;
+
+
+
 
     public Address(Integer id, String country, String city, String street) {
         this.id = id;
@@ -17,6 +21,14 @@ public class Address {
         this.country = country;
         this.city = city;
         this.street = street;
+    }
+
+    public Integer getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Integer personId) {
+        this.personId = personId;
     }
 
     public Integer getId() {

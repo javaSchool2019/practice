@@ -1,16 +1,31 @@
 package training.endava.app.domain;
 
 public class PhoneNumber {
-    private int id;
+    private Integer id;
+    private Integer personId;
     private String number;
     private String serviceProvider;
 
+    public PhoneNumber(Integer id, Integer personId, String number, String serviceProvider) {
+        this.id = id;
+        this.personId = personId;
+        this.number = number;
+        this.serviceProvider = serviceProvider;
+    }
 
-    public int getId() {
+    public Integer getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Integer personId) {
+        this.personId = personId;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -23,7 +23,24 @@ public class DBConnection {
 
     protected DBConnection() {}
 
-    public static Connection getConnection() throws SQLException {
-        return ds.getConnection();
+    public static Connection getConnection()  {
+        try {
+            return ds.getConnection();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
+
+    private static Connection dbContext = null;
+
+    public static Connection getInstance(){
+        if(dbContext!=null){
+            return dbContext;
+        }else{
+            return getConnection();
+        }
+    }
+
+
 }
