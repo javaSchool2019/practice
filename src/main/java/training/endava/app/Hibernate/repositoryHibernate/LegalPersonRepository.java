@@ -21,7 +21,7 @@ public class LegalPersonRepository {
     public List<LegalPerson> getAllLegalPersonFromDb() {
         EntityManager em = emFact.createEntityManager();
 
-        TypedQuery<LegalPerson> result = em.createQuery("select a from LegalPerson a", LegalPerson.class);
+        Query result = em.createNativeQuery("select a from person a", LegalPerson.class);
 
         List<LegalPerson> LegalPersonList = result.getResultList();
 

@@ -10,24 +10,25 @@ import training.endava.app.exception.PersonDoesntExistException;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-public class AdressRepository {
+public class AddressRepository {
 
     private EntityManagerFactory emFact = EntManagerFact.getInstance();
 
     public List<Address> getAllAddressFromDb() {
         EntityManager em = emFact.createEntityManager();
 
-        TypedQuery<Address> result = em.createQuery("select a from Service a", Address.class);
+        Query result = em.createNativeQuery("select a from address a", Address.class);
 
-        List<Address> AddressList = result.getResultList();
+        List<Address> addressList = result.getResultList();
 
         em.close();
 
-        return AddressList;
+        return addressList;
 
 
     }

@@ -7,10 +7,7 @@ import training.endava.app.Hibernate.EntManagerFact;
 import training.endava.app.Hibernate.domainHibernate.NeutralPerson;
 import training.endava.app.exception.PersonDoesntExistException;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +19,7 @@ public class NeutralPersonRepository {
 
         EntityManager em = emFact.createEntityManager();
 
-        TypedQuery<NeutralPerson> result = em.createQuery("select a from NeutralPerson a", NeutralPerson.class);
+        TypedQuery<NeutralPerson> result = em.createQuery("select a from PersonH a", NeutralPerson.class);
 
         List<NeutralPerson> NeutralPersonList = result.getResultList();
 

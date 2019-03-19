@@ -1,7 +1,7 @@
 package training.endava.app.Hibernate.serviceHibernate;
 import org.springframework.http.ResponseEntity;
 import training.endava.app.Hibernate.domainHibernate.Address;
-import training.endava.app.Hibernate.repositoryHibernate.AdressRepository;
+import training.endava.app.Hibernate.repositoryHibernate.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import training.endava.app.exception.PersonDoesntExistException;
@@ -12,7 +12,7 @@ import java.util.List;
 public class AddressService {
 
 @Autowired
-public AdressRepository repo;
+public AddressRepository repo;
     public List<Address> getAllAddressFromDb(){
         return repo.getAllAddressFromDb();
 

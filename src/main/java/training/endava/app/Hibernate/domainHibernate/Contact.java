@@ -1,24 +1,24 @@
 package training.endava.app.Hibernate.domainHibernate;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="Contact")
+@Table(name="contact")
 public class Contact {
 
     @Id
-    @Column(name="id")
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name="phoneNumber")
     private String phoneNumber;
+
     @Column(name="email")
     private String email;
+
     @Column(name="web")
     private String web;
+
     public Contact(){}
 
     public String getPhoneNumber() {

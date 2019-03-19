@@ -1,27 +1,29 @@
 package training.endava.app.Hibernate.domainHibernate;
 
 import javax.persistence.*;
-import java.io.Serializable;
 
 @Entity
-@Table(name="Address")
-public class Address implements Serializable {
+@Table(name = "address")
+public class Address {
 
     @Id
-    @Column(name="id")
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(name="country")
+    @Column(name = "country")
     private String country;
-    @Column(name="city")
+
+    @Column(name = "city")
     private String city;
-    @Column(name="street")
+
+    @Column(name = "street")
     private String street;
+
     @Transient
-    @Column(name="number")
     private String number;
 
-    public Address(){}
+    public Address() {
+    }
 
     public String getCountry() {
         return country;

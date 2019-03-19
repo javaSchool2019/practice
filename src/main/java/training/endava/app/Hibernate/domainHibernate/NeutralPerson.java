@@ -4,13 +4,14 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name="NeutralPerson")
 @DiscriminatorValue("N")
 public class NeutralPerson extends PersonH implements Serializable {
 
-    @Column(name="sirName")
+    @Column(name = "sirName")
     private String sirName;
-    public NeutralPerson(){}
+
+    public NeutralPerson() {
+    }
 
 
     public String getSirName() {
