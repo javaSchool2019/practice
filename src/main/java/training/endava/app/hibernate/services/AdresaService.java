@@ -5,6 +5,9 @@ import training.endava.app.hibernate.entities.Adresa;
 import training.endava.app.hibernate.interfaces.ServiceInterface;
 import training.endava.app.hibernate.repositories.AdresaRepository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.List;
 
 public class AdresaService implements ServiceInterface<Adresa> {
@@ -23,6 +26,14 @@ public class AdresaService implements ServiceInterface<Adresa> {
 
     public List<Adresa> getAll() {
         return _repository.getAll();
+    }
+
+    public List<Adresa> getAllByName(String startsWith) {
+        return _repository.getAllByName(startsWith);
+    }
+
+    public List<Adresa> getAllOrderByLocalitate() {
+        return _repository.getAllOrderByLocalitate();
     }
 
     @Override

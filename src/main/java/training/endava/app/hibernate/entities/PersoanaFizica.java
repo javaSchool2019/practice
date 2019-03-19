@@ -13,7 +13,7 @@ public class PersoanaFizica extends Persoana implements Serializable {
     @Column(name = "eAngajat")
     private boolean eAngajat;
 
-    public PersoanaFizica(Integer id, String name, Integer adressId, Integer telefonId, String prenume, boolean eAngajat) {
+    public PersoanaFizica(Integer id, String name, Adresa adressId, NumarDeTelefon telefonId, String prenume, boolean eAngajat) {
         super(id, name, adressId, telefonId);
         this.prenume = prenume;
         this.eAngajat = eAngajat;

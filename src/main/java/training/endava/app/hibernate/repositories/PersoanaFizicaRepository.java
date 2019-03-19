@@ -7,6 +7,7 @@ import training.endava.app.hibernate.interfaces.RepositoryInterface;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -61,9 +62,9 @@ public class PersoanaFizicaRepository implements RepositoryInterface<PersoanaFiz
     public boolean deleteById(int id) {
         try {
             EntityManager em = _emf.createEntityManager();
-            PersoanaFizica PersoanaFizica = getById(id);
             em.getTransaction().begin();
-            em.remove(PersoanaFizica);
+            Query query = em.createNativeQuery("DELETE FROM Persoana WHERE id = ?");
+            query.setParameter(1, id);
             em.getTransaction().commit();
             em.close();
             return true;

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-03-15T14:27:05.871459800Z</date>
+  <millis>1552660025871</millis>
+  <nanos>459800</nanos>
+  <sequence>5</sequence>
+  <logger>training.endava.app.filters.PortLoggingFilter</logger>
+  <level>INFO</level>
+  <class>training.endava.app.filters.PortLoggingFilter</class>
+  <method>doFilter</method>
+  <thread>29</thread>
+  <message>New client at port: 65295</message>
+</record>
+<record>
+  <date>2019-03-15T14:27:20.299446800Z</date>
+  <millis>1552660040299</millis>
+  <nanos>446800</nanos>
+  <sequence>6</sequence>
+  <logger>training.endava.app.controller.PersonController</logger>
+  <level>INFO</level>
+  <class>training.endava.app.controller.PersonController</class>
+  <method>getPersonById</method>
+  <thread>27</thread>
+  <message>[HTTP VERBS] : GET method call.</message>
+</record>
+<record>
+  <date>2019-03-15T14:27:20.367425Z</date>
+  <millis>1552660040367</millis>
+  <nanos>425000</nanos>
+  <sequence>7</sequence>
+  <logger>training.endava.app.filters.PortLoggingFilter</logger>
+  <level>INFO</level>
+  <class>training.endava.app.filters.PortLoggingFilter</class>
+  <method>doFilter</method>
+  <thread>27</thread>
+  <message>New client at port: 65295</message>
+</record>
+<record>
+  <date>2019-03-15T14:29:00.762664200Z</date>
+  <millis>1552660140762</millis>
+  <nanos>664200</nanos>
+  <sequence>8</sequence>
+  <logger>training.endava.app.filters.PortLoggingFilter</logger>
+  <level>INFO</level>
+  <class>training.endava.app.filters.PortLoggingFilter</class>
+  <method>doFilter</method>
+  <thread>24</thread>
+  <message>New client at port: 65381</message>
+</record>

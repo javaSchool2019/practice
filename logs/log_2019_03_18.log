@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-03-18T15:17:29.171943100Z</date>
+  <millis>1552922249171</millis>
+  <nanos>943100</nanos>
+  <sequence>5</sequence>
+  <logger>training.endava.app.filters.PortLoggingFilter</logger>
+  <level>INFO</level>
+  <class>training.endava.app.filters.PortLoggingFilter</class>
+  <method>doFilter</method>
+  <thread>25</thread>
+  <message>New client at port: 64228</message>
+</record>
+<record>
+  <date>2019-03-18T15:17:38.636109400Z</date>
+  <millis>1552922258636</millis>
+  <nanos>109400</nanos>
+  <sequence>6</sequence>
+  <logger>training.endava.app.filters.PortLoggingFilter</logger>
+  <level>INFO</level>
+  <class>training.endava.app.filters.PortLoggingFilter</class>
+  <method>doFilter</method>
+  <thread>26</thread>
+  <message>New client at port: 64228</message>
+</record>

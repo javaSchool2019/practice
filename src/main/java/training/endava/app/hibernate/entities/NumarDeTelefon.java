@@ -15,12 +15,28 @@ public class NumarDeTelefon implements Serializable {
     @Column(name = "numarDeTelefon")
     private String numarDeTelefon;
 
+    @Transient
+    private Integer cifraMagica;
+
     public NumarDeTelefon() {
     }
 
     public NumarDeTelefon(Integer id, String numarDeTelefon) {
         this.id = id;
         this.numarDeTelefon = numarDeTelefon;
+    }
+
+    public Integer getCifraMagica() {
+        cifraMagica = 0;
+        for(char c : numarDeTelefon.toCharArray()){
+            try{
+                int cifra = (int) c;
+                cifraMagica += cifra;
+            }catch (Exception e){
+
+            }
+        }
+        return cifraMagica%10;
     }
 
     public Integer getId() {

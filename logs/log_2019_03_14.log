@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-03-14T12:24:52.043337900Z</date>
+  <millis>1552566292043</millis>
+  <nanos>337900</nanos>
+  <sequence>5</sequence>
+  <logger>training.endava.app.controller.PersonController</logger>
+  <level>INFO</level>
+  <class>training.endava.app.controller.PersonController</class>
+  <method>getPersonById</method>
+  <thread>20</thread>
+  <message>[HTTP VERBS] : GET method call.</message>
+</record>
+<record>
+  <date>2019-03-14T12:24:52.073319600Z</date>
+  <millis>1552566292073</millis>
+  <nanos>319600</nanos>
+  <sequence>6</sequence>
+  <logger>training.endava.app.repository.PersonRepository</logger>
+  <level>WARNING</level>
+  <class>training.endava.app.repository.PersonRepository</class>
+  <method>getPersonById</method>
+  <thread>20</thread>
+  <message>Person with id 78 does not exist.</message>
+</record>
+<record>
+  <date>2019-03-14T12:24:52.309175300Z</date>
+  <millis>1552566292309</millis>
+  <nanos>175300</nanos>
+  <sequence>7</sequence>
+  <logger>training.endava.app.filters.PortLoggingFilter</logger>
+  <level>INFO</level>
+  <class>training.endava.app.filters.PortLoggingFilter</class>
+  <method>doFilter</method>
+  <thread>20</thread>
+  <message>New client at port: 53341</message>
+</record>

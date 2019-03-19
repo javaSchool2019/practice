@@ -31,6 +31,26 @@ public class AdresaController{
         }
     }
 
+    @GetMapping(value = "/startsWith={ID}")
+    public ResponseEntity<List<Adresa>> getByName(@PathVariable(value="ID") String id) {
+        List<Adresa> response = _service.getAllByName(id);
+        if(response != null){
+            return new ResponseEntity<>(response,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping(value = "/sortByLocalitate")
+    public ResponseEntity<List<Adresa>> getAllSortByLocalitate() {
+        List<Adresa> response = _service.getAllOrderByLocalitate();
+        if(response != null){
+            return new ResponseEntity<>(response,HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping()
     public ResponseEntity<List<Adresa>> getAll() {
         List<Adresa> response = _service.getAll();

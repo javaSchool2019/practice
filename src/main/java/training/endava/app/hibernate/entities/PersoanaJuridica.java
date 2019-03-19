@@ -18,7 +18,7 @@ public class PersoanaJuridica extends Persoana implements Serializable {
         this.domeniuDeActivitate = domeniuDeActivitate;
     }
 
-    public PersoanaJuridica(Integer id, String name, Integer adressId, Integer telefonId, String domeniuDeActivitate) {
+    public PersoanaJuridica(Integer id, String name, Adresa adressId, NumarDeTelefon telefonId, String domeniuDeActivitate) {
         super(id, name, adressId, telefonId);
         this.domeniuDeActivitate = domeniuDeActivitate;
     }

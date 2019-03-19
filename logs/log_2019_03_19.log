@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2019-03-19T13:50:55.810639800Z</date>
+  <millis>1553003455810</millis>
+  <nanos>639800</nanos>
+  <sequence>5</sequence>
+  <logger>training.endava.app.filters.PortLoggingFilter</logger>
+  <level>INFO</level>
+  <class>training.endava.app.filters.PortLoggingFilter</class>
+  <method>doFilter</method>
+  <thread>25</thread>
+  <message>New client at port: 54833</message>
+</record>

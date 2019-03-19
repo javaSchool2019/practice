@@ -1,5 +1,7 @@
 package training.endava.app.hibernate.entities;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -11,24 +13,26 @@ import java.io.Serializable;
 public class Persoana implements Serializable {
 
     @Id
-    @Column(name = "id", nullable = false)
+    @Column(name = "id", nullable = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "adresa")
-    private Integer adressId;
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "adresa")
+    private Adresa adressId;
 
-    @Column(name = "numarDeTelefon")
-    private Integer telefonId;
+    @OneToOne (cascade = CascadeType.ALL)
+    @JoinColumn(name = "numarDeTelefon")
+    private NumarDeTelefon telefonId;
 
 
     public Persoana() {
     }
 
-    public Persoana(Integer id, String name, Integer adressId, Integer telefonId) {
+    public Persoana(Integer id, String name, Adresa adressId, NumarDeTelefon telefonId) {
         this.id = id;
         this.name = name;
         this.adressId = adressId;
@@ -51,19 +55,19 @@ public class Persoana implements Serializable {
         this.name = name;
     }
 
-    public Integer getAdressId() {
+    public Adresa getAdressId() {
         return adressId;
     }
 
-    public void setAdressId(Integer adressId) {
+    public void setAdressId(Adresa adressId) {
         this.adressId = adressId;
     }
 
-    public Integer getTelefonId() {
+    public NumarDeTelefon getTelefonId() {
         return telefonId;
     }
 
-    public void setTelefonId(Integer telefonId) {
+    public void setTelefonId(NumarDeTelefon telefonId) {
         this.telefonId = telefonId;
     }
 }
