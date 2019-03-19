@@ -7,8 +7,10 @@ import training.endava.app.exception.PersonAlreadyExistsException;
 import training.endava.app.exception.PersonExceptionNotFoundException;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,17 +42,14 @@ public class PersonRepositoryImpl implements PersonRepository {
     }
 
     public Person getById(Long id) {
+        if(id == null){
+            return null;
+        }
         Person person;
         em = PostgresJPA.getInstance();
         em.getTransaction().begin();
         person = em.find(Person.class, id);
         em.close();
-
-        if (person == null) {
-            throw new EntityNotFoundException("Can't find Person for ID "
-                    + id);
-        }
-
         return person;
     }
 
@@ -61,6 +60,15 @@ public class PersonRepositoryImpl implements PersonRepository {
         em.close();
 
         return personList;
+    }
+
+    @Override
+    public List<Person> getCriteria() {
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Person> q = cb.createQuery(Person.class);
+        Root<Person> c = q.from(Person.class);
+        q.select(c).where(cb.equal(c.get("name"), "TestNameUpdate2"));
+        return em.createQuery(q).getResultList();
     }
 
     public void update(Person person) {

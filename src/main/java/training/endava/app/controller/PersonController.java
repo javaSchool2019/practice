@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import training.endava.app.domain.entity.Person;
+import training.endava.app.payload.mapper.PersonMapper;
 import training.endava.app.repository.jparepository.PersonRepository;
 import training.endava.app.repository.jparepository.PersonRepositoryImpl;
 
@@ -32,7 +33,7 @@ public class PersonController {
     public ResponseEntity<?> getAll() {
 
 
-        return new ResponseEntity<>(personRepository.getAll(), HttpStatus.OK);
+        return new ResponseEntity<>(personRepository.getCriteria(), HttpStatus.OK);
 
     }
 
@@ -57,7 +58,7 @@ public class PersonController {
         }
         person.setId(id);
         personRepository.update(person);
-        return new ResponseEntity<>(person, HttpStatus.OK);
+        return new ResponseEntity<>(PersonMapper.INSTANCE.personToPersonDTO(person), HttpStatus.OK);
 
 
     }

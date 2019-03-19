@@ -16,6 +16,9 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     private EntityManager em;
 
     public void add(Company company) {
+        if(getById(company.getId()) != null){
+            throw new RuntimeException("Company already exists");
+        }
         em = PostgresJPA.getInstance();
         em.getTransaction().begin();
         em.persist(company);
@@ -24,6 +27,9 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     public void delete(Company company) {
+        if(getById(company.getId()) == null){
+            throw new RuntimeException("Company does'nt exists in DB");
+        }
         em = PostgresJPA.getInstance();
         em.getTransaction().begin();
         em.remove(em.contains(company) ? company : em.merge(company));
@@ -32,14 +38,13 @@ public class CompanyRepositoryImpl implements CompanyRepository {
     }
 
     public Company getById(Long id) {
+        if(id == null){
+            return null;
+        }
         Company company;
         em = PostgresJPA.getInstance();
         em.getTransaction().begin();
         company = em.find(Company.class, id);
-        if (company == null) {
-            throw new EntityNotFoundException("Can't find Artist for ID "
-                    + id);
-        }
         em.close();
 
         return company;
@@ -47,7 +52,7 @@ public class CompanyRepositoryImpl implements CompanyRepository {
 
     public List<Company> getAll(){
         em = PostgresJPA.getInstance();
-        TypedQuery<Company> query = em.createNamedQuery("PhoneNumber.findAll", Company.class);
+        TypedQuery<Company> query = em.createNamedQuery("Company.findAll", Company.class);
         List<Company> companies = new ArrayList<>(query.getResultList());
         em.close();
 

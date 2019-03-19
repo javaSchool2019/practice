@@ -6,7 +6,9 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "PERSON_DETAILS")
-
+@NamedQueries({
+        @NamedQuery(name = "PersonDetails.findAll", query = "SELECT pd FROM PersonDetails pd")
+})
 public class PersonDetails {
     @Id
     @GeneratedValue

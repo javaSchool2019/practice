@@ -1,29 +1,15 @@
-package training.endava.app.domain.entity;
+package training.endava.app.payload;
 
-import javax.persistence.*;
-import javax.persistence.Entity;
+import training.endava.app.domain.entity.PhoneNumber;
 
-@Entity
-@Table(name = "COMPANY")
-@DiscriminatorValue("C")
+import java.util.List;
 
-@NamedQueries({
-        @NamedQuery(name = "Company.findAll", query = "SELECT c FROM Company c")
-})
-
-public class Company extends training.endava.app.domain.entity.Entity {
+public class CompanyDTO {
     private String businessName;
     private String activityDomain;
     private Long operatingHours;
-
-    @Override
-    public String toString() {
-        return "Company{" +
-                "businessName='" + businessName + '\'' +
-                ", activityDomain='" + activityDomain + '\'' +
-                ", operatingHours=" + operatingHours +
-                '}';
-    }
+    private List<PhoneNumber> phoneNumbers;
+    private String address;
 
     public String getBusinessName() {
         return businessName;
@@ -48,5 +34,20 @@ public class Company extends training.endava.app.domain.entity.Entity {
     public void setOperatingHours(Long operatingHours) {
         this.operatingHours = operatingHours;
     }
-}
 
+    public List<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+}

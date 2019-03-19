@@ -9,5 +9,6 @@ public interface PersonRepository {
     void delete(Person person);
     Person getById(Long id);
     List<Person> getAll();
+    List<Person> getCriteria();
     void update (Person person);
 }
