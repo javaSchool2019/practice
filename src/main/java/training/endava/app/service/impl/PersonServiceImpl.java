@@ -4,18 +4,19 @@ package training.endava.app.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import training.endava.app.domain.Person;
-import training.endava.app.repository.PersonRepoDB;
+//import training.endava.app.repository.PersonRepoDB;
+import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
 import java.util.List;
 
 @Service
 public class PersonServiceImpl implements PersonService {
 
-//    @Autowired
-//    PersonRepository personRepository;
-
     @Autowired
-    PersonRepoDB personRepository;
+    PersonRepository personRepository;
+
+//    @Autowired
+//    PersonRepoDB personRepository;
 
     @Override
     public Person getPersonById (Integer id) {

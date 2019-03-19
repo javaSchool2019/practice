@@ -1,4 +1,4 @@
-package training.endava.app.controller;
+package training.endava.app.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

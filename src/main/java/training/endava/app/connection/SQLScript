@@ -69,8 +69,6 @@ INSERT INTO Address (ID, personId, country, city, street) VALUES (6, 6, 'Romania
 INSERT INTO Address (ID, personId, country, city, street) VALUES (7, 7, 'Romania', 'Timisoara', 'street 7');
 INSERT INTO Address (ID, personId, country, city, street) VALUES (8, 8, 'Romania', 'Botosani', 'street 8');
 INSERT INTO Address (ID, personId, country, city, street) VALUES (9, 9, 'Romania', 'Iasi', 'street 2');
-INSERT INTO Address (ID, personId, country, city, street) VALUES (10,10, 'Rusia', 'Moscova', 'street 10');
-INSERT INTO Address (ID, personId, country, city, street) VALUES (11,11, 'Italia', 'Milano', 'street 11');
 INSERT INTO Address (ID, personId, country, city, street) VALUES (12,12, 'Romania', 'Iasi', 'street 2');
 
 

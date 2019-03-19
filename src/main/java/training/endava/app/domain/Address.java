@@ -8,8 +8,6 @@ public class Address {
     private Integer personId;
 
 
-
-
     public Address(Integer id, String country, String city, String street) {
         this.id = id;
         this.country = country;
@@ -66,7 +64,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address{" +
+        return "AddressService{" +
                 "country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +

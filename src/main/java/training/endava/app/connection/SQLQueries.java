@@ -9,12 +9,12 @@ import java.util.List;
 
 public class SQLQueries {
 
-    private static final String sql_AddressTEST="Select * from Address";
+    private static final String sql_AddressTEST="Select * from AddressService";
 
 
     private static final String sqlAllPersonsBornBefore1990 = "select id, name,  birthday, birthplace, email from Person  where extract(year from birthday)<1990;";
     private static final String sqlAllPersonsLiveInTheSameCityTheyWereBorn="select  a.id, a.name,  a.birthday, a.birthplace, a.email from Person a\n" +
-            "inner join Address b on a.id=b.personId\n" +
+            "inner join AddressService b on a.id=b.personId\n" +
             "where b.city=a.birthplace;";
 
 
@@ -80,7 +80,7 @@ public class SQLQueries {
         try (Connection conn = DBConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("select  a.id, a.name,  a.birthday, a.birthplace, a.email from Person a\n" +
-                     "inner join Address b on a.id=b.personId where b.city=" + "'" + city+ "'" + "and b.country='" +country+ "'" +";"))
+                     "inner join AddressService b on a.id=b.personId where b.city=" + "'" + city+ "'" + "and b.country='" +country+ "'" +";"))
         {
 
             while (rs.next()) {
@@ -108,7 +108,7 @@ public class SQLQueries {
         try (Connection conn = DBConnection.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery("select  a.id, a.name,  a.birthday, a.birthplace, a.email from Person a\n" +
-                     "inner join Address b on a.id=b.personId where b.city=" + "'" + city+ "'" + "and b.country='" +country+ "'" + "and b.street='" +street+ "'" +";"))
+                     "inner join AddressService b on a.id=b.personId where b.city=" + "'" + city+ "'" + "and b.country='" +country+ "'" + "and b.street='" +street+ "'" +";"))
         {
 
             while (rs.next()) {
@@ -158,13 +158,13 @@ public class SQLQueries {
 
 
 
-    //5. implement method for updating and inserting Address and PhoneNumber by Person's id
+    //5. implement method for updating and inserting AddressService and PhoneNumber by Person's id
 
 
     public static boolean updateAddressByPersonId (String street, String city, Integer personId) {
 
         try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps= conn.prepareStatement("UPDATE Address\n" +
+             PreparedStatement ps= conn.prepareStatement("UPDATE AddressService\n" +
                      "SET street=? , city= ? where personId=" + "'" + personId  + "'" +";"))
         {
             int idx=0;
@@ -229,7 +229,7 @@ public class SQLQueries {
 //        System.out.println("\n" + "All the persons live in the same city and country: "+ "\n" + getListOfPersonsThatLiveInTheSameCityAndCountry("Iasi","Romania"));
 //        System.out.println("\n" + "All the persons live in the same city, street and country: "+ "\n" + getListOfPersonsThatLiveInTheSameCityStreetAndCountry("Iasi","Romania","street 2"));
 //        System.out.println("\n" + "All the persons that have the same Phone service provider: "+ "\n" + getListOfPersonsThatHaveSamePhoneServiceProvider("provider 3"));
-//        System.out.println(updateAddressByPersonId("\n" + "Update Address By Person Id:" + "street 3", "Timis",5));
+//        System.out.println(updateAddressByPersonId("\n" + "Update AddressService By Person Id:" + "street 3", "Timis",5));
 //        System.out.println(updatePhoneNumberByPersonId("\n" + "Update Phone Number By Person Id:" + "0743335551",5,"provider 3"));
 
 
