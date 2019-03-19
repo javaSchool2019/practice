@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-03-18T17:32:32</date>
-  <millis>1552923152770</millis>
+  <date>2019-03-19T12:35:40</date>
+  <millis>1552991740370</millis>
   <sequence>4</sequence>
   <logger>training.endava.app.logging.LoggerExample</logger>
   <level>CONFIG</level>
@@ -13,8 +13,8 @@
   <message>Configuration done.</message>
 </record>
 <record>
-  <date>2019-03-18T17:32:32</date>
-  <millis>1552923152774</millis>
+  <date>2019-03-19T12:35:40</date>
+  <millis>1552991740372</millis>
   <sequence>5</sequence>
   <logger>training.endava.app.logging.LoggerExample</logger>
   <level>FINE</level>
@@ -24,8 +24,8 @@
   <message>Finer logged</message>
 </record>
 <record>
-  <date>2019-03-18T17:32:32</date>
-  <millis>1552923152930</millis>
+  <date>2019-03-19T12:35:41</date>
+  <millis>1552991741376</millis>
   <sequence>6</sequence>
   <logger>training.endava.app.logging.LoggerExample</logger>
   <level>CONFIG</level>
@@ -35,8 +35,8 @@
   <message>Configuration done.</message>
 </record>
 <record>
-  <date>2019-03-18T17:32:32</date>
-  <millis>1552923152930</millis>
+  <date>2019-03-19T12:35:41</date>
+  <millis>1552991741377</millis>
   <sequence>7</sequence>
   <logger>training.endava.app.logging.LoggerExample</logger>
   <level>FINE</level>
@@ -46,8 +46,8 @@
   <message>Finer logged</message>
 </record>
 <record>
-  <date>2019-03-18T17:32:32</date>
-  <millis>1552923152998</millis>
+  <date>2019-03-19T12:35:41</date>
+  <millis>1552991741465</millis>
   <sequence>8</sequence>
   <logger>training.endava.app.logging.LoggerExample</logger>
   <level>CONFIG</level>
@@ -57,9 +57,31 @@
   <message>Configuration done.</message>
 </record>
 <record>
-  <date>2019-03-18T17:32:32</date>
-  <millis>1552923152998</millis>
+  <date>2019-03-19T12:35:41</date>
+  <millis>1552991741466</millis>
   <sequence>9</sequence>
+  <logger>training.endava.app.logging.LoggerExample</logger>
+  <level>FINE</level>
+  <class>training.endava.app.logging.LoggerExample</class>
+  <method>returnLogger</method>
+  <thread>1</thread>
+  <message>Finer logged</message>
+</record>
+<record>
+  <date>2019-03-19T12:35:41</date>
+  <millis>1552991741565</millis>
+  <sequence>10</sequence>
+  <logger>training.endava.app.logging.LoggerExample</logger>
+  <level>CONFIG</level>
+  <class>training.endava.app.logging.LoggerExample</class>
+  <method>returnLogger</method>
+  <thread>1</thread>
+  <message>Configuration done.</message>
+</record>
+<record>
+  <date>2019-03-19T12:35:41</date>
+  <millis>1552991741567</millis>
+  <sequence>11</sequence>
   <logger>training.endava.app.logging.LoggerExample</logger>
   <level>FINE</level>
   <class>training.endava.app.logging.LoggerExample</class>

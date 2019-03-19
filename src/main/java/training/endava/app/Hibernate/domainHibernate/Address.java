@@ -1,10 +1,11 @@
 package training.endava.app.Hibernate.domainHibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="Address")
-public class Address {
+public class Address implements Serializable {
 
     @Id
     @Column(name="id")

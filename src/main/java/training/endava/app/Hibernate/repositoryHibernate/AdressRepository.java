@@ -1,15 +1,106 @@
 package training.endava.app.Hibernate.repositoryHibernate;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import training.endava.app.Hibernate.EntManagerFact;
 import training.endava.app.Hibernate.domainHibernate.Address;
+import training.endava.app.exception.PersonDoesntExistException;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Repository
 public class AdressRepository {
-    private final String ADDRESS = "\"address\"";
 
-    public Address getAddress(int id_addr){
+    private EntityManagerFactory emFact = EntManagerFact.getInstance();
 
-    return null;
+    public List<Address> getAllAddressFromDb() {
+        EntityManager em = emFact.createEntityManager();
+
+        TypedQuery<Address> result = em.createQuery("select a from Service a", Address.class);
+
+        List<Address> AddressList = result.getResultList();
+
+        em.close();
+
+        return AddressList;
+
+
+    }
+    public Address getAddressById(Integer intId) {
+
+        EntityManager em = emFact.createEntityManager();
+
+        em.getTransaction().begin();
+
+        Address address = em.find(Address.class, intId);
+
+        em.close();
+
+        return address;
+
+    }
+    public void addAddressToDataBase(Address address) {
+
+
+        EntityManager em = emFact.createEntityManager();
+
+        em.getTransaction().begin();
+
+        em.persist(address);
+
+        em.getTransaction().commit();
+
+        em.close();
+
+    }
+    public ResponseEntity delete(Integer a) throws PersonDoesntExistException {
+
+        try {
+
+            EntityManager em = emFact.createEntityManager();
+            Address address = getAddressById(a);
+            em.getTransaction().begin();
+            em.remove(address);
+            em.getTransaction().commit();
+            em.close();
+            return ResponseEntity.ok(HttpStatus.OK);
+        } catch (Exception e) {
+
+            e.fillInStackTrace();
+            return ResponseEntity.ok(HttpStatus.CONFLICT);
+
+
+        }
+
+    }
+    public ResponseEntity updateAddress(Address address) throws PersonDoesntExistException {
+        try {
+
+            EntityManager em = emFact.createEntityManager();
+
+            em.getTransaction().begin();
+
+            em.merge(address);
+
+            em.getTransaction().commit();
+
+            em.close();
+            return ResponseEntity.ok(HttpStatus.OK);
+
+
+        } catch (Exception e) {
+
+            e.fillInStackTrace();
+            return ResponseEntity.ok(HttpStatus.OK);
+
+
+        }
+
     }
 
 }

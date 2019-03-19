@@ -1,11 +1,12 @@
 package training.endava.app.Hibernate.domainHibernate;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name="LegalPerson")
 @DiscriminatorValue("L")
-public class LegalPerson extends PersonH {
+public class LegalPerson extends PersonH implements Serializable {
 
 
     @Transient
