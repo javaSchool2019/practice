@@ -1,13 +1,11 @@
 package training.endava.app.domain;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 @Entity
 @DiscriminatorValue("P")
@@ -22,4 +20,11 @@ public class Person extends YellowPageEntry {
     @Column(name = "last_name")
     private String lastName;
 
+    @Transient
+    @Getter(AccessLevel.NONE)
+    private String email;
+
+    public String getEmail(){
+        return (firstName + "." + lastName + "@endava.com").toLowerCase();
+    }
 }
