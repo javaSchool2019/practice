@@ -4,6 +4,7 @@ package training.endava.app.domain.hibernateObjects;
 import org.springframework.lang.NonNull;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 @Entity
@@ -22,12 +23,22 @@ public class PageEntry {
     @Column(name = "name")
     private String name;
 
-    public PageEntry(String name) {
+    @OneToOne(cascade = CascadeType.ALL)
+    private AddressInfo address_info;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<PhoneNumber> phone_numbers;
+
+    public PageEntry(String name, AddressInfo addressInfo, List<PhoneNumber> phoneNumberList) {
         this.name = name;
+        this.address_info = addressInfo;
+        this.phone_numbers = phoneNumberList;
     }
+
     public PageEntry(){
 
     }
+
     public Integer getId() {
         return id;
     }
@@ -42,5 +53,21 @@ public class PageEntry {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public AddressInfo getAddressInfo() {
+        return address_info;
+    }
+
+    public void setAddressInfo(AddressInfo addressInfo) {
+        this.address_info = addressInfo;
+    }
+
+    public List<PhoneNumber> getPhoneNumberList() {
+        return phone_numbers;
+    }
+
+    public void setPhoneNumberList(List<PhoneNumber> phoneNumberList) {
+        this.phone_numbers = phoneNumberList;
     }
 }

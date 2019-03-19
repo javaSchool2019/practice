@@ -6,7 +6,7 @@ import org.springframework.lang.NonNull;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.sql.Date;
-
+import java.util.List;
 
 
 @Entity
@@ -17,25 +17,20 @@ import java.sql.Date;
 public class PersonInfo extends PageEntry {
     private Date birthday;
     private String birthplace;
-    @NonNull
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    private Integer address_id;
 
     @Transient
     private String birthInfo;
 
-    public PersonInfo(@NotBlank String name, Date birthday, String birthplace, Integer address_id) {
-        super(name);
+    public PersonInfo(@NotBlank String name, Date birthday, String birthplace, AddressInfo addressInfo , List<PhoneNumber> phoneNumbers) {
+        super(name,addressInfo,phoneNumbers);
         this.birthday = birthday;
         this.birthplace = birthplace;
-        this.address_id = address_id;
         this.birthInfo = birthplace.toString()+" "+birthday.toString();
     }
-
     public PersonInfo(){
 
     }
+
     public Date getBirthday() {
         return birthday;
     }
@@ -52,16 +47,55 @@ public class PersonInfo extends PageEntry {
         this.birthplace = birthplace;
     }
 
-    public Integer getAddress_id() {
-        return address_id;
-    }
-
-    public void setAddress_id(Integer address_id) {
-        this.address_id = address_id;
-    }
-
     public String getBirthInfo() {
         this.birthInfo = birthplace.toString()+" "+birthday.toString();
         return birthInfo;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//    req -> addPerson -> (name, birthPlace, birthDay, addressId)
+//
+//    get -> getById -> from persons,
+//            get from address -> address,
+//            get from phoneNumber -> list<PhoneNumbers>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -16,8 +16,25 @@ public class PhoneNumber implements Serializable {
     @NonNull
     private String number;
 
-    @NonNull
-    @OneToOne
-    @JoinColumn(name = "id")
-    private Integer entry_id;
+    public PhoneNumber(String number) {
+        this.number = number;
+    }
+
+    public PhoneNumber(){}
+
+    public Integer getPhone_id() {
+        return phone_id;
+    }
+
+    public void setPhone_id(Integer phone_id) {
+        this.phone_id = phone_id;
+    }
+
+    public String getNumber() {
+        return number;
+    }
+
+    public void setNumber(String number) {
+        this.number = number;
+    }
 }

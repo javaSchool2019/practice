@@ -31,19 +31,19 @@ public class HibernateDB {
     public List<PageEntry> getList() {
         EntityManager entityManager = HibernateConnection.buildEntityManager();
 
-        Query query = entityManager.createQuery("Select p from PageEntry p", PageEntry.class);
+        Query query = entityManager.createQuery("Select p from PageEntry p join p.address_info", PageEntry.class);
 
         List<PageEntry> persons = query.getResultList();
 
         return persons;
     }
 
-    public Optional<PersonInfo> getById(Integer id) {
+    public Optional<PageEntry> getById(Integer id) {
         EntityManager entityManager = HibernateConnection.buildEntityManager();
 
-        Query query = entityManager.createQuery("Select p from PageEntry p where id=" + id, PageEntry.class);
+        Query query = entityManager.createQuery("Select p from PageEntry p join p.address_info where id=" + id, PageEntry.class);
 
-        Optional<PersonInfo> optionalPersonInfo = Optional.ofNullable((PersonInfo) query.getSingleResult());
+        Optional<PageEntry> optionalPersonInfo = Optional.ofNullable((PersonInfo) query.getSingleResult());
 
         return optionalPersonInfo;
     }
@@ -56,15 +56,12 @@ public class HibernateDB {
         entityManager.close();
     }
 
-    public void update(PersonInfo person, Integer id) {
+    public void update(PersonInfo person) {
         EntityManager entityManager = HibernateConnection.buildEntityManager();
-        PersonInfo personFromDB = entityManager.find(PersonInfo.class, id);
+        PersonInfo personFromDB = entityManager.find(PersonInfo.class, person.getId());
         if (personFromDB != null) {
             entityManager.getTransaction().begin();
-            personFromDB.setName(person.getName());
-            personFromDB.setBirthday(person.getBirthday());
-            personFromDB.setBirthplace(person.getBirthplace());
-            personFromDB.setAddress_id(person.getAddress_id());
+            entityManager.merge(person);
             entityManager.getTransaction().commit();
         }
     }

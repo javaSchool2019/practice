@@ -1,41 +1,22 @@
-package training.endava.app.domain.hibernateObjects;
+package training.endava.app.DTOMapper;
 
 import org.springframework.lang.NonNull;
+import training.endava.app.domain.hibernateObjects.AddressInfo;
+import training.endava.playground.optionals.Address;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class AddressInfoDTO {
 
-@Entity
-@Table(name = "address")
-public class AddressInfo {
-    @Id
-    @GeneratedValue
-    private Integer address_id;
-
-    @NonNull
     private String country;
-    @NonNull
     private String city;
-    @NonNull
     private String street;
 
-    public AddressInfo(String country, String city, String street) {
+    public AddressInfoDTO(String country, String city, String street) {
         this.country = country;
         this.city = city;
         this.street = street;
     }
 
-    public AddressInfo() {
-    }
-
-    public Integer getAddress_id() {
-        return address_id;
-    }
-
-    public void setAddress_id(Integer address_id) {
-        this.address_id = address_id;
+    public AddressInfoDTO() {
     }
 
     public String getCountry() {
@@ -60,5 +41,11 @@ public class AddressInfo {
 
     public void setStreet(String street) {
         this.street = street;
+    }
+
+    public AddressInfo toAddressInfo(){
+        return new AddressInfo(this.country,
+        this.city,
+        this.street);
     }
 }

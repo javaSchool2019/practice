@@ -30,7 +30,7 @@ public class HibernatePersonServiceImpl{
     @Autowired
     private HibernateDB hibernateDB;
 
-    public PersonInfo getById(Integer id) {
+    public PageEntry getById(Integer id) {
 
         return hibernateDB.getById(id).orElseThrow(() -> {
             LOGGER.severe("Person with " + id + " not found");
@@ -47,13 +47,8 @@ public class HibernatePersonServiceImpl{
         hibernateDB.add(personInfo);
     }
 
-    public void update(Person person) {
-
-//        if (hibernatePersonService.getList().indexOf(person) == -1) {
-//            LOGGER.severe("Person with not found");
-//            throw new PersonUpdateException("Person not found", HttpStatus.NOT_FOUND.value());
-//        }
-//        hibernatePersonService.update(person, hibernatePersonService.getList().indexOf(person));
+    public void update(PersonInfo person) {
+        hibernateDB.update(person);
     }
 
     public void delete(Integer id) {

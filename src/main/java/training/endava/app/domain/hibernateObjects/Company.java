@@ -1,11 +1,8 @@
 package training.endava.app.domain.hibernateObjects;
 
-import org.springframework.lang.NonNull;
-import training.endava.app.domain.YellowPageEntry;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
 import java.sql.Date;
+import java.util.List;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
@@ -14,29 +11,23 @@ import java.sql.Date;
 
 public class Company extends PageEntry {
 
-    Date foundingYear;
-    @NonNull
-    @ManyToOne
-    @JoinColumn(name = "address_id")
-    Integer address_id;
+    Date founding_year;
 
-    public Company(@NotBlank String name, Date foundingYear, Integer address_id) {
-        super(name);
+    public Company(String name, AddressInfo addressInfo, List<PhoneNumber> phoneNumberList, Date foundingYear) {
+        super(name, addressInfo, phoneNumberList);
+        this.founding_year = foundingYear;
     }
 
-    public Date getFoundingYear() {
-        return foundingYear;
+    public Company(){
+
     }
 
-    public void setFoundingYear(Date foundingYear) {
-        this.foundingYear = foundingYear;
+    public Date getFounding_year() {
+        return founding_year;
     }
 
-    public Integer getAddress_id() {
-        return address_id;
+    public void setFounding_year(Date founding_year) {
+        this.founding_year = founding_year;
     }
 
-    public void setAddress_id(Integer address_id) {
-        this.address_id = address_id;
-    }
 }

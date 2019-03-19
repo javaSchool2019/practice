@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import training.endava.app.DTOMapper.PersonInfoDTO;
 import training.endava.app.DTOMapper.PersonMapper;
 import training.endava.app.domain.Person;
 import training.endava.app.domain.hibernateObjects.PageEntry;
@@ -29,38 +30,39 @@ public class HibernateSpringController {
 
     @GetMapping(value = "/getAll")
     public ResponseEntity<List<PageEntry>> getAll() {
-        LOGGER.info("GET REQUEST /persons/getAll");
+        LOGGER.info("GET REQUEST /hibernate/getAll");
         return ResponseEntity.ok(serv.getAll());
     }
 
     @GetMapping(value = "/getById={ID}")
     public ResponseEntity getById(@PathVariable(value = "ID") Integer id) {
-        LOGGER.info("GET REQUEST /persons/getById");
+        LOGGER.info("GET REQUEST /hibernate/getById");
         return ResponseEntity.ok(serv.getById(id));
     }
 
     @PostMapping(value = "/post")
-    ResponseEntity postPerson(@RequestBody PersonInfo personInfo) {
-        LOGGER.info("POST REQUEST /persons/post");
+    ResponseEntity postPerson(@RequestBody PersonInfoDTO personInfo) {
+        LOGGER.info("POST REQUEST /hibernate/post");
         if (personInfo.getName() == null) {
             LOGGER.severe("IllegalArgumentException");
             throw new IllegalArgumentException("At least one parameter is invalid or not supplied");
         }
-        serv.addNewPersonToDB(personInfo);
+
+        serv.addNewPersonToDB(personInfo.toPersonInfo());
 
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @PutMapping(value = "/put")
-    ResponseEntity putPerson(@RequestBody Person person) {
-        LOGGER.info("PUT REQUEST /persons/put");
+    ResponseEntity putPerson(@RequestBody PersonInfo person) {
+        LOGGER.info("PUT REQUEST /hibernate/put");
         serv.update(person);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete={ID}")
     ResponseEntity deletePerson(@PathVariable(value = "ID") Integer id) {
-        LOGGER.info("DELETE REQUEST /persons/delete");
+        LOGGER.info("DELETE REQUEST /hibernate/delete");
         serv.delete(id);
         return new ResponseEntity(HttpStatus.OK);
 
