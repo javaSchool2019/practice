@@ -10,16 +10,18 @@ import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("P")
+@DiscriminatorValue("C")
 @Setter
 @Getter
 @ToString
 @NoArgsConstructor
-public class Person extends YellowPageEntry {
-    @Column(name = "first_name")
-    private String firstName;
+public class Company extends YellowPageEntry {
+    @Column(name = "company_name")
+    private String companyName;
 
-    @Column(name = "last_name")
-    private String lastName;
+    @Column(name = "activity_domain")
+    private String activityDomain;
 
+    @Column(name = "operating_hours")
+    private String operatingHours;
 }

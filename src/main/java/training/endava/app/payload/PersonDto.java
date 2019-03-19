@@ -1,44 +1,36 @@
 package training.endava.app.payload;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import training.endava.app.domain.Person;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.xml.bind.annotation.XmlRootElement;
+import java.util.List;
+import java.util.stream.Collectors;
 
-@XmlRootElement
+@Data
+@NoArgsConstructor
 public class PersonDto {
     @NotBlank
-    private String personName;
+    private String firstName;
+
+    @NotBlank
+    private String lastName;
+
     @NotNull
-    @Min(value = 0, message = "Age should not be less than 0")
-    @Max(value = 150, message = "Age should not be greater than 150")
-    private Integer personAge;
+    private AddressDto address;
 
-    public PersonDto() {
-    }
+    private List<PhoneNumberDto> phoneNumberList;
 
-    public String getPersonName() {
-        return personName;
-    }
-
-    public void setPersonName(String personName) {
-        this.personName = personName;
-    }
-
-    public Integer getPersonAge() {
-        return personAge;
-    }
-
-    public void setPersonAge(Integer personAge) {
-        this.personAge = personAge;
-    }
-
-    @Override
-    public String toString() {
-        return "PersonDto{" +
-                "personName='" + personName + '\'' +
-                ", personAge=" + personAge +
-                '}';
+    public Person toPerson() {
+        Person person = new Person();
+        person.setFirstName(getFirstName());
+        person.setLastName(getLastName());
+        person.setAddress(address.toAddress());
+        person.setPhoneNumbers(phoneNumberList.stream()
+                .map(PhoneNumberDto::toPhoneNumber)
+                .collect(Collectors.toList()));
+        return person;
     }
 }
