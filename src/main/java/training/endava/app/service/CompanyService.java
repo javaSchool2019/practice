@@ -10,4 +10,5 @@ public interface CompanyService {
     void save(Company p);
     void delete(Long id);
     void update(Long id, Company p);
+    List<Company> findByCompanyName(String companyName);
 }

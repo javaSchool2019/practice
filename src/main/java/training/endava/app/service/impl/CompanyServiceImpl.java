@@ -39,4 +39,9 @@ public class CompanyServiceImpl implements CompanyService {
     public void update(Long id, Company c) {
         companyRepository.update(id, c);
     }
+
+    @Override
+    public List<Company> findByCompanyName(String companyName){
+        return companyRepository.findByCompanyName(companyName);
+    }
 }
