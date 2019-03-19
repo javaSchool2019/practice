@@ -5,11 +5,12 @@ import java.io.Serializable;
 
 
 @Entity
-@Table(name = "personTable")
+@Table(name = "person")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "PERSON_TYPE", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue("P")
-public class Person implements Serializable {
+
+public class Person {
 
     @Id
     @Column (name = "pId")

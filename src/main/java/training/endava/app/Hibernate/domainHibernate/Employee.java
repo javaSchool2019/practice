@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "employeeTable")
+@Table(name = "employee")
 @DiscriminatorValue("E")
 public class Employee extends Person implements Serializable {
 

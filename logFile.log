@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2019-03-19T11:04:04</date>
-  <millis>1552986244143</millis>
+  <date>2019-03-19T15:49:21</date>
+  <millis>1553003361209</millis>
   <sequence>4</sequence>
   <logger>training.endava.app.log</logger>
   <level>FINE</level>

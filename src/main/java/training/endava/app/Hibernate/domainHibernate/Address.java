@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "addressTable")
+@Table(name = "address")
 public class Address implements Serializable {
     @Id
     @Column(name = "aId")
@@ -36,6 +36,4 @@ public class Address implements Serializable {
         this.city = city;
         this.postalCode = postalCode;
     }
-
-
 }

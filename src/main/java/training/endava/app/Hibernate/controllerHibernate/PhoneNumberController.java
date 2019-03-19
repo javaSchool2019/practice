@@ -3,26 +3,30 @@ package training.endava.app.Hibernate.controllerHibernate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import training.endava.app.Hibernate.domainHibernate.PhoneNumber;
 import training.endava.app.Hibernate.serviceHibernate.PhoneNumberService;
-import training.endava.app.domain.PhoneNumber;
+
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/PhoneNumber")
+@RequestMapping("/phone")
+
 public class PhoneNumberController {
-    public PhoneNumberService serv = new PhoneNumberService();
+    private PhoneNumberService serv = new PhoneNumberService();
 
     @GetMapping(value = "/id={ID}")
     public ResponseEntity<PhoneNumber> getById (@PathVariable(value = "ID") Integer id){
         PhoneNumber response = serv.getById(id);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        if(response != null)
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
 
     }
 
     @GetMapping(value = "/all")
     public ResponseEntity<List<PhoneNumber>> all (){
-        List<PhoneNumber> response = serv.all();
+        List <PhoneNumber> response = serv.all();
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 

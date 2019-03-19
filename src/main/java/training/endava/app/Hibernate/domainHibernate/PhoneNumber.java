@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "phoneNumberTable")
+@Table(name = "phone")
 public class PhoneNumber implements Serializable {
     @Id
     @Column(name = "pnId")
@@ -25,7 +25,6 @@ public class PhoneNumber implements Serializable {
     }
 
     public PhoneNumber(){
-
     }
     public PhoneNumber(Integer id, Integer phoneNumber){
         this.id = id;

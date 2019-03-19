@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "companyTable")
+@Table(name = "company")
 @DiscriminatorValue("C")
 public class Company extends Person implements Serializable {
 
@@ -12,6 +12,9 @@ public class Company extends Person implements Serializable {
     private String website;
     public String getWebsite() { return website; }
     public void setWebsite(String website) { this.website = website; }
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address address;
 
     public Company(){
 
