@@ -1,0 +1,27 @@
+
+INSERT INTO hibernate.address (id, person_id, country, city, street) VALUES (1,  1, 'Romania', 'Iasi', 'street 2');
+INSERT INTO hibernate.address (id, person_id, country, city, street) VALUES (2,  2, 'Romania', 'Timisoara', 'street 2');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (3,  3, 'Romania', 'Brasov', 'street 1');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (4,  4, 'Romania', 'Suceava', 'street 1');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (5,  5, 'Romania', 'Tulcea', 'street 2');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (6,  6, 'Romania', 'Iasi', 'street 2');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (7,  7, 'Romania', 'Timisoara', 'street 7');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (8,  8, 'Romania', 'Botosani', 'street 8');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (9,  9, 'Romania', 'Iasi', 'street 2');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (10, 10,'Rusia', 'Moscova', 'street 10');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (11, 11,'Italia', 'Milano', 'street 11');
+INSERT INTO hibernate.address (ID, person_id, country, city, street) VALUES (12, 12,'Romania', 'Iasi', 'street 2');
+
+
+INSERT INTO hibernate.person (id, person_type, email, name, birthday, nr_of_employee) VALUES ( 2, 'LP', 'person2@something.com', 'person2', '2006-06-23',  2);
+INSERT INTO hibernate.person (id, person_type, email, name, birthday, nr_of_employee) VALUES ( 3, 'LP', 'person3@something.com', 'person3', '2005-06-23',  3);
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday, nr_of_employee) VALUES ( 4, 'LP', 'person4@something.com', 'person4', '2004-06-23',  4);
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday, nr_of_employee) VALUES ( 5, 'LP', 'person5@something.com', 'person5', '2003-06-23',  5);
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday, nr_of_employee) VALUES ( 6, 'LP', 'person6@something.com', 'person6', '2002-06-23',  6);
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday, nr_of_employee) VALUES ( 7, 'LP', 'person7@something.com', 'person7', '1993-06-23',  7);
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday) VALUES ( 8, 'NP', 'person8@something.com', 'person8', '1960-06-23');
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday) VALUES ( 9, 'NP', 'person9@something.com', 'person9', '1970-06-23');
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday) VALUES (10, 'NP', 'person10@something.com','person10', '1939-06-23');
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday) VALUES (11, 'NP', 'person11@something.com','person11', '1966-06-23');
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday, nr_of_employee) VALUES (12, 'LP', 'person12@something.com','person12', '1945-06-23', 12);
+INSERT INTO hibernate.person (ID, person_type, email, name, birthday) VALUES (13, 'NP', 'person13@something.com','person13', '1999-06-23');
