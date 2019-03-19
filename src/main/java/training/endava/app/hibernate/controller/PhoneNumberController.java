@@ -7,6 +7,8 @@ import training.endava.app.hibernate.repository.PhoneNumberRepo;
 
 import java.util.List;
 
+
+@RestController
 public class PhoneNumberController {
 
     private PhoneNumberRepo phoneNumberRepo=new PhoneNumberRepo();

@@ -7,8 +7,9 @@ import training.endava.app.hibernate.service.impl.AddressServiceImpl;
 
 import java.util.List;
 
-public class AddressController {
 
+@RestController
+public class AddressController {
 
     private AddressServiceImpl addressService=new AddressServiceImpl();
 
