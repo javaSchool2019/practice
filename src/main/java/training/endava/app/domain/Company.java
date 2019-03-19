@@ -10,11 +10,6 @@ import java.io.Serializable;
 @DiscriminatorValue("C")
 public class Company extends YellowPageEntry implements Serializable{
 
-    @SequenceGenerator(name = "company_entry", allocationSize = 1)
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "company_entry")
-    private long id;
-
     @Column(name = "business_name", length = 50)
     private String businessName;
 

@@ -7,11 +7,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import training.endava.app.domain.Person;
 import training.endava.app.domain.PersonDTO;
+import training.endava.app.domain.PersonMapper;
 import training.endava.app.repository.PersonRepository;
-import training.endava.app.service.PersonService;
-import training.endava.app.service.impl.PersonServiceImpl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/person", consumes = {MediaType.APPLICATION_JSON_VALUE})
@@ -25,25 +25,30 @@ public class PersonController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Person>> getAll(){
-        return ResponseEntity.ok(personRepository.getAll());
+    public ResponseEntity<List<PersonDTO>> getAll(){
+        List<Person> persons = personRepository.getAll();
+        List<PersonDTO> personDTOS = persons.stream()
+                .map(PersonMapper.INSTANCE::personToPersonDTO).collect(Collectors.toList());
+        return ResponseEntity.ok(personDTOS);
     }
 
     @PostMapping
-    public ResponseEntity<Person> add(@RequestBody Person person){
+    public ResponseEntity<PersonDTO> add(@RequestBody PersonDTO personDTO){
+        Person person = PersonMapper.INSTANCE.personDTOToPerson(personDTO);
         personRepository.addPerson(person);
-        return new ResponseEntity<>(person, HttpStatus.CREATED);
+        return new ResponseEntity<>(personDTO, HttpStatus.CREATED);
     }
 
-    @PutMapping
-    public ResponseEntity<Person> update(@RequestBody Person person){
-        personRepository.updatePerson(person);
-        return new ResponseEntity<>(person, HttpStatus.OK);
+    @PutMapping(path = "{id}")
+    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody PersonDTO personDTO){
+        Person person = PersonMapper.INSTANCE.personDTOToPerson(personDTO);
+        personRepository.updatePerson(id, person);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
-//    @DeleteMapping("/{id}")
-//    public ResponseEntity<?> delete(@PathVariable long id){
-//        personService.deletePerson(id);
-//        return new ResponseEntity<>(HttpStatus.OK);
-//    }
+    @DeleteMapping(path = "{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id){
+        personRepository.deletePerson(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

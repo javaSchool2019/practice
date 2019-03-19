@@ -2,11 +2,11 @@ package training.endava.app.repository;
 
 import org.springframework.stereotype.Repository;
 import training.endava.app.domain.Person;
-import training.endava.app.domain.PersonDTO;
 import training.endava.app.helpers.EntityManagerFactoryHelper;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
@@ -24,6 +24,7 @@ public class PersonRepository {
         return persons;
     }
 
+    @Transactional
     public void addPerson(Person person) {
         EntityManager entityManager = EntityManagerFactoryHelper.getFactory().createEntityManager();
         entityManager.getTransaction().begin();
@@ -32,27 +33,28 @@ public class PersonRepository {
         entityManager.close();
     }
 
-    public void updatePerson(Person person) {
+    public void updatePerson(Long id, Person person) {
         EntityManager entityManager = EntityManagerFactoryHelper.getFactory().createEntityManager();
         entityManager.getTransaction().begin();
-        Person personInDb = entityManager.find(Person.class, person);
-        personInDb.setLastName(person.getLastName());
-        personInDb.setFirstName(person.getFirstName());
-        personInDb.setAddress(person.getAddress());
-        personInDb.setPhoneNumber(person.getPhoneNumber());
+        Person personDb = entityManager.find(Person.class, id);
+        if(personDb != null){
+            personDb.setFirstName(person.getFirstName());
+            personDb.setLastName(person.getLastName());
+            personDb.setAddress(person.getAddress());
+            personDb.setPhoneNumbers(person.getPhoneNumbers());
+            entityManager.flush();
+        }
         entityManager.getTransaction().commit();
         entityManager.close();
     }
 
-    public void deletePerson(long id) {
-//        try (Connection conn = PostgreDB.getConnection()){
-//            String query = "DELETE FROM persons WHERE id = ?";
-//            PreparedStatement preparedStatement = conn.prepareStatement(query);
-//            preparedStatement.setLong(1, id);
-//            preparedStatement.execute();
-//        }
-//        catch (SQLException exception){
-//            LOGGER.warning("Error connecting to db" + exception);
-//        }
+    public void deletePerson(Long id) {
+        EntityManager entityManager = EntityManagerFactoryHelper.getFactory().createEntityManager();
+        entityManager.getTransaction().begin();
+        Person person = entityManager.find(Person.class, id);
+        if(person != null)
+            entityManager.remove(person);
+        entityManager.getTransaction().commit();
+        entityManager.close();
     }
 }

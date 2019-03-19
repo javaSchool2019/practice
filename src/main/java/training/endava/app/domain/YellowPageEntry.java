@@ -1,6 +1,7 @@
 package training.endava.app.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "yellow_page_entry")
@@ -10,27 +11,41 @@ import javax.persistence.*;
 public class YellowPageEntry {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
 
-    @Column(name = "phone_number", length = 10, nullable = false)
-    private String phoneNumber;
+    @OneToMany(fetch = FetchType.EAGER, cascade = {CascadeType.ALL} )
+    @JoinColumn(name = "entry_id")
+    private List<PhoneNumber> phoneNumbers;
 
-    @Column(name = "address", length = 50, nullable = false)
-    private String address;
+    @OneToOne(fetch = FetchType.EAGER, cascade = {CascadeType.ALL})
+    @JoinColumn(name = "address_id")
+    private Address address;
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public List<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
     }
 
-    public String getAddress() {
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

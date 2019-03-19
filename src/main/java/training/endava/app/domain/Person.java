@@ -8,10 +8,6 @@ import java.io.Serializable;
 @DiscriminatorValue("P")
 public class Person extends YellowPageEntry implements Serializable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
     @Column(name = "first_name", length = 50)
     private String firstName;
 
