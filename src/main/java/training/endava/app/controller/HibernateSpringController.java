@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import training.endava.app.DTOMapper.PersonMapper;
 import training.endava.app.domain.Person;
+import training.endava.app.domain.hibernateObjects.PageEntry;
 import training.endava.app.domain.hibernateObjects.PersonInfo;
 import training.endava.app.service.PersonService;
 import training.endava.app.service.impl.HibernatePersonServiceImpl;
@@ -27,21 +28,21 @@ public class HibernateSpringController {
     private HibernatePersonServiceImpl serv;
 
     @GetMapping(value = "/getAll")
-    public ResponseEntity<List<Person>> getAll() {
+    public ResponseEntity<List<PageEntry>> getAll() {
         LOGGER.info("GET REQUEST /persons/getAll");
         return ResponseEntity.ok(serv.getAll());
     }
 
-    @GetMapping(value = "/getById={ID}", produces = MediaType.APPLICATION_XML_VALUE)
+    @GetMapping(value = "/getById={ID}")
     public ResponseEntity getById(@PathVariable(value = "ID") Integer id) {
         LOGGER.info("GET REQUEST /persons/getById");
-        return ResponseEntity.ok(PersonMapper.INSTANCE.persontoPersonDTO(serv.getById(id)));
+        return ResponseEntity.ok(serv.getById(id));
     }
 
     @PostMapping(value = "/post")
     ResponseEntity postPerson(@RequestBody PersonInfo personInfo) {
         LOGGER.info("POST REQUEST /persons/post");
-        if (personInfo.getId() == null || personInfo.getName() == null) {
+        if (personInfo.getName() == null) {
             LOGGER.severe("IllegalArgumentException");
             throw new IllegalArgumentException("At least one parameter is invalid or not supplied");
         }

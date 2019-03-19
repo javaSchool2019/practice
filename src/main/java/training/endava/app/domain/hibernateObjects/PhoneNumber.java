@@ -3,10 +3,7 @@ package training.endava.app.domain.hibernateObjects;
 
 import org.springframework.lang.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
@@ -20,5 +17,7 @@ public class PhoneNumber implements Serializable {
     private String number;
 
     @NonNull
+    @OneToOne
+    @JoinColumn(name = "id")
     private Integer entry_id;
 }

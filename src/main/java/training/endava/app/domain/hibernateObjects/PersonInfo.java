@@ -18,13 +18,19 @@ public class PersonInfo extends PageEntry {
     private Date birthday;
     private String birthplace;
     @NonNull
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     private Integer address_id;
+
+    @Transient
+    private String birthInfo;
 
     public PersonInfo(@NotBlank String name, Date birthday, String birthplace, Integer address_id) {
         super(name);
         this.birthday = birthday;
         this.birthplace = birthplace;
         this.address_id = address_id;
+        this.birthInfo = birthplace.toString()+" "+birthday.toString();
     }
 
     public PersonInfo(){
@@ -52,5 +58,10 @@ public class PersonInfo extends PageEntry {
 
     public void setAddress_id(Integer address_id) {
         this.address_id = address_id;
+    }
+
+    public String getBirthInfo() {
+        this.birthInfo = birthplace.toString()+" "+birthday.toString();
+        return birthInfo;
     }
 }

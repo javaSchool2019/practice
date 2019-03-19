@@ -2,6 +2,7 @@ package training.endava.app.repository;
 
 import org.hibernate.Session;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.HttpClientErrorException;
 import training.endava.app.domain.Person;
 import training.endava.app.domain.hibernateObjects.PageEntry;
 import training.endava.app.domain.hibernateObjects.PersonInfo;
@@ -28,78 +29,53 @@ public class HibernateDB {
 
     @Transactional
     public List<PageEntry> getList() {
-        EntityManager entityManager =  HibernateConnection.buildEntityManager();
-//        entityManager.getTransaction().begin();
+        EntityManager entityManager = HibernateConnection.buildEntityManager();
+
         Query query = entityManager.createQuery("Select p from PageEntry p", PageEntry.class);
-//        Query query = entityManager.createNativeQuery("Select p from person p", PageEntry.class);
+
         List<PageEntry> persons = query.getResultList();
-//        entityManager.getTransaction().commit();
+
         return persons;
     }
 
-    public Optional<Person> getById(Integer id) {
-        Person person = null;
-        try {
-            Statement stmt = null;
-//            stmt = dbConnection.createStatement();
-            String sql = "Select * from persons where person_id=" + id;
-            ResultSet rs = stmt.executeQuery(sql);
-            while (rs.next()) {
-                person = new Person(
-                        rs.getInt("person_id"),
-                        rs.getString("name"),
-                        rs.getDate("birthday"),
-                        rs.getString("birthplace"),
-                        rs.getInt("address_id"));
-            }
-            rs.close();
-            stmt.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            Optional<Person> op = Optional.ofNullable(person);
-            return op;
-        }
+    public Optional<PersonInfo> getById(Integer id) {
+        EntityManager entityManager = HibernateConnection.buildEntityManager();
+
+        Query query = entityManager.createQuery("Select p from PageEntry p where id=" + id, PageEntry.class);
+
+        Optional<PersonInfo> optionalPersonInfo = Optional.ofNullable((PersonInfo) query.getSingleResult());
+
+        return optionalPersonInfo;
     }
 
     public void add(PersonInfo personInfo) {
-        EntityManager entityManager =  HibernateConnection.buildEntityManager();
+        EntityManager entityManager = HibernateConnection.buildEntityManager();
         entityManager.getTransaction().begin();
         entityManager.persist(personInfo);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
 
-    public void update(Person person, Integer i) {
-//        LOGGER.info("Update from DB");
-//        String SQL = "UPDATE persons set name = ? ,birthday = ? ,birthplace = ? ,address_id = ? where person_id = ?";
-//        System.out.println(person.getBirthday().getClass());
-//        try (
-//                PreparedStatement statement = dbConnection.prepareStatement(SQL)) {
-//            statement.setInt(5, person.getPerson_id());
-//            statement.setString(1, person.getName());
-//            statement.setDate(2, person.getBirthday());
-//            statement.setString(3, person.getBirthplace());
-//            statement.setInt(4, person.getAddress_id());
-//
-//            statement.executeUpdate();
-//        } catch (
-//                SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
+    public void update(PersonInfo person, Integer id) {
+        EntityManager entityManager = HibernateConnection.buildEntityManager();
+        PersonInfo personFromDB = entityManager.find(PersonInfo.class, id);
+        if (personFromDB != null) {
+            entityManager.getTransaction().begin();
+            personFromDB.setName(person.getName());
+            personFromDB.setBirthday(person.getBirthday());
+            personFromDB.setBirthplace(person.getBirthplace());
+            personFromDB.setAddress_id(person.getAddress_id());
+            entityManager.getTransaction().commit();
+        }
     }
 
-    public void delete(Integer personId) {
-//        LOGGER.info("Delete from DB");
-//        String SQL = "DELETE FROM persons WHERE person_id = ?";
-//        try (
-//                PreparedStatement statement = dbConnection.prepareStatement(SQL)) {
-//            statement.setInt(1, personId);
-//
-//            statement.executeUpdate();
-//        } catch (
-//                SQLException ex) {
-//            System.out.println(ex.getMessage());
-//        }
+    public void delete(Integer id) {
+        EntityManager entityManager = HibernateConnection.buildEntityManager();
+        PersonInfo personFromDB = entityManager.find(PersonInfo.class, id);
+        if (personFromDB != null) {
+            entityManager.getTransaction().begin();
+            entityManager.remove(personFromDB);
+            entityManager.getTransaction().commit();
+        }
     }
 }

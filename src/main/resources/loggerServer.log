@@ -88,3 +88,27 @@ Mar 18, 2019 4:14:28 PM training.endava.app.controller.HibernateSpringController
 INFO: POST REQUEST /persons/post
 Mar 18, 2019 4:24:18 PM training.endava.app.controller.HibernateSpringController postPerson
 INFO: POST REQUEST /persons/post
+Mar 19, 2019 10:41:32 AM training.endava.app.controller.HibernateSpringController getById
+INFO: GET REQUEST /persons/getById
+Mar 19, 2019 10:46:03 AM training.endava.app.controller.HibernateSpringController getAll
+INFO: GET REQUEST /persons/getAll
+Mar 19, 2019 10:48:55 AM training.endava.app.controller.HibernateSpringController postPerson
+INFO: POST REQUEST /persons/post
+Mar 19, 2019 10:48:55 AM training.endava.app.controller.HibernateSpringController postPerson
+SEVERE: IllegalArgumentException
+Mar 19, 2019 10:49:48 AM training.endava.app.controller.HibernateSpringController postPerson
+INFO: POST REQUEST /persons/post
+Mar 19, 2019 10:51:00 AM training.endava.app.controller.HibernateSpringController postPerson
+INFO: POST REQUEST /persons/post
+Mar 19, 2019 10:51:00 AM training.endava.app.controller.HibernateSpringController postPerson
+SEVERE: IllegalArgumentException
+Mar 19, 2019 10:53:12 AM training.endava.app.controller.HibernateSpringController postPerson
+INFO: POST REQUEST /persons/post
+Mar 19, 2019 10:53:12 AM training.endava.app.controller.HibernateSpringController postPerson
+SEVERE: IllegalArgumentException
+Mar 19, 2019 10:54:05 AM training.endava.app.controller.HibernateSpringController postPerson
+INFO: POST REQUEST /persons/post
+Mar 19, 2019 10:54:35 AM training.endava.app.controller.HibernateSpringController postPerson
+INFO: POST REQUEST /persons/post
+Mar 19, 2019 10:55:26 AM training.endava.app.controller.HibernateSpringController deletePerson
+INFO: DELETE REQUEST /persons/delete

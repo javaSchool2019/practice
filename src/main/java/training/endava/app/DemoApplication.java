@@ -15,12 +15,16 @@ import java.sql.*;
 public class DemoApplication {
 
     public static void main(String[] args) throws SQLException {
-//        SpringApplication.run(DemoApplication.class, args);
-        HibernateDB hibernateDB = new HibernateDB();
+        SpringApplication.run(DemoApplication.class, args);
+//        HibernateDB hibernateDB = new HibernateDB();
 //        Integer person_id, @NotBlank String name, Date birthday, String birthplace, Integer address_id
-        PersonInfo personInfo = new PersonInfo("test",new Date(System.currentTimeMillis()),"test",1);
-        hibernateDB.add(personInfo);
-        System.out.println(hibernateDB.getList());
+//        PersonInfo personInfo = new PersonInfo("TEST",new Date(System.currentTimeMillis()),"test",1);
+//        hibernateDB.add(personInfo);
+//        hibernateDB.getList();
+//        hibernateDB.update(personInfo,1);
+//        hibernateDB.delete(1);
+//        hibernateDB.getById(2);
+//        System.out.println(hibernateDB.getById(2).getBirthInfo());
     }
 
 

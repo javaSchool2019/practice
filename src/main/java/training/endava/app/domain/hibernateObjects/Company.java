@@ -16,6 +16,8 @@ public class Company extends PageEntry {
 
     Date foundingYear;
     @NonNull
+    @ManyToOne
+    @JoinColumn(name = "address_id")
     Integer address_id;
 
     public Company(@NotBlank String name, Date foundingYear, Integer address_id) {
