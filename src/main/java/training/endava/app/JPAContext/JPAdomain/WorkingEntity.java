@@ -9,6 +9,9 @@ import javax.persistence.*;
 @DiscriminatorValue("WE")
 public class WorkingEntity {
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private Address addressType;
+
     //id, phone number, address, abstract OtherDetails
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

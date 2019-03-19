@@ -6,6 +6,11 @@ import javax.persistence.*;
 @Table(name = "phone_numbers")
 public class PhoneNumber {
 
+
+    @ManyToOne
+    @JoinColumn(name = "entityNumber")
+    private WorkingEntity workingEntity;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;

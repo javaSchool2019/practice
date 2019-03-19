@@ -1,7 +1,5 @@
 package training.endava.app.JPAContext.JPAContextRepository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import training.endava.app.JPAContext.JPAdomain.Address;
 
@@ -53,18 +51,19 @@ public class AddressRepository  {
     {
         return entityManager.find(Address.class, id);
     }
+
     //update
-    public void updateAddress(Address address)
+    @Transactional
+    public Address updateAddress(Address address)
     {
-        entityManager.getTransaction().begin();
-        entityManager.merge(address);
-        entityManager.getTransaction().commit();
+        return entityManager.merge(address);
     }
 
     //delete
+    @Transactional
     public void deleteAddress(Integer id)
     {
-        entityManager.createNativeQuery("DELETE FROM DEPARTMENT WHERE ID = " + id).executeUpdate();
+        entityManager.createNativeQuery("DELETE FROM ADDRESSES D WHERE ID = " + id).executeUpdate();
     }
 
 }

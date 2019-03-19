@@ -36,10 +36,11 @@ public class AddressController {
     public Address findAddressById(@PathVariable(value = "id") int id) {
         return this.addressRepository.findById(id);
     }
+
     @PutMapping("/address/")
-        public void updateAddress(@RequestBody Address address){
-            this.addressRepository.updateAddress(address);
-        }
+    public void updateAddress(@RequestBody Address address){
+        this.addressRepository.updateAddress(address);
+    }
 
     @DeleteMapping("address/{id}")
     public void deleteAddressByID(@PathVariable(value = "id") int id){
