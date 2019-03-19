@@ -1,90 +1,118 @@
-Mar 15, 2019 9:05:05 AM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 9:19:31 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 9:05:05 AM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 9:19:31 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 9:05:05 AM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 9:19:31 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 9:11:58 AM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 9:20:01 AM training.endava.app.logger.MyLogger log
+INFO: Searching for a list
+Mar 19, 2019 10:02:10 AM training.endava.app.logger.MyLogger log
+INFO: Searching for a list
+Mar 19, 2019 10:12:27 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 9:11:58 AM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:12:27 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 9:11:58 AM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:12:27 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 12:16:38 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:23:55 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 12:16:38 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:23:56 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 12:16:38 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:23:56 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 12:23:50 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:30:52 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 12:23:50 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:30:52 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 12:23:50 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:30:52 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 3:57:29 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:32:52 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 3:57:29 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:32:52 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 3:57:29 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:32:52 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 4:01:58 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:33:42 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 4:01:58 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:33:42 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 4:01:58 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:33:42 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 4:03:36 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:35:50 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 4:03:36 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:35:50 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 4:03:36 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:35:50 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 4:04:06 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:40:02 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 4:04:06 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:40:02 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 4:04:06 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:40:02 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 4:50:58 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:40:59 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 4:50:58 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:40:59 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 4:50:58 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:40:59 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 4:52:14 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:46:49 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 4:52:14 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:46:49 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 4:52:14 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:46:49 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 4:57:07 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:54:55 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 4:57:08 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:54:55 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 4:57:08 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:54:55 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 4:59:11 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:56:48 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 4:59:11 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:56:48 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 4:59:11 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:56:48 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 4:59:30 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:58:35 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 4:59:31 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:58:35 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 4:59:31 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:58:35 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 4:59:44 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:59:52 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 4:59:45 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:59:52 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 4:59:45 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 10:59:52 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.
-Mar 15, 2019 5:00:05 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 11:05:01 AM training.endava.app.logger.MyLogger <init>
 CONFIG: Configuration done.
-Mar 15, 2019 5:00:05 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 11:05:01 AM training.endava.app.logger.MyLogger <init>
 FINE: Finer logged
-Mar 15, 2019 5:00:05 PM training.endava.app.logger.MyLogger <init>
+Mar 19, 2019 11:05:01 AM training.endava.app.logger.MyLogger <init>
+FINER: Finest example on LOGGER handler completed.
+Mar 19, 2019 11:17:36 AM training.endava.app.logger.MyLogger <init>
+CONFIG: Configuration done.
+Mar 19, 2019 11:17:36 AM training.endava.app.logger.MyLogger <init>
+FINE: Finer logged
+Mar 19, 2019 11:17:36 AM training.endava.app.logger.MyLogger <init>
+FINER: Finest example on LOGGER handler completed.
+Mar 19, 2019 11:21:57 AM training.endava.app.logger.MyLogger <init>
+CONFIG: Configuration done.
+Mar 19, 2019 11:21:57 AM training.endava.app.logger.MyLogger <init>
+FINE: Finer logged
+Mar 19, 2019 11:21:57 AM training.endava.app.logger.MyLogger <init>
+FINER: Finest example on LOGGER handler completed.
+Mar 19, 2019 11:26:14 AM training.endava.app.logger.MyLogger <init>
+CONFIG: Configuration done.
+Mar 19, 2019 11:26:14 AM training.endava.app.logger.MyLogger <init>
+FINE: Finer logged
+Mar 19, 2019 11:26:14 AM training.endava.app.logger.MyLogger <init>
+FINER: Finest example on LOGGER handler completed.
+Mar 19, 2019 11:27:49 AM training.endava.app.logger.MyLogger <init>
+CONFIG: Configuration done.
+Mar 19, 2019 11:27:49 AM training.endava.app.logger.MyLogger <init>
+FINE: Finer logged
+Mar 19, 2019 11:27:49 AM training.endava.app.logger.MyLogger <init>
 FINER: Finest example on LOGGER handler completed.

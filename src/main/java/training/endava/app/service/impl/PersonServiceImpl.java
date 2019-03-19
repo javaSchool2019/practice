@@ -3,13 +3,11 @@ package training.endava.app.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import training.endava.app.controller.exceptionHandling.UpdateException;
 import training.endava.app.domain.Person;
 import training.endava.app.repository.PersonRepository;
 import training.endava.app.service.PersonService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService {
