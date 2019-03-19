@@ -6,12 +6,8 @@ import java.util.List;
 
 public interface PersonService {
     List<Person> findAll();
-
-    Person findById(long id);
-
-    void add(Person person);
-
-    void delete(long id);
-
-    void update(long id, Person person);
+    Person findById(Long id);
+    void save(Person p);
+    void delete(Long id);
+    void update(Long id, Person p);
 }

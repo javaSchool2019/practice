@@ -1,6 +1,6 @@
 package training.endava.app.service.impl;
 
-
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import training.endava.app.domain.Person;
@@ -11,13 +11,10 @@ import training.endava.app.service.PersonService;
 import java.util.List;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonServiceImpl implements PersonService {
-    private PersonRepository personRepository;
 
-    @Autowired
-    public PersonServiceImpl(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
+    private PersonRepository personRepository;
 
     @Override
     public List<Person> findAll() {
@@ -25,22 +22,22 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person findById(long id) {
-        return personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person with id " + id + " not found."));
+    public Person findById(Long id) {
+        return personRepository.findById(id).orElseThrow(() -> new PersonNotFoundException("Person with id " + id + " does not exist"));
     }
 
     @Override
-    public void add(Person person) {
-        personRepository.save(person);
+    public void save(Person p) {
+        personRepository.save(p);
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(Long id) {
         personRepository.delete(id);
     }
 
     @Override
-    public void update(long id, Person person) {
-        personRepository.update(id, person);
+    public void update(Long id, Person p) {
+        personRepository.update(id, p);
     }
 }
