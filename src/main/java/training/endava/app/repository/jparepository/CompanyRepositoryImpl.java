@@ -1,5 +1,6 @@
 package training.endava.app.repository.jparepository;
 
+import org.springframework.stereotype.Repository;
 import training.endava.app.database.PostgresJPA;
 import training.endava.app.domain.entity.Company;
 import training.endava.app.domain.entity.PersonDetails;
@@ -10,6 +11,7 @@ import javax.persistence.TypedQuery;
 import java.util.ArrayList;
 import java.util.List;
 
+@Repository
 public class CompanyRepositoryImpl implements CompanyRepository {
     private EntityManager em;
 

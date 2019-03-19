@@ -1,7 +1,8 @@
 package training.endava.app.service;
 
 import org.springframework.stereotype.Component;
-import training.endava.app.domain.Person;
+import training.endava.app.domain.entity.Person;
+
 
 import java.util.List;
 

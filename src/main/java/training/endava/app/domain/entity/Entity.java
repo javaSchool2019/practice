@@ -13,9 +13,6 @@ import java.util.List;
 @DiscriminatorColumn(name = "EMPLOY_TYPE", discriminatorType = DiscriminatorType.CHAR)
 @DiscriminatorValue("E")
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Data
 public class Entity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,11 +20,44 @@ public class Entity {
 
     @OneToMany(
             cascade = CascadeType.ALL,
-            orphanRemoval = true
+            orphanRemoval = true,
+            fetch = FetchType.EAGER
     )
     private List<PhoneNumber> phoneNumbers;
     private String address;
 
+    @Override
+    public String toString() {
+        return "Entity{" +
+                "id=" + id +
+                ", phoneNumbers=" + phoneNumbers +
+                ", address='" + address + '\'' +
+                '}';
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<PhoneNumber> getPhoneNumbers() {
+        return phoneNumbers;
+    }
+
+    public void setPhoneNumbers(List<PhoneNumber> phoneNumbers) {
+        this.phoneNumbers = phoneNumbers;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
 }
 
 
